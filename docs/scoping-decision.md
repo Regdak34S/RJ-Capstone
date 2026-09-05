@@ -12,15 +12,19 @@ A student trying to finish a capstone often sits down with scattered notes, half
 
 ## 2. Evidence a user exists
 
-Interviewed rj on 2026-09-01, 30 minutes, past-tense questions only.
-Full write-up in `docs/interviews/<YYYY-MM-DD>-<initials>.md`.
+**Interview evidence must be completed from the real interview before submission. Do not invent or backfill answers or quotes.**
 
-- "I kept rewriting the same sections because I couldn’t see what was actually finished and what was still a draft."
-- "When I borrowed structure from old assignments, it never quite fit this project, so I spent more time fixing the template than writing."
-- "I felt like I was guessing my way to the final document instead of following a clear, repeatable process."
+Interview date: **[ENTER ACTUAL DATE]**  
+Interview length: **[ENTER ACTUAL LENGTH]**  
+Interviewee/role: **[ENTER WHO WAS INTERVIEWED AND THEIR ROLE]**  
+Full write-up: `docs/interviews/[ACTUAL-DATE]-[INITIALS].md`
 
-<If your project has no user but you, say so here in one sentence and substitute a
-competitive scan of at least three existing tools. Do not invent a user.>
+Three verbatim quotes from the interview:
+- "[PASTE ACTUAL VERBATIM QUOTE 1]"
+- "[PASTE ACTUAL VERBATIM QUOTE 2]"
+- "[PASTE ACTUAL VERBATIM QUOTE 3]"
+
+If the 10–15 hour cost in §1 came from the interview, document the exact answer supporting it. If it did not come from real evidence, replace it with a real, defensible number or clearly label it as a personal estimate rather than research evidence.
 
 ## 3. Chosen scope — Must features
 
@@ -40,13 +44,15 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 
 ## 4. Should features — built only if there is room
 
+**Use your own estimates and planned weeks. Do not submit placeholders.**
+
 | # | Should feature | Hours | Planned week |
 |---|---|---:|---:|
-| 1 | Section-specific prompts library | 8 | 9 |
-| 2 | Export Presets | 6 | 11 |
-| 3 | Lightweight peer-review checklist | 5 | 11 |
+| 1 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
+| 2 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
+| 3 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
 
-If I fall behind, the first cut will be the export presets, followed by the reflection journal view, then the peer-review checklist, and finally the prompts library if absolutely necessary.
+If I fall behind, **[ACTUAL SHOULD FEATURE]** will be cut first, followed by **[ACTUAL SHOULD FEATURE]**.
 
 ## 5. Out of scope — will not be built
 
@@ -91,9 +97,9 @@ The one hard part is designing the progress tracking view so that it stays simpl
 | Losing momentum during Weeks 9–10 | High | Rushed construction and weaker verification | More than three planned work sessions skipped in a row |
 | More than three planned work sessions skipped in a row | Low | Rework and broken tests | Frequent edits to the content map after Week 8 |
 
-**Scope-cut trigger.** If the core must features are not all in a working, testable state by 2026-11-15, I will cut the export presets first, then the reflection journal view, and freeze the feature set to only what is already built and verified. Decided now, in advance, so I do not have to decide it while panicking.
+**Scope-cut trigger.** If the core Must features are not all in a working, testable state by 2026-11-15, I will cut the first listed Should feature, then the second listed Should feature, and freeze the feature set to only what is already built and verified. The cut order must match the actual Should-feature list in §4. Decided now, in advance, so I do not have to decide it while panicking.
 
 ---
 
 **Signed:** Reginald Johnson, 2026-09-05
-**AI use for this document:** I asked for help finishing the missing sections of my scoping decision, kept the overall structure and all project ideas as my own, and edited the wording to match my voice; this usage is recorded in `docs/ai-usage.md`assists.
+**AI use for this document:** I asked for help finishing the missing sections of my scoping decision, kept the overall structure and all project ideas as my own, and edited the wording to match my voice; this usage is recorded in `docs/ai-usage.md`.
