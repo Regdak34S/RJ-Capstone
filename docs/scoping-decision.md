@@ -1,8 +1,6 @@
 # Scoping Decision — Captone Content Creation Project
 
-Copy this into your repository as `docs/scoping-decision.md`. Two pages is plenty.
-Every sentence you write here must be checkable by someone who is not you: a number,
-a date, a quote, or a named condition. Delete the bracketed guidance as you fill it in.
+
 
 **Author:** Reginald Johnson ·  **Date:** 2026-09-05 ·  **Course week:** 2
 
@@ -16,7 +14,7 @@ nouns in this paragraph. None.>
 
 ## 2. Evidence a user exists
 
-Interviewed <initials / role> on <YYYY-MM-DD>, <N> minutes, past-tense questions only.
+Interviewed rj on 2026-09-01, 30 minutes, past-tense questions only.
 Full write-up in `docs/interviews/<YYYY-MM-DD>-<initials>.md`.
 
 - "<verbatim quote 1>"
