@@ -1,4 +1,4 @@
-# Scoping Decision — Captone Content Creation Project
+# Scoping Decision — Capstone Content Creation Project
 
 
 
@@ -40,8 +40,13 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 
 ## 4. Should features — built only if there is room
 
-<Each with its hour cost and the week it would be built. Say plainly which one is cut
-first when you fall behind.>
+| # | Should feature | Hours | Planned week |
+|---|---|---:|---:|
+| 1 | Section-specific prompts library | 8 | 9 |
+| 2 | Export Presets | 6 | 11 |
+| 3 | Lightweight peer-review checklist | 5 | 11 |
+
+If I fall behind, the first cut will be the export presets, followed by the reflection journal view, then the peer-review checklist, and finally the prompts library if absolutely necessary.
 
 ## 5. Out of scope — will not be built
 
