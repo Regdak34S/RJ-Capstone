@@ -1,0 +1,9 @@
+# Dependency Verification Checklist
+
+Complete one entry for every external dependency for Candidates A, B, and C. Do not mark a dependency verified without actually exercising it.
+
+| Candidate | Dependency | What I called/tested | Result | Key needed | Rate limit/documentation | Terms read date | Evidence file |
+|---|---|---|---|---|---|---|---|
+| A | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
+| B | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
+| C | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
