@@ -27,9 +27,9 @@ The purpose of this capstone is to give me experience managing and completing a 
 
 ## 2. Project
 
-- **One-sentence description:** I will create a small software project that solves a specific problem for users while giving me experience with planning, programming, testing, and documenting a complete project.
-- **Primary user:** Reginald
-- **The one thing it must do to be worth finishing:** The project must successfully provide its main function and solve the main problem I created it for. If the main function does not work, then the project would not be worth finishing. My goal is to make sure the core feature works reliably before spending time on extra features.
+- **One-sentence description:** I will create a small Content Creation Project that helps a student organize, draft, track, revise, and assemble a capstone deliverable from scattered ideas and section drafts.
+- **Primary user:** A student completing a capstone deliverable who needs a clear, repeatable way to move from rough ideas to a finished document.
+- **The one thing it must do to be worth finishing:** It must let the primary user organize the major sections of a deliverable, work through the required sections, see their progress, and assemble the completed sections into one final deliverable. The core workflow must work reliably before optional features are added.
 
 ## 3. Capacity and constraints
 
@@ -49,7 +49,7 @@ The purpose of this capstone is to give me experience managing and completing a 
 
 <!-- Write the acceptance test for the whole semester, as something someone
      else could check without asking you a question. Three to six bullets. -->
-    - The project itself is completed and works according to the requirements decided in Week 2.
+    - The Content Creation Project's core workflow is completed and works according to the requirements decided in Week 2.
     - The required documentation has been completed and is organized in the repository.
     - The project has been tested, and the results are documented.
     - The README explains what the project is and how someone else can understand or run it.
