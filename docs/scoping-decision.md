@@ -1,4 +1,4 @@
-# Scoping Decision — Capstone Content Creation Project
+# Scoping Decision - Capstone Content Creation Project
 
 
 
