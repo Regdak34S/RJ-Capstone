@@ -29,7 +29,7 @@ The purpose of this capstone is to give me experience managing and completing a 
 
 - **One-sentence description:** I will create a small software project that solves a specific problem for users while giving me experience with planning, programming, testing, and documenting a complete project.
 - **Primary user:** Reginald
-- **The one thing it must do to be worth finishing:** The project must successfully provide its main function and solve the main problem I created it for. If the main function does not work, then the project would not be worth finishing. My goal is to make sure the core feature works reliably before spending time on extra features. science
+- **The one thing it must do to be worth finishing:** The project must successfully provide its main function and solve the main problem I created it for. If the main function does not work, then the project would not be worth finishing. My goal is to make sure the core feature works reliably before spending time on extra features.
 
 ## 3. Capacity and constraints
 
