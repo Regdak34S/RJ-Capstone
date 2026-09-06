@@ -49,7 +49,7 @@ I would first decide exactly what type of content the tool would help create, su
 
 | Feature | Hours |
 |--------|------:|
-| Create and organize a content project | 1 |
-| Store and organize ideas, scripts, and assets | 1 |
-| Track the progress and completion of project tasks | 2 |
-| **Total** | **4** |
+| Enter and save a content idea | 4 |
+| Create and edit a basic content outline | 2 |
+| Use AI assistance to develop the idea into a usable content plan | 8 |
+| **Total** | **14** |
