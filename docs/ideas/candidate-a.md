@@ -1,6 +1,6 @@
 # Candidate A - Complete Candidate Canvas
 
-> **Important:** Complete every bracketed field with your own actual idea and decisions before submission. Do not submit placeholders.
+
 
 ## 1. Problem
 **What real problem does this address?**  
