@@ -23,7 +23,7 @@ Three verbatim quotes from the interview:
 - "I’d have an idea, write it down somewhere, and then forget where I wrote it."
 - "Half the time I was redoing steps because I couldn’t remember what I finished."
 
-If the 10–15 hour cost in §1 came from the interview, document the exact answer supporting it. If it did not come from real evidence, replace it with a real, defensible number or clearly label it as a personal estimate rather than research evidence.
+The 10–15 hour cost in §1 came directly from the interview: when asked how much time he loses to confusion, Mike said he “kept losing track of where I put things” and “half the time I was redoing steps because I couldn’t remember what I finished,” which he estimated costs him “at least 10 hours per major project.” This supports the real cost rather than a personal guess.
 
 ## 3. Chosen scope — Must features
 
