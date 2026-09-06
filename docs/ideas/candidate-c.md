@@ -50,7 +50,7 @@ I would first map out the content-creation process I normally follow, from havin
 
 | Feature | Hours |
 |--------|------:|
-| Feature 1 | 3 |
-| Feature 2 | 3 |
-| Feature 3 | 6 |
+| Create and organize a content project | 3 |
+| Track drafting and revision stages | 3 |
+| Track overall project progress from idea to final content | 6 |
 | **Total** | **12** |
