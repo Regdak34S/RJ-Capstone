@@ -60,7 +60,7 @@ If the Week-8 audit shows the project is behind schedule, the first three featur
 2. Reflection journal view
 3. Section-specific prompts library
 
-Trigger: If Must features are not all working and testable by 2026-11-10 or 2026-18-10.
+Trigger: If Must features are not all working and testable by 2026‑11‑10, the cut order in §4 will be applied immediately.
 
 
 ## 5. Out of scope — will not be built
