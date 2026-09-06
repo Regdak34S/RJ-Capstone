@@ -1,4 +1,4 @@
-# Candidate A - Complete Candidate Canvas
+# Candidate A - Content Planning & Organization Tool
 
 
 
