@@ -1,4 +1,4 @@
-# Candidate B — Complete Candidate Canvas
+# Candidate B - Complete Candidate Canvas
 
 
 
