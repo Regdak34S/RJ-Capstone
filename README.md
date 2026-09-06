@@ -21,5 +21,3 @@ Milestone 2 — Idea Portfolio & Scoping Decision
 ## Project Board
 GitHub Projects board: **https://github.com/users/Regdak34S/projects/1**
 
-Before submission, replace the placeholder above with the actual board URL and verify that the board has the required five columns, WIP = 2, at least six cards, estimates, hats, and stopping conditions.
-
