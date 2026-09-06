@@ -2,7 +2,7 @@
 
 
 
-**Author:** Reginald Johnson ·  **Date:** 2026-09-05 ·  **Course week:** 2
+**Author:** Reginald Johnson ·  **Date:** 2026-09-06 ·  **Course week:** 2
 
 ---
 
@@ -12,7 +12,6 @@ A student trying to finish a capstone often sits down with scattered notes, half
 
 ## 2. Evidence a user exists
 
-**Interview evidence must be completed from the real interview before submission. Do not invent or backfill answers or quotes.**
 
 Interview date: September-1-2026
 Interview length: 1 Hour 
@@ -44,7 +43,6 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 
 ## 4. Should features — built only if there is room
 
-**Use your own estimates and planned weeks. Do not submit placeholders.**
 
 | # | Should feature | Hours | Planned week |
 |---|---|---:|---:|
@@ -53,6 +51,17 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 | 3 | Export presets for assembling final deliverables (course submission, portfolio, archive) | 6 | 11 |
 
 If I fall behind, **Export presets** will be cut first, followed by **Reflection journal view**.
+
+## Pre-committed Cut Order
+
+If the Week-8 audit shows the project is behind schedule, the first three features to be cut are:
+
+1. Export presets
+2. Reflection journal view
+3. Section-specific prompts library
+
+Trigger: If Must features are not all working and testable by 2026-11-10 or 2026-18-10.
+
 
 ## 5. Out of scope — will not be built
 
@@ -110,6 +119,19 @@ The following table summarizes the external dependency verification for Candidat
 | A | None | Verified project files contain no external calls | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-a-none.md |
 | B | OpenAI | Called a simple prompt to generate a short idea list | Response returned successfully, latency acceptable | Yes | 3 requests/minute (per docs), read usage and pricing page | 2026-09-04 | docs/evidence/dependency-checks/candidate-b-ai.md |
 | C | None | Verified progress + feedback features are local | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-c-none.md |
+
+---
+
+## Scope Sizer Reconciliation
+
+| Candidate | Bottom-up estimate | Scope Sizer estimate | Gap |
+|----------|--------------------:|----------------------:|----:|
+| A | X | X | X |
+| B | X | X | X |
+| C | X | X | X |
+
+### Gap explanation
+(Explain why the numbers differ)
 
 ---
 
