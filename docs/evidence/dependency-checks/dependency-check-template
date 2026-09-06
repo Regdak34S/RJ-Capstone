@@ -1,8 +1,0 @@
-# Dependency Verification Checklist
-
-
-| Candidate | Dependency | What I called/tested | Result | Key needed | Rate limit/documentation | Terms read date | Evidence file |
-|---|---|---|---|---|---|---|---|
-| A | None | Verified project files contain no external calls | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-a-none.md |
-| B | None | Verified checklist logic uses only internal data | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-b-none.md |
-| C | None | Verified progress + feedback features are local | No external dependency found | No | N/a | 2026-09-05 | docs/evidence/dependency-checks/candidate-c-none.md |
