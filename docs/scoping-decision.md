@@ -20,7 +20,7 @@ Interviewee/role: Mike (Video Content Organizer)
 Full write-up: `docs/interviews/2026-09-01-rj.md`
 
 Three verbatim quotes from the interview:
-- "I keep losing track of where I put things."
+- "I kept losing track of where I put things."
 - "I’d have an idea, write it down somewhere, and then forget where I wrote it."
 - "Half the time I was redoing steps because I couldn’t remember what I finished."
 
