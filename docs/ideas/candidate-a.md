@@ -44,3 +44,12 @@ The biggest problem would be trying to turn it into a complete content-managemen
 ## 7. Setup
 **What is the best way to set up this idea to get ready for the project?**  
 I would start by defining the basic content-creation workflow I personally use. Then I would identify the most important information that needs to be stored, such as project ideas, scripts, assets, and progress. After that, I would create a simple prototype and test whether I can use it to organize one real content project from beginning to end.
+
+## Must Features
+
+| Feature | Hours |
+|--------|------:|
+| Feature 1 | 1 |
+| Feature 2 | 1 |
+| Feature 3 | 2 |
+| **Total** | **4** |
