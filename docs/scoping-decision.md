@@ -8,7 +8,7 @@
 
 ## 1. Problem
 
-A student trying to finish a capstone often sits down with scattered notes, half-formed ideas, and no clear path from rough thoughts to a polished, coherent document. Under deadline pressure, they jump between sections, rewrite the same parts, and lose track of what is done, wasting hours-easily 10-15 per major deliverable-on confusion instead of progress. The usual workaround is to copy old assignments or past projects as a loose template, but that leads to mismatched structure, missing sections, and content that feels forced rather than tailored to the current project. Because that workaround never shows where the gaps are or how much work remains, the student keeps guessing, overworking some parts and neglecting others, and the final result suffers in clarity and confidence.
+A student trying to finish a capstone often sits down with scattered notes, half-formed ideas, and no clear path from rough thoughts to a polished, coherent document. Under deadline pressure, they jump between sections, rewrite the same parts, and lose track of what is done, which I estimate can waste 10–15 hours per major deliverable on confusion instead of progress. The usual workaround is to copy old assignments or past projects as a loose template, but that leads to mismatched structure, missing sections, and content that feels forced rather than tailored to the current project. Because that workaround never shows where the gaps are or how much work remains, the student keeps guessing, overworking some parts and neglecting others, and the final result suffers in clarity and confidence.
 
 ## 2. Evidence a user exists
 
@@ -23,7 +23,7 @@ Three verbatim quotes from the interview:
 - "I’d have an idea, write it down somewhere, and then forget where I wrote it."
 - "Half the time I was redoing steps because I couldn’t remember what I finished."
 
-The 10–15 hour cost in §1 came directly from the interview: when asked how much time he loses to confusion, Mike said he “kept losing track of where I put things” and “half the time I was redoing steps because I couldn’t remember what I finished,” which he estimated costs him “at least 10 hours per major project.” This supports the real cost rather than a personal guess.
+The interview supports the problem of losing track of files, ideas, and completed work, but it does not provide a specific numerical estimate for hours lost. Therefore, the 10–15 hour figure in §1 should be treated as my own estimate rather than as a direct quote or measurement from the interview.
 
 ## 3. Chosen scope — Must features
 
@@ -39,7 +39,7 @@ The 10–15 hour cost in §1 came directly from the interview: when asked how mu
 | | Deployment + clean-machine test | 8 |
 | | **Construction total** | 60 |
 
-Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; if I start burning into that slack, I will freeze scope and drop all “should” features before touching the must-haves.
+Plan: 60 hours. Hard ceiling: 75. My bottom-up estimate: 60 hours. That leaves 15 hours of slack; if I start burning into that slack, I will freeze scope and drop all “should” features before touching the must-haves.
 
 ## 4. Should features — built only if there is room
 
@@ -50,7 +50,7 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 | 2 | Reflection journal view for tracking creative decisions and lessons learned | 6 | 10 |
 | 3 | Export presets for assembling final deliverables (course submission, portfolio, archive) | 6 | 11 |
 
-If I fall behind, **Export presets** will be cut first, followed by **Reflection journal view**.
+If I fall behind, Export presets will be cut first, followed by Reflection journal view, then Section-specific prompts library.
 
 ## Pre-committed Cut Order
 
@@ -60,7 +60,7 @@ If the Week-8 audit shows the project is behind schedule, the first three featur
 2. Reflection journal view
 3. Section-specific prompts library
 
-Trigger: If Must features are not all working and testable by 2026‑11‑10, the cut order in §4 will be applied immediately.
+Trigger: If the Must features are not all working and testable by 2026-10-11, the cut order in §4 will be applied immediately.
 
 
 ## 5. Out of scope — will not be built
@@ -77,7 +77,7 @@ I am deliberately keeping the progress tracking view simple, just a few states p
 
 **Rejected: Deep integration with existing note-taking tools.** It failed the “scope and hours” gate; even a minimal integration with multiple tools would blow past the 75-hour ceiling and distract from the core content flow. Condition for revisiting: closed, not deferred, this belongs in a future project, not this capstone.
 
-## 8. Hour budget, reconciled
+## 8. 240-hour Scope Sizer budget, reconciled
 
 | Weeks | Phase | Hours |
 |---|---|---:|
@@ -92,7 +92,7 @@ I am deliberately keeping the progress tracking view simple, just a few states p
 | 15–16 | Presentation + delivery | 30 |
 | | **Total** | **240** |
 
-My construction total of 60 hours fits inside the 60/75 line; I cut deep tool integrations and any advanced analytics features to keep construction focused on the core content map, drafting checklist, progress tracking, feedback log, and final assembly workflow.
+This 240-hour table is the course Scope Sizer budget used for reconciliation, not my personal available-hours total. My personal capacity is approximately 141 hours and 20 minutes, so the project must remain within my actual capacity as well as the Scope Sizer comparison.
 
 ## 9. The one hard part
 
@@ -106,7 +106,7 @@ The one hard part is designing the progress tracking view so that it stays simpl
 | Losing momentum during Weeks 9–10 | High | Rushed construction and weaker verification | More than three planned work sessions skipped in a row |
 | More than three planned work sessions skipped in a row | Low | Rework and broken tests | Frequent edits to the content map after Week 8 |
 
-**Scope-cut trigger.** If the core Must features are not all in a working, testable state by 2026‑11‑10, I will cut the first listed Should feature, then the second, then the third, and freeze the feature set to only what is already built and verified. The cut order matches §4 and is decided now, in advance, so I do not have to decide it under pressure.
+**Scope-cut trigger.** If the core Must features are not all in a working, testable state by 2026-10-11, I will cut the first listed Should feature, then the second, then the third, and freeze the feature set to only what is already built and verified. The cut order matches §4 and is decided now, in advance, so I do not have to decide it under pressure.
 
 ---
 
