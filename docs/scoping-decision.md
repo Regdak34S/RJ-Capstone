@@ -106,7 +106,7 @@ The one hard part is designing the progress tracking view so that it stays simpl
 | Losing momentum during Weeks 9–10 | High | Rushed construction and weaker verification | More than three planned work sessions skipped in a row |
 | More than three planned work sessions skipped in a row | Low | Rework and broken tests | Frequent edits to the content map after Week 8 |
 
-**Scope-cut trigger.** If the core Must features are not all in a working, testable state by 2026-11-15, I will cut the first listed Should feature, then the second listed Should feature, and freeze the feature set to only what is already built and verified. The cut order must match the actual Should-feature list in §4. Decided now, in advance, so I do not have to decide it while panicking.
+**Scope-cut trigger.** If the core Must features are not all in a working, testable state by 2026‑11‑10, I will cut the first listed Should feature, then the second, then the third, and freeze the feature set to only what is already built and verified. The cut order matches §4 and is decided now, in advance, so I do not have to decide it under pressure.
 
 ---
 
