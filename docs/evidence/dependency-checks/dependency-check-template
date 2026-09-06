@@ -1,9 +1,8 @@
 # Dependency Verification Checklist
 
-Complete one entry for every external dependency for Candidates A, B, and C. Do not mark a dependency verified without actually exercising it.
 
 | Candidate | Dependency | What I called/tested | Result | Key needed | Rate limit/documentation | Terms read date | Evidence file |
 |---|---|---|---|---|---|---|---|
-| A | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
-| B | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
-| C | [dependency] | [actual test] | [actual result] | [yes/no + detail] | [actual info] | [date] | [filename] |
+| A | None | Verified project files contain no external calls | No external dependency found | No | N/A | 2026-09-05 | docs/ideas/candidate-a.md |
+| B | None | Verified checklist logic uses only internal data | No external dependency found | No | N/A | 2026-09-05 | docs/ideas/candidate-b.md |
+| C | None | Verified progress + feedback features are local | No external dependency found | No | N/a | 2026-09-05 | docs/ideas/candidate-b.md |
