@@ -101,5 +101,17 @@ The one hard part is designing the progress tracking view so that it stays simpl
 
 ---
 
+## Dependency Verification
+
+The following table summarizes the external dependency verification for Candidates A, B, and C and points to the evidence files.
+
+| Candidate | Dependency | What I called/tested | Result | Key needed | Rate limit/documentation | Terms read date | Evidence file |
+|---|---|---|---|---|---|---|---|
+| A | None | Verified project files contain no external calls | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-a-none.md |
+| B | OpenAI | Called a simple prompt to generate a short idea list | Response returned successfully, latency acceptable | Yes | 3 requests/minute (per docs), read usage and pricing page | 2026-09-04 | docs/evidence/dependency-checks/candidate-b-ai.md |
+| C | None | Verified progress + feedback features are local | No external dependency found | No | N/A | 2026-09-05 | docs/evidence/dependency-checks/candidate-c-none.md |
+
+---
+
 **Signed:** Reginald Johnson, 2026-09-05
 **AI use for this document:** I asked for help finishing the missing sections of my scoping decision, kept the overall structure and all project ideas as my own, and edited the wording to match my voice; this usage is recorded in `docs/ai-usage.md`.
