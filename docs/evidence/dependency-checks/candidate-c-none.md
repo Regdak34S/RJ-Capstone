@@ -6,10 +6,10 @@
 
 **Status:** Verified
 
-**Reason:** Progress + feedback features are local
+**Reason:** All features are local (progress tracking, feedback log, content map).
 
 **Key required:** None
 
-**Rate limit:** Unknown  
+**Rate limit:** N/A
 
-**Terms read:** Not completed
+**Terms read:** N/A
