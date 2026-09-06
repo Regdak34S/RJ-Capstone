@@ -44,3 +44,12 @@ The biggest risk is relying too much on an external AI service. Building a compl
 ## 7. Setup
 **What is the best way to set up this idea to get ready for the project?**  
 I would first decide exactly what type of content the tool would help create, such as video scripts or content outlines. Then I would test the AI dependency with a very small prototype. I would compare the AI output with what I normally create manually and decide what parts of the process the project actually needs to support.
+
+## Must Features
+
+| Feature | Hours |
+|--------|------:|
+| Feature 1 | 4 |
+| Feature 2 | 2 |
+| Feature 3 | 8 |
+| **Total** | **16** |
