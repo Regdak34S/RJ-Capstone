@@ -1,4 +1,4 @@
-# Candidate A — Complete Candidate Canvas
+# Candidate A - Complete Candidate Canvas
 
 > **Important:** Complete every bracketed field with your own actual idea and decisions before submission. Do not submit placeholders.
 
