@@ -13,7 +13,7 @@
   than a charter that has always been right.
 -->
 
-**Owner:** Reggie · **Course:** Capstone · **Started:** 2026-08-25 · **Last revised:** 2026-09-05
+**Owner:** Reggie · **Course:** Capstone · **Started:** 2026-08-25 · **Last revised:** 2026-09-06
 
 ## 1. Purpose
 
@@ -90,4 +90,4 @@ The purpose of this capstone is to give me experience managing and completing a 
 I have counted the cost of this work as honestly as I can today, and I accept the
 schedule above.
 
-Reginald Johnson, 2026-09-05
+Reginald Johnson, 2026-09-06
