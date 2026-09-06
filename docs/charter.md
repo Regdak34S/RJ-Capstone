@@ -1,4 +1,4 @@
-# Project Charter — Reginald Johnson
+# Project Charter - Reginald Johnson
 
 <!--
   Milestone 1 template. Copy this file into your repository as docs/charter.md,
@@ -55,7 +55,7 @@ The purpose of this capstone is to give me experience managing and completing a 
     - The README explains what the project is and how someone else can understand or run it.
     - The repository contains the required project files and has a clean, organized structure.
 
-## 5. Non-goals — what I will NOT build or do
+## 5. Non-goals - what I will NOT build or do
 
 <!-- At least five. Non-goals are the only part of this charter that can stop a
      bad decision in Week 10, so make them specific enough to point at.
@@ -78,7 +78,7 @@ The purpose of this capstone is to give me experience managing and completing a 
 
 ## 7. Working agreement
 
-- **Sessions:** Monday–Thursday, 2:30 PM–4:00 PM; Friday, 10:05 AM–10:55 AM; Saturday–Sunday, 3:00 PM–4:00 PM.
+- **Sessions:** Monday–Thursday, 2:30 PM-4:00 PM; Friday, 10:05 AM-10:55 AM; Saturday–Sunday, 3:00 PM-4:00 PM.
 - **Logging:** every session ends with a row in `docs/hours-log.csv`, written before I close the laptop.
 - **Board:** work-in-progress limit of 2; nothing moves to Done without its stopping condition met.
 - **Commits:** requirement identifier first in the subject line; one logical change per commit.
