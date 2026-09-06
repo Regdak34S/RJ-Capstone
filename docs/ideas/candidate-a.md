@@ -49,7 +49,7 @@ I would start by defining the basic content-creation workflow I personally use. 
 
 | Feature | Hours |
 |--------|------:|
-| Feature 1 | 1 |
-| Feature 2 | 1 |
-| Feature 3 | 2 |
+| Create and organize a content project | 1 |
+| Store and organize ideas, scripts, and assets | 1 |
+| Track the progress and completion of project tasks | 2 |
 | **Total** | **4** |
