@@ -14,15 +14,15 @@ A student trying to finish a capstone often sits down with scattered notes, half
 
 **Interview evidence must be completed from the real interview before submission. Do not invent or backfill answers or quotes.**
 
-Interview date: **[ENTER ACTUAL DATE]**  
-Interview length: **[ENTER ACTUAL LENGTH]**  
-Interviewee/role: **[ENTER WHO WAS INTERVIEWED AND THEIR ROLE]**  
-Full write-up: `docs/interviews/[ACTUAL-DATE]-[INITIALS].md`
+Interview date: September-1-2026
+Interview length: 1 Hour 
+Interviewee/role: Mike (Video Content Organizer) 
+Full write-up: `docs/interviews/2026-09-01-rj.md`
 
 Three verbatim quotes from the interview:
-- "[PASTE ACTUAL VERBATIM QUOTE 1]"
-- "[PASTE ACTUAL VERBATIM QUOTE 2]"
-- "[PASTE ACTUAL VERBATIM QUOTE 3]"
+- "I keep losing track of where I put things."
+- "I’d have an idea, write it down somewhere, and then forget where I wrote it."
+- "Half the time I was redoing steps because I couldn’t remember what I finished."
 
 If the 10–15 hour cost in §1 came from the interview, document the exact answer supporting it. If it did not come from real evidence, replace it with a real, defensible number or clearly label it as a personal estimate rather than research evidence.
 
@@ -48,11 +48,11 @@ Plan: 60 hours. Hard ceiling: 75. My number: 60. That leaves 15 hours of slack; 
 
 | # | Should feature | Hours | Planned week |
 |---|---|---:|---:|
-| 1 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
-| 2 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
-| 3 | [YOUR ACTUAL SHOULD FEATURE] | [YOUR ESTIMATE] | [WEEK] |
+| 1 | Section‑specific prompts library for video content (idea nudges, structure cues) | 8 | 9 |
+| 2 | Reflection journal view for tracking creative decisions and lessons learned | 6 | 10 |
+| 3 | Export presets for assembling final deliverables (course submission, portfolio, archive) | 6 | 11 |
 
-If I fall behind, **[ACTUAL SHOULD FEATURE]** will be cut first, followed by **[ACTUAL SHOULD FEATURE]**.
+If I fall behind, **Export presets** will be cut first, followed by **Reflection journal view**.
 
 ## 5. Out of scope — will not be built
 
