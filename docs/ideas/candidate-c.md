@@ -44,3 +44,13 @@ The main risk would be trying to build too many content-creation features. A ful
 ## 7. Setup
 **What is the best way to set up this idea to get ready for the project?**  
 I would first map out the content-creation process I normally follow, from having an idea through completing the final content. I would then identify the most important stages and turn those stages into a simple workflow. I would create a small prototype using one real content project and see whether the workflow helps me understand what needs to be done next.
+
+
+## Must Features
+
+| Feature | Hours |
+|--------|------:|
+| Feature 1 | 3 |
+| Feature 2 | 3 |
+| Feature 3 | 6 |
+| **Total** | **12** |
