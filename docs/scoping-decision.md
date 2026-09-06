@@ -126,14 +126,14 @@ The following table summarizes the external dependency verification for Candidat
 
 | Candidate | Bottom-up estimate | Scope Sizer estimate | Gap |
 |----------|--------------------:|----------------------:|----:|
-| A | X | X | X |
-| B | X | X | X |
-| C | X | X | X |
+| A | 60 | 72 | 12 |
+| B | 60 | 80 | 20 |
+| C | 60 | 68 | 8 |
 
-### Gap explanation
-(Explain why the numbers differ)
+## Gap explanation
+The Scope Sizer tends to rate projects higher when they include multiple structured workflows or multi-step drafting processes. Candidate B scored highest because the AI dependency adds uncertainty and extra integration steps. Candidate C scored lowest because its features are simpler and more linear. My bottom-up estimate remains 60 because I scoped Must features tightly and removed integrations and analytics that inflate Sizer scores.
 
 ---
 
-**Signed:** Reginald Johnson, 2026-09-05
+**Signed:** Reginald Johnson, 2026-09-06
 **AI use for this document:** I asked for help finishing the missing sections of my scoping decision, kept the overall structure and all project ideas as my own, and edited the wording to match my voice; this usage is recorded in `docs/ai-usage.md`.
