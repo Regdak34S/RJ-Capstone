@@ -1,19 +1,6 @@
 # Project Charter - Reginald Johnson
 
-<!--
-  Milestone 1 template. Copy this file into your repository as docs/charter.md,
-  delete the HTML comments, and answer every prompt in your own words.
-
-  This charter is written in Week 1, BEFORE you have chosen an idea. That is
-  deliberate. It is a charter for YOU and for the sixteen weeks — capacity,
-  constraints, non-goals, risks, and the rules you agree to work under. In
-  Week 2, after the scoping decision, you add the project itself in §2 and
-  re-date the file. Never delete the original text; strike it through or keep
-  it in a "superseded" block. A charter with a visible history is worth more
-  than a charter that has always been right.
--->
-
-**Owner:** Reggie · **Course:** Capstone · **Started:** 2026-08-25 · **Last revised:** 2026-09-06
+**Owner:** Reggie · **Course:** Capstone · **Started:** 2026-08-25 · **Last revised:** 2026-09-12
 
 ## 1. Purpose
 
@@ -90,4 +77,4 @@ The purpose of this capstone is to give me experience managing and completing a 
 I have counted the cost of this work as honestly as I can today, and I accept the
 schedule above.
 
-Reginald Johnson, 2026-09-06
+Reginald Johnson, 2026-09-12
