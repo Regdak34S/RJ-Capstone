@@ -2,7 +2,7 @@
 
 **Owner:** Reggie Johnson  
 **Policy set:** August 25, 2026  
-**Last entry:** September 6, 2026
+**Last entry:** September 12, 2026
 
 ## Policy
 
@@ -34,4 +34,4 @@ Every Amber-zone use appears below. Generated code that survives into `src/` car
 | --- | --- | --- | --- | --- | --- |
 | August 25, 2026 | ChatGPT / GPT-5.6 Luna | Helped identify missing Week 1 repository requirements and organize the setup based on the course instructions. | The repository structure and planning checklist ideas that I independently reviewed. | I supplied my own schedule, non-goals, risks, and other personal constraints. | I compared the result against the assignment requirements and will review each repository file before submitting it. |
 | August 29, 2026 | ChatGPT / GPT-5.6 Luna | Asked for suggestions on how to construct the Week 1 project board with the required columns, WIP limit, cards, estimates, hats, and stopping conditions. | The suggested board organization that I reviewed and decided to use. | I created and arranged the board myself and made sure the cards matched the assignment requirements. | I compared the board against the Milestone 1 requirements and checked that it had five columns, a WIP limit of 2, and at least six cards. |
-| September 6, 2026 | ChatGPT / GPT-5.6 Luna | Reviewed the Week 2 repository against the provided checklist and identified missing/inconsistent files and sections. | Structural fixes, consistency checks, and placeholders that clearly mark information I must supply myself. | I did not use AI to invent interview answers, quotes, actual hours, dependency-test results, or personal project decisions. | I will replace all placeholders with my actual records and verify the repository against the Week 2 requirements before submission. |
+| September 12, 2026 | ChatGPT / GPT-5.6 Luna | Reviewed the Week 3 repository against the provided checklist and identified missing/inconsistent files and sections. | Structural fixes, consistency checks, and placeholders that clearly mark information I must supply myself. | I did not use AI to invent interview answers, quotes, actual hours, dependency-test results, or personal project decisions. | I will replace all placeholders with my actual records and verify the repository against the Week 3 requirements before submission. |
