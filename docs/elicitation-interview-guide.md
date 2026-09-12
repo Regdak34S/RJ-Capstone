@@ -16,7 +16,7 @@ Memory decays faster than you think it does.
 - **Record the date.** A requirement without a date is a rumor.
 
 **Interviewee:** Austin  **Role:** Audio Extractor
-**Date:** 9-8-2026  **Duration:** 1 hour and 30 minutes  **Consent to quote (y/n):** Y
+**Date:** 9-12-2026  **Duration:** 1 hour and 30 minutes  **Consent to quote (y/n):** Y
 
 ---
 
@@ -82,6 +82,5 @@ the task. Write down only what you see:
 
 | Time | What they did | What they said | What surprised me |
 |---|---|---|---|
-| | | | | 
 The "what surprised me" column is where the requirements nobody would have
 thought to ask for come from.
