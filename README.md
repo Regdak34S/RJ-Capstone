@@ -14,6 +14,8 @@ Milestone 3 — Software Requirements Specification v1
 - `docs/evidence/dependency-checks/` — dependency verification evidence
 - `docs/hours-log.csv` — actual work sessions and estimates
 - `docs/ai-usage.md` — AI-use disclosure
+- `docs/requirements.md` — Requirements Of The Project For Week 3
+- `docs/elicitation-notes` — Notes Of The Interview's Evidence
 - `src/` — project source
 - `tests/` — project tests
 - `tools/` — project utilities
