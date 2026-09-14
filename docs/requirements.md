@@ -1,6 +1,18 @@
 ## Functional Requirements
 
-FR-MAP-01
+--> **Priority:** Must
+
+**Requirement:** [Actor] shall be able to [action] [object] [condition].
+
+**Rationale:** [Why this requirement exists.]
+
+**Acceptance criteria:**
+- Given ..., when ..., then ....
+- Given ..., when ..., then ....
+
+**Source:** [specific human, observation, or recorded decision] <--
+
+### FR-MAP-01
 Actor: Jayden
 Action: Creates a new content map
 Object: Capstone Supported Devices (Computer Or Phone)
@@ -11,7 +23,7 @@ Source: Interview, observation, personal experience, persona.
 
 --
 
-FR-DRAFT-02
+### FR-DRAFT-02
 Actor: Daniel
 Action: Drafts or edits a section for later
 Object: Drafting checklist or script text (Computer)
@@ -22,7 +34,7 @@ Source: Interview or personal experience
 
 --
 
-FR-PROG-03
+### FR-PROG-03
 Actor: Bryson
 Action: Updates progress status
 Object: Section status (drafted, in review, and complete by Phone)
@@ -33,7 +45,7 @@ Source: My own acceptance criteria are already valid
 
 --
 
-FR-REV-04
+### FR-REV-04
 Actor: Aishia
 Action: Adds or reviews feedback
 Object: Revision notes or version history (On Paper)
@@ -44,7 +56,7 @@ Source: Interview or persona
 
 --
 
-FR-ASM-05
+### FR-ASM-05
 Actor: Victor
 Action: Assembles final deliverable
 Object: All completed sections
@@ -55,12 +67,12 @@ Source: Interview or persona
 
 --
 
-AC-FR-PROG-03-1
+### AC-FR-PROG-03-1
 Given the project contains multiple sections
 When the user updates the status of a section
 Then the system reflects the new status in the progress view
 
-AC-FR-PROG-03-2
+### AC-FR-PROG-03-2
 Given the project contains no sections
 When the user opens the progress view
 Then the system displays that no sections exist
