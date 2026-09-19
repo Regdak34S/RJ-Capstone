@@ -6,7 +6,7 @@
 **Status:** Draft
 
 ## 1. Purpose and Scope
-(short paragraph from your charter + scoping decision)
+This system is a small web-based Content Creation Project that helps a student organize, draft, track, revise, and assemble a capstone deliverable from scattered ideas and section drafts. It serves a single primary user who needs a clear, repeatable path from rough notes to a finished document, and it must let that user create a content map, work through guided section checklists, see progress by status, capture revision notes, and assemble completed sections into one final deliverable. Explicitly outside this release are mobile clients, login or multi-user accounts, real-time collaboration, full video/audio editing, and social-media publishing.
 
 ---
 
@@ -59,233 +59,274 @@
 ---
 
 ## 3. Definitions
-(add a small table of project-specific terms if needed)
+
+| Term | Definition in this document |
+|------|-----------------------------|
+| Content map | The ordered list of major sections that make up one capstone project, including any dependencies between sections. |
+| Section | One major part of the deliverable (for example, introduction, methods, or results) that can be drafted, reviewed, and marked complete. |
+| Draft | The current editable text of a section that has been saved but is not yet marked final. |
+| Status | The progress state of a section: not started, draft, in-review, or final. |
+| Final assembly | The action that combines all sections marked complete into one deliverable package. |
+| Maintainer | The person who inherits the repository after the original author and needs documentation and traceability to continue work. |
 
 ---
 
 ## 4. Assumptions and Dependencies
-(placeholder — detailed versions go in §§11–12)
+
+**Assumptions** (treated as true for now; detailed ownership and verification dates appear in §11):
+- The chosen development environment will support the technology stack selected in Week 5.
+- Free or zero-cost hosting and storage options will remain available through the semester if they are used.
+- The target browsers will support the functionality required by the core workflows.
+
+**Dependencies** (external items the project relies on; pinned versions and fallbacks appear in §12):
+- A JavaScript runtime and any chosen web framework (exact version to be pinned in Week 5).
+- Local storage or a free database service for persisting projects and drafts.
+- GitHub for source control and any continuous-integration checks that are added later.
+
+If any assumption proves false or a dependency becomes unavailable, the corresponding fallback in §11 or §12 will be applied and scope will be adjusted only within the existing cut order.
 
 ---
 
 ## 5. Functional Requirements
 
 ### FR-MAP-01
-- **Requirement:** The user shall be able to create new content maps using a supported computer during development.
-- **Priority:** Must - because the project cannot begin without creating a content map.
-- **Rationale:** This requirement ensures the user can organize their capstone sections before drafting begins.
-- **AC‑FR‑MAP‑01‑1:** Given the user is starting a new capstone project, when they create a content map, then the system stores the new map and displays it in the project dashboard.
-- **AC‑FR‑MAP-01‑2:** Given the user attempts to create a content map without entering any section names, when they submit the map, then the system warns them that the map cannot be empty.
-- **Source:** Interview and personal experience with organizing video projects.
+**Priority:** Must
+**Requirement:** The user shall be able to create new content maps using a supported computer during development.
+**Rationale:** This requirement ensures the user can organize their capstone sections before drafting begins.
+**Acceptance criteria:**
+- Given the user is starting a new capstone project, when they create a content map, then the system stores the new map and displays it in the project dashboard.
+- Given the user attempts to create a content map without entering any section names, when they submit the map, then the system warns them that the map cannot be empty.
+**Source:** Interview and personal experience with organizing video projects.
 
 
 ### FR-DRAFT-02
-- **Requirement:** The user shall be able to draft or edit later project sections on a checklist.
-- **Priority:** Must - because drafting and saving work is essential for progress.
-- **Rationale:** This requirement prevents users from losing drafted content when working across tools.
-- **AC‑FR‑DRAFT‑02‑1:** Given a section exists in the checklist, when the user drafts or edits the section, then the system saves the updated content.
-- **AC‑FR‑DRAFT‑02‑2:** Given the user closes the project without saving, when they reopen the section the next day, then the system shows the last saved version only.
-- **Source:** Personal experience with losing edits in video apps.
+**Priority:** Must
+**Requirement:** The user shall be able to draft or edit later project sections on a checklist.
+**Rationale:** This requirement prevents users from losing drafted content when working across tools.
+**Acceptance criteria:**
+- Given a section exists in the checklist, when the user drafts or edits the section, then the system saves the updated content.
+- Given the user closes the project without saving, when they reopen the section the next day, then the system shows the last saved version only.
+**Source:** Personal experience with losing edits in video apps.
 
 
 ### FR-PROG-03
-- **Requirement:** The user shall be able to make project Updates for the progress section status in review. Only this user marks the section.
-- **Priority:** Must.
-- **Rationale:** This requirement supports clear visibility of section status, similar to how video editors show progress stages.
-- **AC-FR-PROG-03-1:** Given the project contains multiple sections, when the user updates the status of a section, then the system reflects the new status in the progress view.
-- **AC-FR-PROG-03-2:** Given the project contains no sections, when the user opens the progress view, then the system displays that no sections exist.
-- **Source:** Interview and workflow observation.
+**Priority:** Must
+**Requirement:** The user shall be able to make project Updates for the progress section status in review. Only this user marks the section.
+**Rationale:** This requirement supports clear visibility of section status, similar to how video editors show progress stages.
+**Acceptance criteria:**
+- Given the project contains multiple sections, when the user updates the status of a section, then the system reflects the new status in the progress view.
+- Given the project contains no sections, when the user opens the progress view, then the system displays that no sections exist.
+**Source:** Interview and workflow observation.
 
 
 ### FR-REV-04
-- **Requirement:** The user shall be able to review feedback with revision notes or version history. This user can make these reviews when revising a section of the project.
-- **Priority:** Should - because revision tracking is important but not required for the first working version.
-- **Rationale:** This requirement mirrors how video apps track edits, versions, and feedback during revision.
-- **AC‑FR‑REV‑04‑1:** Given a section has feedback notes, when the user opens the revision panel, then the system displays all notes and version history.
-- **AC‑FR‑REV‑04‑2:** Given no revision notes exist, when the user opens the revision panel, then the system shows an empty state message.
-- **Source:** Persona and interview evidence about revision challenges.
+**Priority:** Should
+**Requirement:** The user shall be able to review feedback with revision notes or version history. This user can make these reviews when revising a section of the project.
+**Rationale:** This requirement mirrors how video apps track edits, versions, and feedback during revision.
+**Acceptance criteria:**
+- Given a section has feedback notes, when the user opens the revision panel, then the system displays all notes and version history.
+- Given no revision notes exist, when the user opens the revision panel, then the system shows an empty state message.
+**Source:** Persona and interview evidence about revision challenges.
 
 
 ### FR-ASM-05
-- **Requirement:** The user shall be able to assemble all the final deliverable project sections for completion. Before presenting, all sections must be marked complete.
-- **Priority:** Must
-- **Rationale:** This requirement ensures the user can combine all completed sections into a final deliverable, similar to exporting a finished video.
-- **AC‑FR‑ASM‑05‑1:** Given all sections are marked complete, when the user assembles the final deliverable, then the system generates the final project file.
-- **AC‑FR‑ASM‑05‑2:** Given at least one section is incomplete, when the user attempts final assembly, then the system prevents assembly and alerts the user.
-- **Source:** Persona and personal experience assembling final video projects.
+**Priority:** Must
+**Requirement:** The user shall be able to assemble all the final deliverable project sections for completion. Before presenting, all sections must be marked complete.
+**Rationale:** This requirement ensures the user can combine all completed sections into a final deliverable, similar to exporting a finished video.
+**Acceptance criteria:**
+- Given all sections are marked complete, when the user assembles the final deliverable, then the system generates the final project file.
+- Given at least one section is incomplete, when the user attempts final assembly, then the system prevents assembly and alerts the user.
+**Source:** Persona and personal experience assembling final video projects.
 
 
 ### FR-NAV-06
-- **Requirement:** The user shall be able to navigate between capstone sections using a simple sidebar or menu.
-- **Priority:** Must
-- **Rationale:** Users lose time searching for where they left off; navigation reduces confusion.
-- **AC‑FR‑NAV‑06‑1:** Given the user is drafting a section, when they click another section in the sidebar, then the system displays that section’s content.
-- **AC‑FR‑NAV‑06‑2:** Given the user has unsaved changes, when they attempt to navigate away, then the system warns them before switching sections.
-- **Source:** Interview with Mike (2026‑09‑01) + personal experience.
+**Priority:** Must
+**Requirement:** The user shall be able to navigate between capstone sections using a simple sidebar or menu.
+**Rationale:** Users lose time searching for where they left off; navigation reduces confusion.
+**Acceptance criteria:**
+- Given the user is drafting a section, when they click another section in the sidebar, then the system displays that section’s content.
+- Given the user has unsaved changes, when they attempt to navigate away, then the system warns them before switching sections.
+**Source:** Interview with Mike (2026‑09‑01) + personal experience.
 
 
 ### FR-SEC-07
-- **Requirement:** The user shall be able to view each section’s status (draft, in‑review, final) at a glance.
-- **Priority:** Must
-- **Rationale:** Users need a clear overview to avoid redoing completed work.
-- **AC‑FR‑SEC‑07‑1:** Given a section has a saved status, when the user opens the project map, then the status appears next to the section name.
-- **AC‑FR‑SEC‑07‑2:** Given a section has no status, when the user opens the project map, then the system displays “Not started.”
-- **Source:** Interview evidence about losing track of progress.
+**Priority:** Must
+**Requirement:** The user shall be able to view each section’s status (draft, in‑review, final) at a glance.
+**Rationale:** Users need a clear overview to avoid redoing completed work.
+**Acceptance criteria:**
+- Given a section has a saved status, when the user opens the project map, then the status appears next to the section name.
+- Given a section has no status, when the user opens the project map, then the system displays “Not started.”
+**Source:** Interview evidence about losing track of progress.
 
 
 ### FR-HIST-08
-- **Requirement:** The user shall be able to view a simple revision history for each section.
-- **Priority:** Should
-- **Rationale:** Users often forget what they changed and why.
-- **AC‑FR‑HIST‑08‑1:** Given revision notes exist, when the user opens the history panel, then the system displays a list of past changes.
-- **AC‑FR‑HIST‑08‑2:** Given no revision notes exist, when the user opens the history panel, then the system displays “No revisions yet.”
-- **Source:** Interview + personal experience.
+**Priority:** Should
+**Requirement:** The user shall be able to view a simple revision history for each section.
+**Rationale:** Users often forget what they changed and why.
+**Acceptance criteria:**
+- Given revision notes exist, when the user opens the history panel, then the system displays a list of past changes.
+- Given no revision notes exist, when the user opens the history panel, then the system displays “No revisions yet.”
+**Source:** Interview + personal experience.
 
 
 ### FR-SAVE-09
-- **Requirement:** The users system shall auto‑save section drafts every 30 seconds.
-- **Priority:** Must
-- **Rationale:** Prevents loss of work when switching sections or closing the app.
-- **AC‑FR‑SAVE‑09‑1:** Given the user is typing, when 30 seconds pass, then the system saves the draft automatically.
-- **AC‑FR‑SAVE‑09‑2:** Given the system auto‑saves, when the user closes the app, then the latest draft is available on next open.
-- **Source:** Personal experience losing drafts.
+**Priority:** Must
+**Requirement:** The users system shall auto‑save section drafts every 30 seconds.
+**Rationale:** Prevents loss of work when switching sections or closing the app.
+**Acceptance criteria:**
+- Given the user is typing, when 30 seconds pass, then the system saves the draft automatically.
+- Given the system auto‑saves, when the user closes the app, then the latest draft is available on next open.
+**Source:** Personal experience losing drafts.
 
 
 ### FR-LOAD-10
-- **Requirement:** The user shall be able to reopen any previously saved draft.
-- **Priority:** Must
-- **Rationale:** Users need continuity across work sessions.
-- **AC‑FR‑LOAD‑10‑1:** Given a saved draft exists, when the user opens a section, then the system loads the latest version.
-- **AC‑FR‑LOAD‑10‑2:** Given no saved draft exists, when the user opens a section, then the system displays a blank draft.
-- **Source:** Interview evidence.
+**Priority:** Must
+**Requirement:** The user shall be able to reopen any previously saved draft.
+**Rationale:** Users need continuity across work sessions.
+**Acceptance criteria:**
+- Given a saved draft exists, when the user opens a section, then the system loads the latest version.
+- Given no saved draft exists, when the user opens a section, then the system displays a blank draft.
+**Source:** Interview evidence.
 
 
 ### FR-VIEW-11
-- **Requirement:** The user shall be able to view a full project overview showing all sections and their statuses.
-- **Priority:** Must
-- **Rationale:** Helps users understand workload and remaining tasks.
-- **AC‑FR‑VIEW‑11‑1:** Given sections exist, when the user opens the overview, then all sections appear with their statuses.
-- **AC‑FR‑VIEW‑11‑2:** Given no sections exist, when the user opens the overview, then the system displays “No sections created.”
-- **Source:** Interview + personal workflow.
+**Priority:** Must
+**Requirement:** The user shall be able to view a full project overview showing all sections and their statuses.
+**Rationale:** Helps users understand workload and remaining tasks.
+**Acceptance criteria:**
+- Given sections exist, when the user opens the overview, then all sections appear with their statuses.
+- Given no sections exist, when the user opens the overview, then the system displays “No sections created.”
+**Source:** Interview + personal workflow.
 
 
 ### FR-CHECK-12
-- **Requirement:** The user shall be able to follow a guided checklist for each section.
-- **Priority:** Must
-- **Rationale:** Reduces confusion about what belongs in each part of the capstone.
-- **AC‑FR‑CHECK‑12‑1:** Given a checklist exists, when the user opens a section, then the checklist appears.
-- **AC‑FR‑CHECK‑12‑2:** Given the user marks an item complete, when they reopen the section, then the item remains marked.
-- **Source:** Interview evidence about redoing steps.
+**Priority:** Must
+**Requirement:** The user shall be able to follow a guided checklist for each section.
+**Rationale:** Reduces confusion about what belongs in each part of the capstone.
+**Acceptance criteria:**
+- Given a checklist exists, when the user opens a section, then the checklist appears.
+- Given the user marks an item complete, when they reopen the section, then the item remains marked.
+**Source:** Interview evidence about redoing steps.
 
 
 ### FR-FLOW-13
-- **Requirement:** The user shall be able to see which sections depend on others.
-- **Priority:** Should
-- **Rationale:** Helps users understand logical order and avoid writing out of sequence.
-- **AC‑FR‑FLOW‑13‑1:** Given dependencies exist, when the user opens the flow map, then arrows show the relationships.
-- **AC‑FR‑FLOW‑13‑2:** Given no dependencies exist, when the user opens the flow map, then the system displays “No dependencies.”
-- **Source:** Personal experience + project map design.
+**Priority:** Should
+**Requirement:** The user shall be able to see which sections depend on others.
+**Rationale:** Helps users understand logical order and avoid writing out of sequence.
+**Acceptance criteria:**
+- Given dependencies exist, when the user opens the flow map, then arrows show the relationships.
+- Given no dependencies exist, when the user opens the flow map, then the system displays “No dependencies.”
+**Source:** Personal experience + project map design.
 
 
 ### FR-WARN-14
-- **Requirement:** The system shall warn the user when a section is missing required elements.
-- **Priority:** Should
-- **Rationale:** Prevents incomplete sections from reaching final assembly.
-- **AC‑FR‑WARN‑14‑1:** Given a required element is missing, when the user attempts to mark a section “final,” then the system displays a warning.
-- **AC‑FR‑WARN‑14‑2:** Given all required elements exist, when the user marks a section “final,” then the system accepts the status.
-- **Source:** Personal experience.
+**Priority:** Should
+**Requirement:** The system shall warn the user when a section is missing required elements.
+**Rationale:** Prevents incomplete sections from reaching final assembly.
+**Acceptance criteria:**
+- Given a required element is missing, when the user attempts to mark a section “final,” then the system displays a warning.
+- Given all required elements exist, when the user marks a section “final,” then the system accepts the status.
+**Source:** Personal experience.
 
 
 ### FR-TAG-15
-- **Requirement:** The user shall be able to tag sections with custom labels (e.g., “research,” “needs review”).
-- **Priority:** May
-- **Rationale:** Helps organize work and highlight priorities.
-- **AC‑FR‑TAG‑15‑1:** Given the user adds a tag, when they reopen the section, then the tag appears.
-- **AC‑FR‑TAG‑15‑2:** Given the user removes a tag, when they reopen the section, then the tag is gone.
-- **Source:** Personal workflow.
+**Priority:** May
+**Requirement:** The user shall be able to tag sections with custom labels (e.g., “research,” “needs review”).
+**Rationale:** Helps organize work and highlight priorities.
+**Acceptance criteria:**
+- Given the user adds a tag, when they reopen the section, then the tag appears.
+- Given the user removes a tag, when they reopen the section, then the tag is gone.
+**Source:** Personal workflow.
 
 
 ### FR-SORT-16
-- **Requirement:** The user shall be able to sort sections by status or tag.
-- **Priority:** May
-- **Rationale:** Helps users focus on unfinished or high‑priority work.
-- **AC‑FR‑SORT-16‑1:** Given sections exist, when the user selects “Sort by status,” then the system orders them accordingly.
-- **AC‑FR‑SORT-16‑2:** Given tags exist, when the user selects “Sort by tag,” then the system groups sections by tag.
-- **Source:** Personal workflow.
+**Priority:** May
+**Requirement:** The user shall be able to sort sections by status or tag.
+**Rationale:** Helps users focus on unfinished or high‑priority work.
+**Acceptance criteria:**
+- Given sections exist, when the user selects “Sort by status,” then the system orders them accordingly.
+- Given tags exist, when the user selects “Sort by tag,” then the system groups sections by tag.
+**Source:** Personal workflow.
 
 
 ### FR-HELP-17
-- **Requirement:** The user shall be able to open a help panel explaining each feature.
-- **Priority:** May
-- **Rationale:** Reduces confusion for new users and future maintainers.
-- **AC‑FR‑HELP-17‑1:** Given the user clicks “Help,” when the panel opens, then the system displays explanations for core features.
-- **AC‑FR‑HELP-17‑2:** Given the user closes the panel, when they return to the main screen, then the help panel is hidden.
-- **Source:** Maintainer needs + personal experience.
+**Priority:** May
+**Requirement:** The user shall be able to open a help panel explaining each feature.
+**Rationale:** Reduces confusion for new users and future maintainers.
+**Acceptance criteria:**
+- Given the user clicks “Help,” when the panel opens, then the system displays explanations for core features.
+- Given the user closes the panel, when they return to the main screen, then the help panel is hidden.
+**Source:** Maintainer needs + personal experience.
 
 
 ### FR-SET-18
-- **Requirement:** The user shall be able to adjust basic settings (theme, autosave interval).
-- **Priority:** May
-- **Rationale:** Supports accessibility and user preference.
-- **AC‑FR‑SET-18‑1:** Given the user changes a setting, when they reopen the app, then the setting persists.
-- **AC‑FR‑SET-18‑2:** Given the user resets settings, when they confirm, then all settings return to default.
-- **Source:** Personal experience.
+**Priority:** May
+**Requirement:** The user shall be able to adjust basic settings (theme, autosave interval).
+**Rationale:** Supports accessibility and user preference.
+**Acceptance criteria:**
+- Given the user changes a setting, when they reopen the app, then the setting persists.
+- Given the user resets settings, when they confirm, then all settings return to default.
+**Source:** Personal experience.
 
 
 ### FR-DOC-19
-- **Requirement:** The next maintainer shall be able to access documentation describing project structure and features.
-- **Priority:** May
-- **Rationale:** Maintainers need clarity to avoid breaking workflows.
-- **AC‑FR‑DOC-19‑1:** Given documentation exists, when the maintainer opens /docs, then the structure overview is present.
-- **AC‑FR‑DOC-19‑2:** Given documentation is missing, when the maintainer opens /docs, then the system displays a placeholder.
-- **Source:** Maintainer persona.
+**Priority:** May
+**Requirement:** The next maintainer shall be able to access documentation describing project structure and features.
+**Rationale:** Maintainers need clarity to avoid breaking workflows.
+**Acceptance criteria:**
+- Given documentation exists, when the maintainer opens /docs, then the structure overview is present.
+- Given documentation is missing, when the maintainer opens /docs, then the system displays a placeholder.
+**Source:** Maintainer persona.
 
 
 ### FR-TRACE-20
-- **Requirement:** The next maintainer shall be able to trace each requirement to its implementation.
-- **Priority:** Must
-- **Rationale:** Ensures maintainability and prevents regressions.
-- **AC‑FR‑TRACE-20‑1:** Given a requirement ID exists, when the maintainer searches the repo, then at least one reference appears in code or docs.
-- **AC‑FR‑TRACE-20‑2:** Given a requirement is removed, when the maintainer checks the trace table, then the requirement is marked deprecated.
-- **Source:** Maintainer persona.
+**Priority:** Must
+**Requirement:** The next maintainer shall be able to trace each requirement to its implementation.
+**Rationale:** Ensures maintainability and prevents regressions.
+**Acceptance criteria:**
+- Given a requirement ID exists, when the maintainer searches the repo, then at least one reference appears in code or docs.
+- Given a requirement is removed, when the maintainer checks the trace table, then the requirement is marked deprecated.
+**Source:** Maintainer persona.
 
 
 ### FR-CONF-21
-- **Requirement:** The system shall include a configuration file for environment‑specific settings.
-- **Priority:** Should
-- **Rationale:** Maintainers need a predictable place to adjust settings.
-- **AC‑FR‑CONF-21‑1:** Given the maintainer opens the config file, when they edit a value, then the system uses the new value..
-- **AC‑FR‑CONF-21‑2:** Given the config file is missing, when the system starts, then it uses default settings.
-- **Source:** Maintainer persona.
+**Priority:** Should
+**Requirement:** The system shall include a configuration file for environment‑specific settings.
+**Rationale:** Maintainers need a predictable place to adjust settings.
+**Acceptance criteria:**
+- Given the maintainer opens the config file, when they edit a value, then the system uses the new value..
+- Given the config file is missing, when the system starts, then it uses default settings.
+**Source:** Maintainer persona.
 
 
 ### FR-TEST-22
-- **Requirement:** The system shall include a basic test suite for core features.
-- **Priority:** Should
-- **Rationale:** Maintainers need confidence when modifying code.
-- **AC‑FR‑TEST-22‑1:** Given tests exist, when the maintainer runs the test suite, then core features are validated.
-- **AC‑FR‑TEST-22‑2:** Given a test fails, when the maintainer checks logs, then the failing feature is identified.
-- **Source:** Maintainer persona.
+**Priority:** Should
+**Requirement:** The system shall include a basic test suite for core features.
+**Rationale:** Maintainers need confidence when modifying code.
+**Acceptance criteria:**
+- Given tests exist, when the maintainer runs the test suite, then core features are validated.
+- Given a test fails, when the maintainer checks logs, then the failing feature is identified.
+**Source:** Maintainer persona.
 
 ---
 
 ## 6. Non-Functional Requirements
 
-### Performance
-- **NFR-PERF-01** - Main project overview loads in ≤ 2 s (cold cache, project with 20 sections, laptop browser DevTools, 10 loads, record p95).
-- **NFR-PERF-02** - Saving a section draft completes in ≤ 1 s under normal conditions (same machine, 10 saves).
+**Performance**
+**NFR-PERF-01** - Main project overview loads in ≤ 2 s (cold cache, project with 20 sections, laptop browser DevTools, 10 loads, record p95).
+**NFR-PERF-02** - Saving a section draft completes in ≤ 1 s under normal conditions (same machine, 10 saves).
 
-### Reliability
-- **NFR-REL-01** - Core workflow (create project → add sections → draft → save → change status → view revision → assemble) produces zero unhandled errors.
-- **NFR-REL-02** - A saved draft remains available after closing and reopening the application (ties to FR-SAVE-09 / FR-LOAD-10).
+**Reliability**
+**NFR-REL-01** - Core workflow (create project → add sections → draft → save → change status → view revision → assemble) produces zero unhandled errors.
+**NFR-REL-02** - A saved draft remains available after closing and reopening the application (ties to FR-SAVE-09 / FR-LOAD-10).
 
-### Security
-- **NFR-SEC-01** - No passwords, API keys, access tokens, or other secrets shall appear in any commit in the repository.
-- **NFR-SEC-02** - User-entered section content shall never be executed as application code.
-- **NFR-SEC-03** - Configuration files that contain environment-specific settings shall not contain secrets committed to the repo.
+**Security**
+**NFR-SEC-01** - No passwords, API keys, access tokens, or other secrets shall appear in any commit in the repository.
+**NFR-SEC-02** - User-entered section content shall never be executed as application code.
+**NFR-SEC-03** - Configuration files that contain environment-specific settings shall not contain secrets committed to the repo.
 
-### Privacy
-- **NFR-PRIV-01** - Data inventory (see table below) is maintained and every listed element can be deleted by the user deleting the project / local data.
+**Privacy**
+**NFR-PRIV-01** - Data inventory (see table below) is maintained and every listed element can be deleted by the user deleting the project / local data.
 
 
 | Data element | Why needed | Where stored | Retention | How user deletes it |
@@ -298,18 +339,18 @@
 | Feedback notes | Support revisions | Same | Same | Delete section / project |
 
 
-### Accessibility
-- **NFR-ACC-01** - Every interactive control is reachable and operable by keyboard alone with a visible focus indicator (manual walkthrough of the three core workflows, mouse unplugged).
-- **NFR-ACC-02** - Body text meets ≥ 4.5:1 contrast ratio against its background (contrast checker on all text/background pairs).
+**Accessibility**
+**NFR-ACC-01** - Every interactive control is reachable and operable by keyboard alone with a visible focus indicator (manual walkthrough of the three core workflows, mouse unplugged).
+**NFR-ACC-02** - Body text meets ≥ 4.5:1 contrast ratio against its background (contrast checker on all text/background pairs).
 
-### Usability
-- **NFR-USE-01** - A first-time user completes the primary project-creation + first-section workflow without assistance in ≤ 5 minutes (two observed sessions).
+**Usability**
+**NFR-USE-01** - A first-time user completes the primary project-creation + first-section workflow without assistance in ≤ 5 minutes (two observed sessions).
 
-### Maintainability
-- **NFR-MNT-01** - A clean clone of the repository can be configured and launched using only the README in ≤ 10 minutes (clean-machine timed test).
+**Maintainability**
+**NFR-MNT-01** - A clean clone of the repository can be configured and launched using only the README in ≤ 10 minutes (clean-machine timed test).
 
-### Portability
-- **NFR-PORT-01** - The three core workflows function on the two most recent major versions of Chrome and Firefox (manual smoke test).
+**Portability**
+**NFR-PORT-01** - The three core workflows function on the two most recent major versions of Chrome and Firefox (manual smoke test).
 
 ---
 
