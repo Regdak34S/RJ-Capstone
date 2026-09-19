@@ -14,8 +14,9 @@ Milestone 4 - Non-Functional Requirements, Constraints & Definition of Done
 - `docs/evidence/dependency-checks/` — dependency verification evidence
 - `docs/hours-log.csv` — actual work sessions and estimates
 - `docs/ai-usage.md` — AI-use disclosure
-- `docs/requirements.md` — Requirements Of The Project For Week 3
-- `docs/elicitation-notes` — Notes Of The Interview's Evidence
+- `docs/requirements.md` — Functional + non-functional requirements, constraints, assumptions, dependencies, obligations (Week 3 + Week 4)
+- `docs/elicitation-notes.md` — Notes Of The Interview's Evidence
+- `docs/definition-of-done.md` — Project Definition of Done (linked for every work item)
 - `src/` — project source
 - `tests/` — project tests
 - `tools/` — project utilities
