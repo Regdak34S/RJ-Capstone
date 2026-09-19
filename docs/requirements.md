@@ -2,7 +2,7 @@
 
 **Author:** Reginald Johnson  
 **Version:** 1.1  
-**Date:** 2026-9-18  
+**Date:** 2026-09-18  
 **Status:** Draft
 
 ## 1. Purpose and Scope
@@ -171,7 +171,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 ### FR-SAVE-09
 **Priority:** Must
-**Requirement:** The users system shall auto‑save section drafts every 30 seconds.
+**Requirement:** The system shall auto-save section drafts every 30 seconds.
 **Rationale:** Prevents loss of work when switching sections or closing the app.
 **Acceptance criteria:**
 - Given the user is typing, when 30 seconds pass, then the system saves the draft automatically.
@@ -230,7 +230,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 
 ### FR-TAG-15
-**Priority:** May
+**Priority:** Could
 **Requirement:** The user shall be able to tag sections with custom labels (e.g., “research,” “needs review”).
 **Rationale:** Helps organize work and highlight priorities.
 **Acceptance criteria:**
@@ -240,7 +240,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 
 ### FR-SORT-16
-**Priority:** May
+**Priority:** Could
 **Requirement:** The user shall be able to sort sections by status or tag.
 **Rationale:** Helps users focus on unfinished or high‑priority work.
 **Acceptance criteria:**
@@ -250,7 +250,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 
 ### FR-HELP-17
-**Priority:** May
+**Priority:** Could
 **Requirement:** The user shall be able to open a help panel explaining each feature.
 **Rationale:** Reduces confusion for new users and future maintainers.
 **Acceptance criteria:**
@@ -260,7 +260,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 
 ### FR-SET-18
-**Priority:** May
+**Priority:** Could
 **Requirement:** The user shall be able to adjust basic settings (theme, autosave interval).
 **Rationale:** Supports accessibility and user preference.
 **Acceptance criteria:**
@@ -270,7 +270,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 
 ### FR-DOC-19
-**Priority:** May
+**Priority:** Could
 **Requirement:** The next maintainer shall be able to access documentation describing project structure and features.
 **Rationale:** Maintainers need clarity to avoid breaking workflows.
 **Acceptance criteria:**
@@ -294,7 +294,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 **Requirement:** The system shall include a configuration file for environment‑specific settings.
 **Rationale:** Maintainers need a predictable place to adjust settings.
 **Acceptance criteria:**
-- Given the maintainer opens the config file, when they edit a value, then the system uses the new value..
+- Given the maintainer opens the config file, when they edit a value, then the system uses the new value.
 - Given the config file is missing, when the system starts, then it uses default settings.
 **Source:** Maintainer persona.
 
@@ -312,45 +312,69 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 ## 6. Non-Functional Requirements
 
-**Performance**
-**NFR-PERF-01** - Main project overview loads in ≤ 2 s (cold cache, project with 20 sections, laptop browser DevTools, 10 loads, record p95).
-**NFR-PERF-02** - Saving a section draft completes in ≤ 1 s under normal conditions (same machine, 10 saves).
+### 6.1 Performance
 
-**Reliability**
-**NFR-REL-01** - Core workflow (create project → add sections → draft → save → change status → view revision → assemble) produces zero unhandled errors.
-**NFR-REL-02** - A saved draft remains available after closing and reopening the application (ties to FR-SAVE-09 / FR-LOAD-10).
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-PERF-01 | Main project overview p95 load time is ≤ 2 seconds with a project containing 20 sections, cold browser cache, on a normal laptop | Must | Browser DevTools Network panel, 10 loads, record p95 |
+| NFR-PERF-02 | Saving a section draft completes in ≤ 1 second under normal conditions on the same machine | Must | 10 timed saves; record each duration |
 
-**Security**
-**NFR-SEC-01** - No passwords, API keys, access tokens, or other secrets shall appear in any commit in the repository.
-**NFR-SEC-02** - User-entered section content shall never be executed as application code.
-**NFR-SEC-03** - Configuration files that contain environment-specific settings shall not contain secrets committed to the repo.
+### 6.2 Reliability
 
-**Privacy**
-**NFR-PRIV-01** - Data inventory (see table below) is maintained and every listed element can be deleted by the user deleting the project / local data.
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-REL-01 | The core workflow (create project → add sections → draft → save → change status → view revision → assemble) produces zero unhandled errors | Must | Manual end-to-end execution of the core workflow; record any unhandled error |
+| NFR-REL-02 | A saved draft remains available after the application is closed and reopened | Must | Save a draft, close the application, reopen, and verify the content is present |
 
+### 6.3 Security
+
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-SEC-01 | No passwords, API keys, access tokens, or other secrets shall appear in any commit in the repository | Must | Secret scan over full repository history; zero findings |
+| NFR-SEC-02 | User-entered section content shall never be executed as application code | Must | Enter script-like content into a section; verify it is stored and displayed as plain text only |
+| NFR-SEC-03 | Configuration files that contain environment-specific settings shall not contain secrets committed to the repository | Must | Inspect all configuration files and repository history for any secrets |
+
+### 6.4 Privacy & Data Handling
+
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-PRIV-01 | Every data element listed in the data inventory can be deleted by the user deleting the project or local data | Must | Create sample data for each element, delete the project/local data, verify zero remaining rows/items |
+
+**Data inventory**
 
 | Data element | Why needed | Where stored | Retention | How user deletes it |
-|------|---------|--------|--------|--------|
-| Project title| Identify project | Local storage / browser (or chosen DB) | Until user deletes project | Delete project action |
+|--------------|------------|--------------|-----------|---------------------|
+| Project title | Identify project | Local storage / browser (or chosen DB) | Until user deletes project | Delete project action |
 | Section names | Organize work | Same | Same | Delete section / project |
 | Section drafts | Core content | Same | Same | Delete section / project |
-| Section status | Progress tracking | Same | Same |Delete section / project |
+| Section status | Progress tracking | Same | Same | Delete section / project |
 | Revision notes | Track changes | Same | Same | Delete section / project |
 | Feedback notes | Support revisions | Same | Same | Delete section / project |
 
+### 6.5 Accessibility
 
-**Accessibility**
-**NFR-ACC-01** - Every interactive control is reachable and operable by keyboard alone with a visible focus indicator (manual walkthrough of the three core workflows, mouse unplugged).
-**NFR-ACC-02** - Body text meets ≥ 4.5:1 contrast ratio against its background (contrast checker on all text/background pairs).
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-ACC-01 | Every interactive control is reachable and operable by keyboard alone, with a visible focus indicator | Must | Manual walkthrough of the three core workflows with the mouse unplugged |
+| NFR-ACC-02 | Body text meets a contrast ratio of ≥ 4.5:1 against its background | Must | Contrast checker on every text/background pair used in the interface |
 
-**Usability**
-**NFR-USE-01** - A first-time user completes the primary project-creation + first-section workflow without assistance in ≤ 5 minutes (two observed sessions).
+### 6.6 Usability
 
-**Maintainability**
-**NFR-MNT-01** - A clean clone of the repository can be configured and launched using only the README in ≤ 10 minutes (clean-machine timed test).
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-USE-01 | A first-time user completes the primary project-creation + first-section workflow without assistance in ≤ 5 minutes | Should | Two observed timed sessions; notes recorded |
 
-**Portability**
-**NFR-PORT-01** - The three core workflows function on the two most recent major versions of Chrome and Firefox (manual smoke test).
+### 6.7 Maintainability
+
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-MNT-01 | A clean clone of the repository can be configured and launched using only the README in ≤ 10 minutes | Must | Clean-machine timed test performed once per iteration |
+
+### 6.8 Portability
+
+| ID | Requirement (metric · threshold · condition) | Priority | How it is measured |
+|----|-----------------------------------------------|----------|--------------------|
+| NFR-PORT-01 | The three core workflows function on the two most recent major versions of Chrome and Firefox | Should | Manual smoke test of the three core flows on each browser/version combination |
 
 ---
 
@@ -361,6 +385,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 | Social or multiplayer features | Collaboration is outside the core content-creation workflow. | Revisit if a future version needs multiple users working together. |
 | Login/account system | Accounts are not necessary for the core capstone workflow. | Revisit if multiple-user access becomes necessary. |
 | Full video/audio editor | Building a professional editing system would make the project too large. | Revisit if the core workflow is complete and there is enough remaining capacity. |
+| Social-media publishing | Publishing directly to outside platforms is not part of organizing and assembling the capstone deliverable. | Revisit if the core project is complete and publishing becomes a documented user need. |
 
 ---
 
