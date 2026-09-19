@@ -337,16 +337,39 @@ None
 ---
 
 ## 10. Constraints
+| ID | Constraint | Where it comes from | What it rules out |
+|------|---------|--------|--------|
+| CON-01 | ≈ 8 h 50 min available per week | Personal capacity | Large features that cannot fit the weekly budget |
+| CON-02 | $0 project spending | Budget decision | "Paid hosting, paid APIs, paid fonts/icons" |
+| CON-03 | "Windows laptop, 8 GB RAM, 119 GB SSD" | Hardware reality | Heavy desktop apps or very large local datasets |
+| CON-04 | 16-week course deadline | Course | Scope creep past the hard ceiling of 75 construction hours |
+| CON-05 | Web-focused (no mobile) | Charter non-goals | Native mobile clients |
 
 ---
 
 ## 11. Assumptions
 
+| ID | Assumption | Owner | Verify by | If false |
+|------|---------|--------|--------|-------|
+| ASM-01 | Chosen development environment will support the selected stack | Me | Week 5 | Switch to a different supported stack |
+| ASM-02 | Free hosting option (if any) remains available through semester | Me | Week 5 | Host locally only |
+| ASM-03 | Target browsers support required functionality | Me | Week 5 / first smoke test | Drop unsupported browser from NFR-PORT-01 |
+
 ---
 
 ## 12. Dependencies
 
+| ID | Dependency | Version / plan pinned | Failure mode | Fallback |
+|------|---------|--------|--------|-------|
+| DEP-01 | JavaScript runtime / chosen framework | (pin exact version in Week 5) | Breaking change / removal | Stay on last known good version or switch |
+| DEP-02 | Local storage or chosen free DB | (pin in Week 5) | Quota exceeded / service shutdown | Pure in-memory + export/import |
+| DEP-03 | GitHub (repo + Actions if used) | Current free tier | Outage / policy change | Local git + manual evidence |
+
 ---
 
 ## 13. Obligations
-| Social-media publishing | Publishing directly to outside platforms is not part of organizing and assembling the capstone deliverable. | Revisit if the core project is complete and publishing becomes a documented user need. |
+
+| Obligation | Primary source (URL) | Date checked | What it requires of me |
+|------|---------|--------|--------|
+| Project license (MIT) | https://opensource.org/licenses/MIT | 2026-09-18 | LICENSE file at root; copyright notice retained |
+| (Add any library/framework you actually use once chosen in Week 5) | Primary LICENSE file of that package | Week 4/5 | Attribution if required |
