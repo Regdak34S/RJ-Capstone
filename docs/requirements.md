@@ -2,7 +2,7 @@
 
 **Author:** Reginald Johnson  
 **Version:** 1.1  
-**Date:** 2026-09-18  
+**Date:** 2026-9-18  
 **Status:** Draft
 
 ## 1. Purpose and Scope
