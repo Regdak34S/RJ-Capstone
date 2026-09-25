@@ -1,0 +1,4 @@
+Decision,Real options to score,Why these are real for you
+Language + framework,Plain HTML/JS + localStorage · React (or Vue) · Python + Flask/FastAPI + simple templates,You listed JS as learnable; plain JS is lowest novelty; React is common but higher load
+Data store,Browser localStorage / IndexedDB · SQLite (via sql.js or better-sqlite3 if Node) · JSON files on disk,"Single-user, no login → no need for a server DB"
+Hosting / run target,GitHub Pages (static) · Local-only (file:// or simple static server) · Free static host (Netlify/Cloudflare Pages free tier),$0 + no backend required if you stay client-side
