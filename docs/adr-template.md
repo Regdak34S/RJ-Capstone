@@ -10,10 +10,10 @@ Delete every comment block before you commit.
 -->
 
 - **Status:** Proposed | Accepted | Superseded by ADR NNNN | Deprecated
-- **Date:** 2026-09-26
-- **Decider:** Reginald
+- **Date:** YYYY-MM-DD
+- **Decider:** <your name — you are the architect this semester>
 - **Requirements affected:** <FR-###, NFR-###, … the identifiers from `docs/requirements.md`>
-- **Related ADRs:** 4
+- **Related ADRs:** <numbers of ADRs this one depends on or constrains>
 
 ## Context
 
