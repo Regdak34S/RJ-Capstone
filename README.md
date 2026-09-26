@@ -17,10 +17,14 @@ Milestone 5 - Technology Evaluation & Architecture Decision Records
 - `docs/requirements.md` — Functional + non-functional requirements, constraints, assumptions, dependencies, obligations (Week 3 + Week 4)
 - `docs/elicitation-notes.md` — Notes Of The Interview's Evidence
 - `docs/definition-of-done.md` — Project Definition of Done (linked for every work item)
+- `docs/tech-evaluation.md` — Week 5 architectural drivers, technology evaluation, seams, costs, licenses, and verification
+- `docs/tech-evaluation.csv` — machine-checkable technology evaluation matrix
+- `docs/adr/` — numbered Architecture Decision Records for major technology decisions
+- `docs/spikes/` — time-boxed architecture spike plans and results
+- `LICENSE` — Apache License 2.0
 - `src/` — project source
 - `tests/` — project tests
 - `tools/` — project utilities
 
 ## Project Board
 GitHub Projects board: **https://github.com/users/Regdak34S/projects/1**
-
