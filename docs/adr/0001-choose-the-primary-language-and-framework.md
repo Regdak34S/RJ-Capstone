@@ -1,76 +1,49 @@
-# ADR NNNN — <A short noun phrase naming the decision, not the technology>
+# ADR 0001 — Primary language and framework
 
-<!--
-Copy this file to docs/adr/NNNN-kebab-case-title.md in your repository.
-Number sequentially from 0001. Never renumber; never delete an ADR.
-An ADR is immutable once accepted: if the decision changes, write a NEW ADR
-and set this one's status to Superseded by ADR NNNN.
-Format after Michael Nygard, "Documenting Architecture Decisions" (2011).
-Delete every comment block before you commit.
--->
-
-- **Status:** Proposed | Accepted | Superseded by ADR NNNN | Deprecated
+- **Status:** Accepted
 - **Date:** 2026-09-26
-- **Decider:** Reginald
-- **Requirements affected:** <FR-###, NFR-###, … the identifiers from `docs/requirements.md`>
-- **Related ADRs:** 4
+- **Decider:** (Reginald) Student Architect
+- **Requirements affected:** FR-01 (user authentication), FR-03 (real-time task updates), FR-07 (offline support), NFR-P-01 (page load < 2 s), NFR-M-02 (maintainable by a 3-person team)
+- **Related ADRs:** 0002, 0003, 0004
 
 ## Context
 
-<!--
-The forces, not the answer. What about YOUR requirements makes this a real
-decision? Which requirement identifiers push on it? What do you already know
-how to do, and what would be new? What is the deadline and the hours budget?
-Somebody who has never met you should be able to read this section and predict
-the decision before they get to it. If they cannot, the context is thin.
-Two to five paragraphs. No marketing adjectives.
--->
+The product must deliver a responsive single-page experience with real-time collaboration and a progressive-web-app offline mode. The team already knows TypeScript and has two prior React projects; learning a new language would consume the 40-hour learning budget allocated for the semester. Server-side rendering is required only for the initial authentication page (NFR-P-01). The remaining UI is highly interactive, so a client-heavy framework is preferable. Deadline for the first vertical slice is three weeks from today.
 
 ## Options considered
 
-| Option | Weighted score | The detail that decided it |
-|---|---:|---|
-| <option> | 0.00 | <the one concrete fact, not a slogan> |
-| <option> | 0.00 | |
-| <option> | 0.00 | |
-
-<!-- Scores come from docs/tech-evaluation.md. At least two real options. -->
+| Option              | Weighted score | The detail that decided it                          |
+| ------------------- | -------------: | --------------------------------------------------- |
+| Next.js 15 (App Router) + TypeScript | 8.7 | Built-in SSR + React Server Components + first-class PWA support |
+| Remix + TypeScript  | 7.2 | Excellent data loading, but smaller ecosystem for real-time |
+| SvelteKit + TypeScript | 6.1 | Smaller learning curve, but team has zero Svelte experience |
 
 ## Decision
 
-<!-- One paragraph, active voice, present tense: "We will …" / "I will …".
-Name the thing precisely, including version or edition where it matters.
-If you did NOT take the top-scored option, say so here and say why. -->
+We will use Next.js 15 (App Router) with TypeScript as the primary language and framework. The top-scored option was selected; the team’s existing React knowledge removes the learning-cost penalty that would otherwise apply.
 
 ## Consequences
 
 **Positive**
 
-- <what becomes easier, tied to a requirement identifier>
+- FR-03 real-time updates become straightforward with React Query + Server Actions.
+- NFR-P-01 is satisfied by Next.js automatic static optimisation and edge rendering.
+- TypeScript gives compile-time safety that directly supports NFR-M-02.
 
 **Negative**
 
-- <what becomes harder, or slower, or more expensive — be specific>
-- <the new thing you now have to learn, and the hours you budgeted for it>
-- <the mitigation, if you have one, and what it costs>
-
-<!--
-An ADR with no negative consequences is not an ADR. Every real choice costs
-something. If you cannot name the cost, you did not evaluate — you shopped.
--->
+- App Router mental model (Server Components vs Client Components) is still new to two team members; we budgeted 12 hours of pair-programming time in week 1.
+- Bundle size can grow if Client Components are over-used; mitigation is a strict “Server Component by default” rule and weekly Lighthouse checks (adds ~2 h/week).
+- Next.js major releases have historically broken App Router APIs; we pin the version and review the changelog before every upgrade (adds 1–2 h per upgrade).
 
 ## Revisit trigger
 
-<!-- The measurable event that would make you write a superseding ADR.
-"If the main-screen query misses NFR-P-02 at 1,000 records."
-"If the free tier ends or the price exceeds $X/month."
-Not "if it becomes a problem." Name the number. -->
+If the production Lighthouse performance score for the main task board drops below 85 at 1 000 concurrent users, or if a critical security CVE is announced for Next.js 15 that is not patched within 14 days.
 
 ## Verification
 
-| Claim in this ADR | Source | Checked on |
-|---|---|---|
-| <version / price / license / limit> | <official docs URL> | YYYY-MM-DD |
-
-<!-- Every time-varying claim gets a source and a date. This table is what
-separates a decision record from a rumour. -->
+| Claim in this ADR                          | Source                                      | Checked on |
+| ------------------------------------------ | ------------------------------------------- | ---------- |
+| Next.js 15 App Router is stable            | https://nextjs.org/blog/next-15             | 2026-09-26 |
+| TypeScript 5.x is the recommended language | https://nextjs.org/docs/app/building-your-application/configuring/typescript | 2026-09-26 |
+| Free Vercel hobby plan supports Next.js 15 | https://vercel.com/docs/plans/hobby         | 2026-09-26 |
