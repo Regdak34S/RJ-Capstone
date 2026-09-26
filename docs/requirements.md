@@ -141,7 +141,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 ### FR-NAV-06
 **Priority:** Must
-**Requirement:** The user shall be able to navigate between capstone sections using a simple sidebar or menu.
+**Requirement:** The user shall be able to navigate between capstone sections using a sidebar or menu.
 **Rationale:** Users lose time searching for where they left off; navigation reduces confusion.
 **Acceptance criteria:**
 - Given the user is drafting a section, when they click another section in the sidebar, then the system displays that section’s content.
@@ -161,7 +161,7 @@ If any assumption proves false or a dependency becomes unavailable, the correspo
 
 ### FR-HIST-08
 **Priority:** Should
-**Requirement:** The user shall be able to view a simple revision history for each section.
+**Requirement:** The user shall be able to view a revision history for each section.
 **Rationale:** Users often forget what they changed and why.
 **Acceptance criteria:**
 - Given revision notes exist, when the user opens the history panel, then the system displays a list of past changes.
