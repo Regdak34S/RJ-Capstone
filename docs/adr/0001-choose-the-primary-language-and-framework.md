@@ -1,49 +1,53 @@
 # ADR 0001 — Primary language and framework
 
 - **Status:** Accepted
-- **Date:** 2026-09-26
-- **Decider:** (Reginald) Student Architect
-- **Requirements affected:** FR-01 (user authentication), FR-03 (real-time task updates), FR-07 (offline support), NFR-P-01 (page load < 2 s), NFR-M-02 (maintainable by a 3-person team)
+- **Date:** 2026-10-03
+- **Decider:** Reginald Johnson (Student Architect)
+- **Requirements affected:** FR-MAP-01, FR-DRAFT-02, FR-SAVE-09, FR-LOAD-10, FR-VIEW-11, NFR-PERF-01, NFR-PERF-02, NFR-MNT-01, CON-02, CON-03
 - **Related ADRs:** 0002, 0003, 0004
 
 ## Context
 
-The product must deliver a responsive single-page experience with real-time collaboration and a progressive-web-app offline mode. The team already knows TypeScript and has two prior React projects; learning a new language would consume the 40-hour learning budget allocated for the semester. Server-side rendering is required only for the initial authentication page (NFR-P-01). The remaining UI is highly interactive, so a client-heavy framework is preferable. Deadline for the first vertical slice is three weeks from today.
+The product is a single-user, offline-capable content-creation tool that runs entirely in the browser. The primary user organizes sections, drafts text, tracks status, and assembles a final deliverable. There is no multi-user collaboration, no authentication, and no server-side application logic in scope. The charter limits learning to at most two technologies (Linux and JavaScript already listed). The budget is $0, and the machine is an 8 GB RAM Windows laptop. A maintainer must be able to open the project from the README in ≤ 10 minutes with no build toolchain required if possible.
 
 ## Options considered
 
-| Option              | Weighted score | The detail that decided it                          |
+| Option | Weighted score | The detail that decided it |
 | ------------------- | -------------: | --------------------------------------------------- |
-| Next.js 15 (App Router) + TypeScript | 8.7 | Built-in SSR + React Server Components + first-class PWA support |
-| Remix + TypeScript  | 7.2 | Excellent data loading, but smaller ecosystem for real-time |
-| SvelteKit + TypeScript | 6.1 | Smaller learning curve, but team has zero Svelte experience |
+| Vanilla HTML/CSS/JavaScript | 5.00 | Fits core workflow with zero framework overhead; no build step; matches learning budget |
+| React (SPA) | 3.15 | Same UI possible but adds component model, bundler, and a second major technology |
+| Python Flask | 2.15 | Requires a running server for every session; overkill for single-user local drafts |
+
+Scores taken from `docs/tech-evaluation.csv` (decision = language-framework).
 
 ## Decision
 
-We will use Next.js 15 (App Router) with TypeScript as the primary language and framework. The top-scored option was selected; the team’s existing React knowledge removes the learning-cost penalty that would otherwise apply.
+We will use plain HTML, CSS, and vanilla JavaScript as the primary language and framework. No SPA framework, no build step required for the core deliverable.
 
 ## Consequences
 
 **Positive**
 
-- FR-03 real-time updates become straightforward with React Query + Server Actions.
-- NFR-P-01 is satisfied by Next.js automatic static optimisation and edge rendering.
-- TypeScript gives compile-time safety that directly supports NFR-M-02.
+- FR-MAP-01, FR-DRAFT-02, FR-SAVE-09, FR-LOAD-10, and FR-VIEW-11 map directly onto DOM + Web Storage APIs.
+- NFR-PERF-01 and NFR-PERF-02 are easier to meet with no framework runtime cost.
+- NFR-MNT-01 is satisfied by a single open-in-browser path documented in the README.
+- Zero recurring cost (CON-02) and fits the 8 GB laptop constraint (CON-03).
 
 **Negative**
 
-- App Router mental model (Server Components vs Client Components) is still new to two team members; we budgeted 12 hours of pair-programming time in week 1.
-- Bundle size can grow if Client Components are over-used; mitigation is a strict “Server Component by default” rule and weekly Lighthouse checks (adds ~2 h/week).
-- Next.js major releases have historically broken App Router APIs; we pin the version and review the changelog before every upgrade (adds 1–2 h per upgrade).
+- Manual DOM updates and state ownership must be disciplined; mitigation is the single-owner rule in the architecture component table.
+- No component library; accessibility (NFR-ACC-01, NFR-ACC-02) must be implemented by hand.
+- Larger features later would require more boilerplate than a framework would provide; accepted because scope is deliberately small.
 
 ## Revisit trigger
 
-If the production Lighthouse performance score for the main task board drops below 85 at 1 000 concurrent users, or if a critical security CVE is announced for Next.js 15 that is not patched within 14 days.
+If a future Must requirement introduces multi-user real-time collaboration or a server-side API that cannot be expressed with vanilla JS + static hosting, reopen this ADR.
 
 ## Verification
 
-| Claim in this ADR                          | Source                                      | Checked on |
+| Claim in this ADR | Source | Checked on |
 | ------------------------------------------ | ------------------------------------------- | ---------- |
-| Next.js 15 App Router is stable            | https://nextjs.org/blog/next-15             | 2026-09-26 |
-| TypeScript 5.x is the recommended language | https://nextjs.org/docs/app/building-your-application/configuring/typescript | 2026-09-26 |
-| Free Vercel hobby plan supports Next.js 15 | https://vercel.com/docs/plans/hobby         | 2026-09-26 |
+| Vanilla JS + localStorage covers core FRs | docs/tech-evaluation.csv language-framework rows | 2026-10-03 |
+| Charter learning budget max 2 technologies | docs/charter.md §3 | 2026-10-03 |
+| $0 budget constraint | docs/charter.md §3, CON-02 | 2026-10-03 |
+
