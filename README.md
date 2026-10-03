@@ -14,17 +14,20 @@ Milestone 6 - Technical Specification (System Design Document)
 - `docs/evidence/dependency-checks/` — dependency verification evidence
 - `docs/hours-log.csv` — actual work sessions and estimates
 - `docs/ai-usage.md` — AI-use disclosure
-- `docs/requirements.md` — Functional + non-functional requirements, constraints, assumptions, dependencies, obligations (Week 3 + Week 4)
-- `docs/elicitation-notes.md` — Notes Of The Interview's Evidence
-- `docs/definition-of-done.md` — Project Definition of Done (linked for every work item)
-- `docs/tech-evaluation.md` — Week 5 architectural drivers, technology evaluation, seams, costs, licenses, and verification
-- `docs/tech-evaluation.csv` — machine-checkable technology evaluation matrix
-- `docs/adr/` — numbered Architecture Decision Records for major technology decisions
-- `docs/spikes/` — time-boxed architecture spike plans and results
-- `LICENSE` — Apache License 2.0
+- `docs/requirements.md` — functional + non-functional requirements, constraints, assumptions, dependencies, obligations (Weeks 3–4)
+- `docs/elicitation-notes.md` — interview evidence notes
+- `docs/definition-of-done.md` — project Definition of Done (linked for every work item)
+- `docs/tech-evaluation.md` — Week 5 architectural drivers, evaluation, seams, costs, licenses, verification
+- `docs/tech-evaluation.csv` — machine-checkable technology evaluation matrix (`python docs/score-stack.py docs/tech-evaluation.csv`)
+- `docs/adr/` — numbered Architecture Decision Records
+- `docs/spikes/` — time-boxed spike plans and results
+- `docs/architecture.md` — **Week 6 technical specification** (context, containers, components, interfaces, data model, sequences, errors, traceability)
+- `docs/diagrams/` — context and container diagram sources + PNGs
+- `migrations/0001-initial.sql` — logical schema (documents the localStorage JSON model)
+- `LICENSE` — project license at repository root
 - `src/` — project source
 - `tests/` — project tests
-- `tools/` — project utilities
+- `tools/` — utilities including `spec-check.py` and `hours_report.py`
 
 ## Project Board
 GitHub Projects board: **https://github.com/users/Regdak34S/projects/1**
