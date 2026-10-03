@@ -7,7 +7,7 @@
 
 ## 1. Purpose
 
-This document specifies the runtime architecture for the single-user web Content Creation tool: organize sections, draft text, track status, revise, and assemble a final deliverable. It implements the Must requirements in `docs/requirements.md` under the constraints in ADR 0001–0003 as evaluated in `docs/tech-evaluation.csv` (vanilla JS, localStorage, static host).
+This document specifies the runtime architecture for the single-user web Content Creation tool: organize sections, draft text, track status, revise, and assemble a final deliverable. It implements the Must requirements in `docs/requirements.md` under the constraints in ADR 0001–0004 as evaluated in `docs/tech-evaluation.csv` and `docs/tech-evaluation.md` (vanilla JS, localStorage, GitHub Pages, build-not-buy).
 
 ## 2. Context diagram
 
@@ -26,7 +26,8 @@ Everything inside the browser tab is trusted for that user only. No network appl
 
 **Legend:** solid arrow = data/control flow; dashed = optional deploy path; box = container or actor.
 
-*Diagram version 0.1 · 2026-10-02*
+*Diagram version 0.1 · 2026-10-03*  
+*Source: docs/diagrams/context.mmd*
 
 ## 3. Container diagram
 
@@ -40,23 +41,36 @@ Everything inside the browser tab is trusted for that user only. No network appl
 
 No application server. No shared database.
 
-*Diagram version 0.1 · 2026-10-03*
+*Diagram version 0.1 · 2026-10-03*  
+*Source: docs/diagrams/containers.mmd*
 
 ## 4. Component responsibilities
 
-| Component | Owns (state) | Calls | Does not call |
-|-----------|--------------|-------|---------------|
-| ProjectMap | section list, order, dependencies | Persistence.load/save | Assembly |
-| DraftEditor | current section text, dirty flag | Persistence.save (via auto-save) | Assembly |
-| StatusBoard | per-section status enum | Persistence.save | DraftEditor internals |
-| Checklist | checklist item completion flags | Persistence.save | — |
-| RevisionLog | revision notes list per section | Persistence.save | — |
-| Overview | derived view of all sections + statuses | ProjectMap, StatusBoard (read) | Persistence directly |
-| Assembly | final deliverable blob (read-only inputs) | ProjectMap, DraftEditor (read) | Persistence write during assemble |
-| Persistence | single project JSON document + schemaVersion | localStorage only | UI components |
-| Navigation | current section id | ProjectMap | Persistence |
+[See docs/diagrams/components.png] (level-3 component diagram)  
+*Source: docs/diagrams/components.mmd · Diagram version 0.1 · 2026-10-03*
+
+| Component | Responsibility | Owns (state) | Dependencies | Requirements served |
+|-----------|----------------|--------------|--------------|---------------------|
+| ProjectMap | Create and maintain ordered content map | section list, order, dependencies | Persistence | FR-MAP-01 |
+| DraftEditor | Edit section draft text; auto-save | current section text, dirty flag | Persistence | FR-DRAFT-02, FR-SAVE-09 |
+| StatusBoard | Set and display per-section status | per-section status enum | Persistence | FR-PROG-03, FR-SEC-07 |
+| Checklist | Track guided checklist item completion | checklist item completion flags | Persistence | FR-CHECK-12 |
+| RevisionLog | Capture revision notes per section | revision notes list per section | Persistence | FR-REV-04 (Should), NFR-REL-01 |
+| Overview | Aggregate status and progress view | derived view (read-only) | ProjectMap, StatusBoard | FR-VIEW-11, FR-SEC-07 |
+| Assembly | Combine final sections into deliverable | final deliverable blob (read-only inputs) | ProjectMap, DraftEditor | FR-ASM-05 |
+| Persistence | Serialize/deserialize project document | single project JSON + schemaVersion | localStorage | FR-SAVE-09, FR-LOAD-10, NFR-REL-02, NFR-PRIV-01 |
+| Navigation | Switch active section; guard dirty state | current section id | ProjectMap | FR-NAV-06 |
 
 **Rule:** one owner per piece of state. Overview and Assembly are read-only consumers. No cycles: UI → Persistence → localStorage only.
+
+**Cross-cutting requirements served by multiple components / repo policy:**
+- NFR-REL-01 (zero unhandled errors on core workflow) — error policy §8 + named codes on all interfaces
+- NFR-SEC-01, NFR-SEC-03 (no secrets in repo / config) — repository policy; no secrets in storage keys or messages
+- NFR-SEC-02 (user content never executed as code) — DraftEditor and Overview render text as plain text only
+- NFR-ACC-01 (keyboard operable + visible focus) — all interactive UI components
+- NFR-ACC-02 (contrast ≥ 4.5:1) — presentation layer CSS
+- NFR-PERF-01, NFR-PERF-02 — Overview render path and I-SAVE (measured in spikes)
+- NFR-MNT-01 — README + static layout
 
 ## 5. Interface contracts (Must requirements)
 
@@ -194,8 +208,8 @@ If a future ADR adds an optional assist API, it must sit behind one interface, h
 
 ## 11. Traceability (two-way)
 
-| Must requirement | Component(s) | Interface |
-|------------------|--------------|-----------|
+| Must requirement | Component(s) | Interface / mechanism |
+|------------------|--------------|------------------------|
 | FR-MAP-01 | ProjectMap, Persistence | I-MAP |
 | FR-DRAFT-02 | DraftEditor, Persistence | I-DRAFT |
 | FR-PROG-03 | StatusBoard, Persistence | I-PROG |
@@ -207,14 +221,19 @@ If a future ADR adds an optional assist API, it must sit behind one interface, h
 | FR-VIEW-11 | Overview | I-VIEW |
 | FR-CHECK-12 | Checklist | I-CHECK |
 | FR-TRACE-20 | docs + optional search helper | I-TRACE |
-| NFR-PERF-01 | Overview render path | — measured in spike SP-02 |
-| NFR-PERF-02 | I-SAVE | — measured in spike SP-01 |
+| NFR-PERF-01 | Overview render path | measured in spike SP-02 |
+| NFR-PERF-02 | I-SAVE / Persistence | measured in spike SP-01 |
+| NFR-REL-01 | All UI + Persistence (error policy §8) | named error codes; no unhandled throws on core path |
 | NFR-REL-02 | Persistence load | I-LOAD |
-| NFR-SEC-01 | repo policy | — |
-| NFR-PRIV-01 | Persistence delete/export | — |
-| NFR-MNT-01 | README + static layout | — |
+| NFR-SEC-01 | repository policy | no secrets in commits or messages |
+| NFR-SEC-02 | DraftEditor, Overview, Assembly | user content rendered as plain text only |
+| NFR-SEC-03 | repository / config policy | no secrets in config files |
+| NFR-PRIV-01 | Persistence delete/export | clear project / site data |
+| NFR-ACC-01 | All interactive UI components | keyboard reachability + visible focus |
+| NFR-ACC-02 | Presentation layer (CSS) | contrast ≥ 4.5:1 |
+| NFR-MNT-01 | README + static layout | clean-clone ≤ 10 min |
 
-Reverse: each component lists the requirement ids it serves (see Component table notes in repo if expanded).
+Reverse: the component table in §4 lists the requirement IDs each component serves.
 
 ## 12. Open questions
 
