@@ -1,1 +1,12 @@
+Context diagram
 
+Shows:
+
+Student User
+Content Creation Project
+GitHub Pages
+Browser trust boundary
+Browser application
+localStorage
+Labeled HTTPS/Web Storage flows
+Legend, v0.1, and 2026-10-03
