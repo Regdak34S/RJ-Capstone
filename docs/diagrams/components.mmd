@@ -1,0 +1,47 @@
+%% Content Creation Project — Level-3 Component Diagram
+%% Version: v0.1
+%% Date: 2026-10-03
+%% Mermaid source: docs/diagrams/components.mmd
+%% All components run inside the browser Application Logic + Presentation containers.
+
+flowchart TB
+    subgraph UI["Presentation / UI Layer"]
+        NAV["Navigation\ncurrent section id"]
+        MAP["ProjectMap\nsection list, order"]
+        DRAFT["DraftEditor\nsection text, dirty flag"]
+        STATUS["StatusBoard\nper-section status"]
+        CHECK["Checklist\nitem completion flags"]
+        REV["RevisionLog\nrevision notes"]
+        OVER["Overview\nderived status view"]
+        ASM["Assembly\nfinal deliverable"]
+    end
+
+    subgraph CORE["Application Logic"]
+        PERSIST["Persistence\nproject JSON + schemaVersion"]
+    end
+
+    subgraph STORE["Browser Storage"]
+        LS[("localStorage\nccp:project:v1")]
+    end
+
+    NAV --> MAP
+    MAP --> PERSIST
+    DRAFT --> PERSIST
+    STATUS --> PERSIST
+    CHECK --> PERSIST
+    REV --> PERSIST
+    OVER -.->|read| MAP
+    OVER -.->|read| STATUS
+    ASM -.->|read| MAP
+    ASM -.->|read| DRAFT
+    PERSIST --> LS
+    LS --> PERSIST
+
+    classDef ui fill:#eef,stroke:#333,stroke-width:1px;
+    classDef core fill:#efe,stroke:#333,stroke-width:1px;
+    classDef store fill:#ffe,stroke:#333,stroke-width:1px;
+    class NAV,MAP,DRAFT,STATUS,CHECK,REV,OVER,ASM ui;
+    class PERSIST core;
+    class LS store;
+
+    LEG["Legend: solid = owns/writes state; dashed = read-only; all state owned by one component"]
