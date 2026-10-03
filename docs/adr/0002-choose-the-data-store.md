@@ -1,49 +1,54 @@
 # ADR 0002 — Data store
 
 - **Status:** Accepted
-- **Date:** 2026-09-26
-- **Decider:** Student Architect
-- **Requirements affected:** FR-02 (CRUD on tasks), FR-04 (full-text search), FR-08 (audit log), NFR-S-01 (data at rest encrypted), NFR-P-02 (query latency < 100 ms for 10 k records)
+- **Date:** 2026-10-03
+- **Decider:** Reginald Johnson (Student Architect)
+- **Requirements affected:** FR-SAVE-09, FR-LOAD-10, NFR-REL-02, NFR-PRIV-01, NFR-PERF-02, CON-02
 - **Related ADRs:** 0001, 0003
 
 ## Context
 
-The application stores hierarchical tasks, comments, and an immutable audit trail. Write volume is modest (expected < 50 writes/s at peak), but the team needs strong consistency for concurrent edits and full-text search across task titles and descriptions. The free-tier budget is $0; any paid database must stay under $25/month once the free tier ends. The team has prior experience with PostgreSQL and zero experience with document stores.
+The application stores a single active project document (sections, drafts, statuses, checklist items, revision notes). Volume is student-scale: ≤ 30 sections, < 500 KB JSON. No multi-user concurrent write requirement and no server identity. Data must survive browser close/reopen (NFR-REL-02) and be fully deletable by the user (NFR-PRIV-01). Cost must remain $0.
 
 ## Options considered
 
-| Option                    | Weighted score | The detail that decided it                                      |
+| Option | Weighted score | The detail that decided it |
 | ------------------------- | -------------: | --------------------------------------------------------------- |
-| PostgreSQL 16 (Neon free tier) | 8.9 | Relational model matches task hierarchy; free tier includes 0.5 GB storage and branching |
-| MongoDB Atlas free tier   | 6.4 | Flexible schema, but team has no Mongo experience and consistency guarantees are weaker |
-| SQLite + Turso            | 5.8 | Zero-ops, but concurrent write limits are too low for FR-03     |
+| Browser localStorage | 4.85 | Survives close/reopen; zero services; matches single-user scope |
+| IndexedDB | 4.75 | Same persistence guarantee with higher size limits; slightly more complex API |
+| SQLite via sql.js (WASM) | 3.85 | Works but adds a WASM binary and async API for no extra FR need |
+
+Scores taken from `docs/tech-evaluation.csv` (decision = data-store). Top two within 0.25; localStorage is simpler to reverse and document.
 
 ## Decision
 
-We will use PostgreSQL 16 hosted on Neon’s free tier (with the option to upgrade to the $19/month Launch plan if storage exceeds 0.5 GB). The top-scored option was selected.
+We will store the project document in the browser's localStorage under a versioned key (e.g., `ccp:project:v1`). The Persistence component owns the serialize/deserialize boundary.
 
 ## Consequences
 
 **Positive**
 
-- FR-02 and FR-08 map directly onto tables and triggers; no schema-design risk.
-- NFR-P-02 is met by Neon’s serverless connection pooler and proper indexing.
-- NFR-S-01 is satisfied by Neon’s encryption-at-rest (AES-256) which is on by default.
+- FR-SAVE-09 and FR-LOAD-10 are satisfied by synchronous `setItem`/`getItem`.
+- NFR-REL-02 is met by the same-origin persistence of localStorage.
+- NFR-PRIV-01 is met by the user clearing site data or an explicit export/delete path.
+- NFR-PERF-02 (save ≤ 1 s) is easily met for &lt; 500 KB payloads.
+- Zero operational cost (CON-02).
 
 **Negative**
 
-- Neon free-tier compute suspends after 5 min of inactivity; cold starts can add 300–800 ms latency. Mitigation: a lightweight keep-alive cron (adds ~1 h of setup and $0 cost).
-- Full-text search requires the `pg_trgm` or `tsvector` extension; the team must learn the relevant SQL (budgeted 6 hours).
-- If the project outlives the semester and storage grows past 0.5 GB, the monthly cost becomes $19; this is accepted and documented in the budget spreadsheet.
+- Quota is typically 5+ MB per origin; oversized drafts must be warned (edge case 13 in architecture).
+- Multi-tab last-write-wins; documented limitation, optional timestamp warning.
+- Data is origin-bound and not automatically backed up off-device; export-to-JSON is the mitigation.
 
 ## Revisit trigger
 
-If the free-tier storage limit of 0.5 GB is exceeded, or if any query that is part of the main task-board load exceeds 100 ms p95 latency at 10 000 records.
+If a Must requirement later needs multi-device sync, shared projects, or documents larger than localStorage quotas, reopen this ADR (IndexedDB or a free-tier remote store would be candidates).
 
 ## Verification
 
-| Claim in this ADR                              | Source                                              | Checked on |
-| ---------------------------------------------- | --------------------------------------------------- | ---------- |
-| Neon free tier includes 0.5 GB storage         | https://neon.tech/docs/introduction/free-tier       | 2026-09-26 |
-| PostgreSQL 16 is the current major version     | https://www.postgresql.org/docs/16/index.html       | 2026-09-26 |
-| Neon encrypts data at rest by default          | https://neon.tech/docs/security/security-overview   | 2026-09-26 |
+| Claim in this ADR | Source | Checked on |
+| ------------------------------------------ | ------------------------------------------- | ---------- |
+| localStorage score highest (or tied) | docs/tech-evaluation.csv data-store rows | 2026-10-03 |
+| Student-scale volume &lt; 500 KB | docs/architecture.md §6 | 2026-10-03 |
+| NFR-REL-02 requires persist across reopen | docs/requirements.md | 2026-10-03 |
+
