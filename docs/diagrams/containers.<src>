@@ -1,12 +1,36 @@
-Context diagram
+%% Content Creation Project — Container Diagram
+%% Version: v0.1
+%% Date: 2026-10-03
+%% Mermaid source: docs/diagrams/containers.mmd
+%% Trust boundary: all application containers execute inside the user's browser.
 
-Shows:
+flowchart TB
+    U["Student User\nUses the capstone content workflow"]
+    GH["GitHub Pages\nStatic deployment host\nHTTPS"]
 
-Student User
-Content Creation Project
-GitHub Pages
-Browser trust boundary
-Browser application
-localStorage
-Labeled HTTPS/Web Storage flows
-Legend, v0.1, and 2026-10-03
+    subgraph TB["Trust Boundary — User Browser"]
+        UI["Presentation Container\nHTML/CSS UI\nRenders sections, progress, feedback, and assembly controls"]
+        APP["Application Logic Container\nJavaScript\nValidates input, manages workflows, updates state, and assembles content"]
+        STORE[("Persistence Container\nBrowser localStorage\nStores project sections, drafts, progress, and revision data as JSON")]
+    end
+
+    U -->|"DOM events / form input\nideas, edits, status changes"| UI
+    UI -->|"JavaScript function calls\nvalidated UI actions"| APP
+    APP -->|"DOM updates\nview model / messages"| UI
+    APP -->|"Web Storage API\nJSON read/write"| STORE
+    STORE -->|"Web Storage API\nJSON project state"| APP
+    GH -->|"HTTPS\nHTML/CSS/JavaScript assets"| UI
+
+    %% Component responsibilities
+    UI:::container
+    APP:::container
+    STORE:::store
+    U:::external
+    GH:::external
+
+    classDef container fill:#eef,stroke:#333,stroke-width:1px;
+    classDef store fill:#efe,stroke:#333,stroke-width:1px;
+    classDef external fill:#fff,stroke:#333,stroke-width:1px;
+
+    %% Legend
+    LEG["Legend: blue = application container; green = persistent state; white = external actor/host; arrows show protocol + payload"]
