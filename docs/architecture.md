@@ -1,9 +1,9 @@
 # Architecture — Content Creation Project
 
-**Version:** 0.1
-**Date:** 2026-10-03
-**Author:** Reginald Johnson
-**Status:** Draft
+**Version:** 0.1  
+**Date:** 2026-10-03  
+**Author:** Reginald Johnson  
+**Status:** Draft  
 
 ## 1. Purpose
 
