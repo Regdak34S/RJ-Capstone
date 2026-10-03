@@ -1,1 +1,33 @@
+%% Content Creation Project — Context Diagram
+%% Version: v0.1
+%% Date: 2026-10-03
+%% Mermaid source: docs/diagrams/context.mmd
+%% Trust boundary: the user's browser is the boundary around the application and its local persisted data.
+
+flowchart LR
+    U["Student User\nCreates, drafts, revises, tracks, and assembles capstone content"]
+    S["Content Creation Project\nWeb application for organizing and assembling capstone deliverables"]
+    G["GitHub Pages\nStatic hosting / deployment"]
+
+    subgraph TB["Trust Boundary — User Browser"]
+        B["Browser Application\nPlain HTML + CSS + JavaScript\nRuns client-side"]
+        L[("Browser localStorage\nProject drafts and progress")]
+    end
+
+    U -->|"HTTPS / browser interaction\nideas, section edits, progress updates"| B
+    B -->|"DOM/UI output\nsections, progress, feedback, assembly"| U
+    B -->|"Web Storage API\nJSON project state"| L
+    L -->|"Web Storage API\npersisted JSON state"| B
+    G -->|"HTTPS\nstatic HTML/CSS/JS assets"| B
+    B -->|"HTTPS GET\napplication assets"| G
+
+    classDef external fill:#fff,stroke:#333,stroke-width:1px;
+    classDef system fill:#eef,stroke:#333,stroke-width:1px;
+    classDef store fill:#efe,stroke:#333,stroke-width:1px;
+    class U,G external;
+    class S,B system;
+    class L store;
+
+    %% Legend
+    LEG["Legend: rectangle = actor/system; cylinder = persistent browser state; arrows = labeled data/protocol flows"]
 
