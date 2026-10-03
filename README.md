@@ -22,7 +22,7 @@ Milestone 6 - Technical Specification (System Design Document)
 - `docs/adr/` — numbered Architecture Decision Records
 - `docs/spikes/` — time-boxed spike plans and results
 - `docs/architecture.md` — **Week 6 technical specification** (context, containers, components, interfaces, data model, sequences, errors, traceability)
-- `docs/diagrams/` — context and container diagram sources + PNGs
+- `docs/diagrams/` — context, container, and component Mermaid sources (`.mmd`) + PNGs
 - `migrations/0001-initial.sql` — logical schema (documents the localStorage JSON model)
 - `LICENSE` — project license at repository root
 - `src/` — project source
