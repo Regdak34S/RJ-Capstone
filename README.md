@@ -4,7 +4,7 @@
 **Content Creation Project:** A small software tool to help a student organize, draft, track, revise, and assemble a capstone deliverable from scattered ideas and section drafts.
 
 ## Current Status
-Milestone 6 - Technical Specification (System Design Document)
+Milestone 7 - Work Breakdown, Schedule & Risk Register
 
 ## Repository Structure
 - `docs/charter.md` — project charter and working agreement
