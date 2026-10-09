@@ -193,8 +193,8 @@ Nominal personal capacity ≈ 8.5 h/week (charter). Course overhead (readings, r
 | Item | Req IDs | MoSCoW before | MoSCoW after | Hours recovered (cal) | Why (one sentence) |
 |------|---------|---------------|--------------|----------------------:|--------------------|
 | Section-specific prompts library | (Should feature, no FR id in Must set) | Should | Won't | ~8 (scoping) | Not required for core organize→draft→status→assemble path; cut order #3 already committed in Week 2 |
-| Reflection journal view | — | Should | Won't | ~6 | Same: does not block primary user goal |
-| Export presets (portfolio/archive) | — | Should | Won't | ~6 | Assembly Markdown download (FR-ASM-05) covers Must need |
+| Reflection journal view | - | Should | Won't | ~6 | Same: does not block primary user goal |
+| Export presets (portfolio/archive) | - | Should | Won't | ~6 | Assembly Markdown download (FR-ASM-05) covers Must need |
 | FR-REV-04 revision log UI | FR-REV-04 | Should | Won't | ~6.0 | Status + checklist already show progress; full revision history is valuable but not Must for ship |
 | FR-HIST-08 history view | FR-HIST-08 | Should | Won't | ~4.0 | Deferred; Persistence already stores timestamps |
 | FR-FLOW-13 guided flow engine | FR-FLOW-13 | Should | Won't | ~5.0 | Simple status enum is the accepted tradeoff (scoping §6) |
