@@ -2,7 +2,7 @@
 
 **Author:** Reginald Johnson  
 **Date:** 2026-10-08  
-**Status:** Baseline for Weeks 8–16  
+**Status:** Baseline for Weeks 8-16  
 **Commit purpose:** plan: baseline WBS, schedule, risk register, and scope decision
 
 This plan is the document every later milestone reports progress against. Estimates are the author's; an assistant proposed task structure and risk wording only (see `docs/ai-usage.md`).
@@ -33,7 +33,7 @@ This plan is the document every later milestone reports progress against. Estima
 
 | Task | Name | Reqs | O | M | P | E | Cal (×1.15) | Done when | Dep |
 |------|------|------|--:|--:|--:|--:|----------:|-----------|-----|
-| T-1.1 | Repo layout: `src/`, `tests/`, `index.html` shell | enabling | 1 | 1.5 | 2 | 1.5 | 1.7 | `index.html` opens in browser with empty app root; README lists open steps | — |
+| T-1.1 | Repo layout: `src/`, `tests/`, `index.html` shell | enabling | 1 | 1.5 | 2 | 1.5 | 1.7 | `index.html` opens in browser with empty app root; README lists open steps | - |
 | T-1.2 | Persistence module: load/save JSON under versioned key | FR-SAVE-09, FR-LOAD-10 | 1.5 | 2.5 | 4 | 2.6 | 3.0 | `setItem`/`getItem` round-trip a fixture; schemaVersion present | T-1.1 |
 | T-1.3 | Corrupt-document and quota error paths | NFR-REL-02, NFR-PRIV-01 | 1 | 2 | 3.5 | 2.1 | 2.4 | `CORRUPT_DOCUMENT` and `QUOTA_EXCEEDED` codes surface user messages | T-1.2 |
 | T-1.4 | Export JSON / clear-project controls | NFR-PRIV-01 | 1 | 1.5 | 2.5 | 1.6 | 1.8 | User can download project JSON and clear local data | T-1.2 |
@@ -114,7 +114,7 @@ This plan is the document every later milestone reports progress against. Estima
 | T-8.3 | README: run, structure, requirements map | FR-TRACE-20, NFR-MNT-01 | 1.5 | 2.5 | 4 | 2.6 | 3.0 | Stranger can open and find FR→file map | T-8.1 |
 | T-8.4 | Minimal automated or scripted smoke tests | FR-TEST-22 (Should→partial) | 1.5 | 2.5 | 4 | 2.6 | 3.0 | At least load/save and map-create covered | T-1.2, T-2.1 |
 | T-8.5 | Traceability pass: every Must FR has code or doc anchor | FR-TRACE-20 | 1 | 1.5 | 2.5 | 1.6 | 1.8 | `check-traceability` or manual matrix green for Must | WP-1..7 |
-| T-8.6 | Final hours-log + retrospective notes seed | enabling | 0.5 | 1 | 1.5 | 1.0 | 1.2 | Log complete through ship week | — |
+| T-8.6 | Final hours-log + retrospective notes seed | enabling | 0.5 | 1 | 1.5 | 1.0 | 1.2 | Log complete through ship week | - |
 
 **WP-8 calibrated subtotal:** 13.1 h
 
@@ -164,7 +164,7 @@ This plan is the document every later milestone reports progress against. Estima
 
 ---
 
-## 5. Capacity — Weeks 8–16
+## 5. Capacity — Weeks 8-16
 
 Nominal personal capacity ≈ 8.5 h/week (charter). Course overhead (readings, reviews, status) ≈ 1.5 h/week is reserved first.
 
@@ -245,9 +245,9 @@ This gap is real. Closing it requires **cutting Must-path surface area** or **in
 
 | Phase | Includes | Cal hours |
 |-------|----------|----------:|
-| A — Vertical slice | WP-1, WP-2, WP-3, WP-4 (T-4.1–T-4.3), WP-5, WP-6 | 48.4 |
-| B — NFR & ship | T-4.4, WP-7 (T-7.1–T-7.3), T-8.1–T-8.3, T-8.5, T-R.1, T-R.3 | 18.8 |
-| C — Stretch | T-7.4, T-8.4, T-8.6, T-R.2 | 6.5 |
+| A - Vertical slice | WP-1, WP-2, WP-3, WP-4 (T-4.1–T-4.3), WP-5, WP-6 | 48.4 |
+| B - NFR & ship | T-4.4, WP-7 (T-7.1–T-7.3), T-8.1–T-8.3, T-8.5, T-R.1, T-R.3 | 18.8 |
+| C - Stretch | T-7.4, T-8.4, T-8.6, T-R.2 | 6.5 |
 | **Baseline committed (A + partial B)** | A + T-7.1, T-7.3, T-8.1, T-8.2, T-8.3, T-R.1 | **≈ 52.0** |
 | Buffer on baseline | 15% of 52.0 | **7.8** |
 | **Baseline + buffer** | | **59.8** ≈ capacity |
@@ -288,7 +288,7 @@ Gates are conditions that must be true before the next week starts.
 | Total net capacity Weeks 8–16 | 57.0 h |
 | Ideal burn rate | 52.0 / 9 ≈ **5.8 h/week** of task work |
 
-**Ideal line:** remaining task effort starts at 52.0 h at start of Week 8 and declines by ~5.8 h each week if capacity is fully applied to the baseline.
+**Ideal line:** remaining task effort starts at 52.0 h at the start of Week 8 and declines by ~5.8 h each week if capacity is fully applied to the baseline.
 
 **Projected line:** applies known losses (Week 8 = 4.0, Week 11 = 4.5) and assumes 100% of net hours go to baseline tasks until complete.
 
@@ -306,7 +306,7 @@ Gates are conditions that must be true before the next week starts.
 
 **First week the plan exceeds remaining capacity:** Under the **full** 82.2 h task list, the plan is over capacity from **Week 8**. Under the **committed baseline (59.8 h)**, the projected line stays inside capacity through Week 16 if buffer absorbs ≤ ~3 h of slip; the first week the projected line would cross zero-capacity (i.e., require more than remaining weeks can supply) is **Week 15** if Phase B expands or slips accumulate beyond the 7.8 h buffer.
 
-**Sentence:** The committed baseline fits; the unconstrained Must-plus-polish list does not — Week 8 is the week that forces the scope decision above.
+**Sentence:** The committed baseline fits; the unconstrained Must-plus-polish list does not - Week 8 is the week that forces the scope decision above.
 
 ---
 
@@ -314,7 +314,7 @@ Gates are conditions that must be true before the next week starts.
 
 | Task | Spread (P−O) | Signal | Action in plan |
 |------|-------------:|--------|----------------|
-| T-6.1 Assembly | 3.0 | Moderate — first time building Markdown join | Early in Week 12; done-when is concrete |
+| T-6.1 Assembly | 3.0 | Moderate - first time building Markdown join | Early in Week 12; done-when is concrete |
 | T-2.1 Map UI | 3.0 | DOM + reorder unfamiliar | Week 9; after Persistence solid |
 | T-7.1 Keyboard a11y | 2.5 | Never done formal a11y pass | Funded T-R.2 if trigger fires |
 | T-8.4 Tests | 2.5 | Test tooling novelty | Kept minimal smoke only |
@@ -328,5 +328,5 @@ No task left with spread ≥ 4 without a spike or mitigation companion.
 
 - Weekly status compares actual hours and completed task IDs against this baseline.
 - Risk register triggers are checked at each gate.
-- After five construction tasks, calibration factor is recomputed and §1 updated.
-- Any Must cut after this commit requires Week-8 change-control note in `docs/requirements.md`.
+- After five construction tasks, the calibration factor is recomputed and §1 updated.
+- Any Must cut after this commit requires a Week-8 change-control note in `docs/requirements.md`.
