@@ -22,6 +22,8 @@ Milestone 7 - Work Breakdown, Schedule & Risk Register
 - `docs/adr/` — numbered Architecture Decision Records
 - `docs/spikes/` — time-boxed spike plans and results
 - `docs/architecture.md` — **Week 6 technical specification** (context, containers, components, interfaces, data model, sequences, errors, traceability)
+- `docs/plan.md` — **Week 7 plan** (WBS, three-point estimates, capacity, schedule, burn-down baseline, scope decision)
+- `docs/risk-register.md` — **Week 7 risk register** (8+ risks with triggers, owners, responses)
 - `docs/diagrams/` — context, container, and component Mermaid sources (`.mmd`) + PNGs
 - `migrations/0001-initial.sql` — logical schema (documents the localStorage JSON model)
 - `LICENSE` — project license at repository root
