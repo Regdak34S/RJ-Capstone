@@ -1,7 +1,7 @@
-# Plan — Content Creation Project (Week 7 baseline)
+# Plan - Content Creation Project (Week 7 baseline)
 
 **Author:** Reginald Johnson  
-**Date:** 2026-10-08  
+**Date:** 2026-10-09  
 **Status:** Baseline for Weeks 8-16  
 **Commit purpose:** plan: baseline WBS, schedule, risk register, and scope decision
 
@@ -328,5 +328,5 @@ No task left with spread ≥ 4 without a spike or mitigation companion.
 
 - Weekly status compares actual hours and completed task IDs against this baseline.
 - Risk register triggers are checked at each gate.
-- After five construction tasks, the calibration factor is recomputed and §1 updated.
+- After five construction tasks, the calibration factor is recomputed and §1 is updated.
 - Any Must cut after this commit requires a Week-8 change-control note in `docs/requirements.md`.
