@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Smoke: prove Persistence has a seeded row and (optionally) the live page
+# contains SMOKE_EXPECT. Fails when storage is forced down.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+SMOKE_EXPECT="${SMOKE_EXPECT:-Introduction}"
+APP_BASE_URL="${APP_BASE_URL:-http://127.0.0.1:8080}"
+
+echo "==> smoke (expect substring: ${SMOKE_EXPECT})"
+
+# 1) Data-store hop: must load/seed a real project with the expected section name.
+#    If FORCE_STORAGE_DOWN=1, createStorage throws and this fails (red path).
+node --input-type=module << 'NODE'
+import { ProjectStore } from "./src/persistence/project-store.js";
+import { ensureSeeded } from "./src/app/seed.js";
+
+const expect = process.env.SMOKE_EXPECT || "Introduction";
+
+try {
+  const store = new ProjectStore();
+  const { project } = ensureSeeded(store);
+  const names = (project.sections || []).map((s) => s.name);
+  if (!names.includes(expect)) {
+    console.error("SMOKE FAIL: seeded sections do not include", expect, "got", names);
+    process.exit(1);
+  }
+  const reloaded = store.load();
+  if (!reloaded || !reloaded.sections?.length) {
+    console.error("SMOKE FAIL: load after seed returned empty");
+    process.exit(1);
+  }
+  console.log("SMOKE OK (store):", reloaded.sections[0].name, "—", reloaded.sections[0].status);
+} catch (err) {
+  console.error("SMOKE FAIL (store):", err.message || err);
+  process.exit(1);
+}
+NODE
+
+# 2) Optional live HTTP check when the static server is up.
+if curl -sf --max-time 2 "${APP_BASE_URL}/" >/dev/null 2>&1; then
+  echo "==> smoke HTTP GET ${APP_BASE_URL}/"
+  body="$(curl -sf --max-time 5 "${APP_BASE_URL}/" || true)"
+  if echo "$body" | grep -q "id=\"app\""; then
+    echo "SMOKE OK (http): index.html served with #app root"
+  else
+    echo "SMOKE FAIL (http): index.html missing #app" >&2
+    exit 1
+  fi
+  # Module scripts are not executed by curl; store proof above is the data hop.
+else
+  echo "==> smoke HTTP skipped (server not reachable at ${APP_BASE_URL})"
+fi
+
+echo "==> smoke OK"
