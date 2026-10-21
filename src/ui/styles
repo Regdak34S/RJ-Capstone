@@ -1,0 +1,58 @@
+/* Minimal skeleton styles — functional, not decorative */
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #f7f7f5;
+  --muted: #555;
+  --border: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #f0f0f0;
+    --bg: #121212;
+    --muted: #aaa;
+    --border: #444;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+#app {
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 1rem 1.25rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+#section-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.section-row {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-row:last-child {
+  border-bottom: none;
+}
+
+#skeleton-meta {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
