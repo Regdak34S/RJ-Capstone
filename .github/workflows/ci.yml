@@ -1,0 +1,138 @@
+# Walking-skeleton CI — a stack-agnostic starter workflow.
+#
+# HOW TO USE IT
+#   1. Copy this file into YOUR repository at .github/workflows/ci.yml
+#   2. Fill in the two blocks marked FILL IN.
+#   3. Read the two blocks marked STAND IT UP and either adapt them or delete
+#      them. The smoke stage runs against a LIVE application talking to a REAL
+#      data store, and nothing else in this file starts either one for you.
+#   4. Commit it on a branch, open a pull request, and watch it run.
+#
+# PIN YOUR ACTIONS. The @vN tags below were current when this was written;
+# check each action's repository for the version you should use today and pin
+# to a major version you have actually looked at. Do not copy a tag on faith.
+#
+# THE CONTRACT: every `run:` line below is a script that also works on your
+# laptop, unchanged. CI must not know a single command you don't know.
+
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+
+# One run per branch; a new push cancels the stale one.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build-and-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # ---- STAND IT UP 1 — a real data store for the runner -------------------
+    # The runner is a clean machine. Your database does not exist on it. A
+    # service container is a database that lives for the length of this job, so
+    # `script/setup` can migrate and seed it and `script/smoke` can prove a row
+    # travelled the whole path. Uncomment, change the image to YOUR store, and
+    # keep the version pinned. DELETE this whole block if your project has no
+    # data store.
+    #
+    # services:
+    #   postgres:
+    #     image: postgres:16
+    #     env:
+    #       POSTGRES_USER: app
+    #       POSTGRES_PASSWORD: app
+    #       POSTGRES_DB: app_ci
+    #     ports: ["5432:5432"]
+    #     # Without the health check your steps start before the database
+    #     # accepts connections, and setup fails on a race you cannot reproduce
+    #     # on your laptop. This is the single most common CI-database bug.
+    #     options: >-
+    #       --health-cmd "pg_isready -U app"
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+    #
+    # Every step below then needs to know where it is. Same variable name your
+    # .env.example uses — CI reads your configuration, it does not invent one.
+    #
+    # env:
+    #   DATABASE_URL: postgres://app:app@127.0.0.1:5432/app_ci
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ---- FILL IN 1 — pin the runtime, from a file in the repo -------------
+      # Node:    uses: actions/setup-node@v4
+      #          with: { node-version-file: .nvmrc, cache: npm }
+      # Python:  uses: actions/setup-python@v5
+      #          with: { python-version-file: .python-version }
+      # Java:    uses: actions/setup-java@v4
+      #          with: { distribution: temurin, java-version: "21", cache: maven }
+      # Go:      uses: actions/setup-go@v5
+      #          with: { go-version-file: go.mod }
+      - name: Set up toolchain
+        run: |
+          echo "REPLACE THIS STEP with the setup action for your stack."
+          echo "The version must come from a file in the repo, not from a literal here."
+          exit 1
+
+      # ---- FILL IN 2 — your script contract --------------------------------
+      # These live in script/ and are the SAME commands you run locally.
+      # Each one must exit non-zero when it fails. A step that cannot fail
+      # is not a stage; it is decoration.
+
+      - name: Install from the lock file
+        run: ./script/setup
+
+      - name: Lint
+        run: ./script/lint
+
+      - name: Test
+        run: ./script/test
+
+      - name: Build
+        run: ./script/build
+
+      # ---- STAND IT UP 2 — start the app, THEN smoke it ---------------------
+      # `script/smoke` starts nothing. It polls APP_BASE_URL for thirty seconds
+      # and then fails. Nothing above this line has launched your application,
+      # so without this step the smoke stage is red forever.
+      # Keep this for anything that listens on a port. DELETE it — and the log
+      # step at the bottom — for a CLI or batch project, and point script/smoke
+      # at your binary instead.
+      - name: Start the app in the background
+        run: |
+          nohup ./script/start > /tmp/app.log 2>&1 &
+          echo "started pid $!"
+        env:
+          # Whatever variable YOUR app reads for its port. It must agree with
+          # the port in APP_BASE_URL on the next step.
+          PORT: "8080"
+
+      - name: Smoke test — prove the skeleton walks here too
+        run: ./script/smoke
+        env:
+          APP_BASE_URL: http://127.0.0.1:8080
+          SMOKE_EXPECT: "oat milk"
+          # Real secrets are NEVER literals. Reference a repository secret:
+          # PRODUCT_API_KEY: ${{ secrets.PRODUCT_API_KEY }}
+          # And never `echo` one, or print the whole environment, in any step.
+
+      # A red smoke stage with no output is unreadable, and the reason is almost
+      # always in the app's own log: a missing variable, or a store it could not
+      # reach. Print it. `if: failure()` means this runs ONLY on a red build, so
+      # it never props up a green one.
+      - name: Show the app log when a stage fails
+        if: failure()
+        run: tail -n 50 /tmp/app.log
