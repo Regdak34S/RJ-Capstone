@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Syntax check all JS modules (no external linter required for skeleton).
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "==> lint (node --check)"
+fail=0
+for f in $(find src tests -name '*.js' 2>/dev/null | sort); do
+  if ! node --check "$f"; then
+    echo "FAIL: $f" >&2
+    fail=1
+  fi
+done
+
+if [[ $fail -ne 0 ]]; then
+  echo "lint failed" >&2
+  exit 1
+fi
+echo "==> lint OK"
