@@ -1,35 +1,95 @@
 # RJ-Capstone
 
 ## Project
+
 **Content Creation Project:** A small software tool to help a student organize, draft, track, revise, and assemble a capstone deliverable from scattered ideas and section drafts.
 
-## Current Status
-Milestone 8-9 - Walking Skeleton & Continuous Integration
+**Stack (ADR 0001–0004):** Vanilla HTML/CSS/JavaScript · browser `localStorage` · GitHub Pages (static) · build, do not buy.
 
-## Repository Structure
-- `docs/charter.md` — project charter and working agreement
-- `docs/scoping-decision.md` — Week 2 problem, evidence, scope, risks, and hour budget
-- `docs/ideas/` — three independent candidate canvases
-- `docs/interviews/` — interview evidence
-- `docs/evidence/dependency-checks/` — dependency verification evidence
-- `docs/hours-log.csv` — actual work sessions and estimates
-- `docs/ai-usage.md` — AI-use disclosure
-- `docs/requirements.md` — functional + non-functional requirements, constraints, assumptions, dependencies, obligations (Weeks 3–4)
-- `docs/elicitation-notes.md` — interview evidence notes
-- `docs/definition-of-done.md` — project Definition of Done (linked for every work item)
-- `docs/tech-evaluation.md` — Week 5 architectural drivers, evaluation, seams, costs, licenses, verification
-- `docs/tech-evaluation.csv` — machine-checkable technology evaluation matrix (`python docs/score-stack.py docs/tech-evaluation.csv`)
-- `docs/adr/` — numbered Architecture Decision Records
-- `docs/spikes/` — time-boxed spike plans and results
-- `docs/architecture.md` — **Week 6 technical specification** (context, containers, components, interfaces, data model, sequences, errors, traceability)
-- `docs/plan.md` — **Week 7 plan** (WBS, three-point estimates, capacity, schedule, burn-down baseline, scope decision)
-- `docs/risk-register.md` — **Week 7 risk register** (8+ risks with triggers, owners, responses)
-- `docs/diagrams/` — context, container, and component Mermaid sources (`.mmd`) + PNGs
-- `migrations/0001-initial.sql` — logical schema (documents the localStorage JSON model)
-- `LICENSE` — project license at repository root
-- `src/` — project source
-- `tests/` — project tests
-- `tools/` — utilities including `spec-check.py` and `hours_report.py`
+## Current status
 
-## Project Board
-GitHub Projects board: **https://github.com/users/Regdak34S/projects/1**
+**Milestone 8-9 - Walking Skeleton & Continuous Integration**  
+Tag target: `v0.1.0-skeleton`
+
+## Run it
+
+**Prerequisite:** Node.js 20+ (see `.nvmrc`). Python 3 is used only to serve static files.
+
+```bash
+git clone <your-repo-url> ccp && cd ccp
+cp .env.example .env
+bash script/setup
+bash script/start
+```
+
+Open **http://127.0.0.1:8080/**
+
+**What success looks like:** the page shows a heading **Capstone Content Project** and a list row **`Introduction - draft`**. That text comes from Persistence (seeded into storage), not from a hard-coded string in the HTML.
+
+Prove the data hop without the browser:
+
+```bash
+bash script/smoke
+# → SMOKE OK (store): Introduction — draft
+```
+
+Prove the pipeline can fail when the store is down:
+
+```bash
+FORCE_STORAGE_DOWN=1 bash script/smoke
+# → SMOKE FAIL (store): STORAGE_UNAVAILABLE
+```
+
+Other one-command verbs (same as CI):
+
+| Command | Purpose |
+|---------|---------|
+| `bash script/setup` | Install from lock file, copy `.env.example` → `.env` |
+| `bash script/lint` | `node --check` on all JS modules |
+| `bash script/test` | Unit tests (`node --test`) |
+| `bash script/build` | Verify static assets present |
+| `bash script/start` | Static file server on `$PORT` (default 8080) |
+| `bash script/smoke` | Seeded row in store + optional HTTP check |
+
+## Repository structure
+
+```
+├── index.html                 # Browser entry
+├── package.json / package-lock.json / .nvmrc
+├── .env.example               # Every env var the tooling reads
+├── script/                    # setup, lint, test, build, start, smoke
+├── src/
+│   ├── persistence/           # ProjectStore + storage adapters (ADR 0002)
+│   ├── app/                   # seed, render, main (vertical slice)
+│   └── ui/                    # styles
+├── tests/unit/                # Node tests for Persistence
+├── docs/                      # requirements, architecture, plan, skeleton-trace, …
+├── migrations/                # Logical schema notes for the JSON document
+└── .github/workflows/ci.yml   # install → lint → test → build → smoke
+```
+
+## Documentation map
+
+- `docs/architecture.md` — Week 6 technical specification
+- `docs/plan.md` — Week 7 WBS / schedule / burn-down
+- `docs/risk-register.md` — Week 7 risks
+- `docs/skeleton-trace.md` — **Week 9 hop table + acceptance record**
+- `docs/issues.md` — Requirement-traced issue list for the board
+- `docs/requirements.md` — FRs / NFRs
+- `docs/ai-usage.md` — AI disclosure
+- `docs/hours-log.csv` — time log
+
+## Project board
+
+https://github.com/users/Regdak34S/projects/1
+
+## Secrets/rotation plan
+
+1. No API keys are required for the skeleton (static + localStorage).
+2. If a secret is ever added: put it only in GitHub Actions secrets / local `.env` (gitignored).
+3. If a secret is committed by mistake: rotate it at the provider immediately, purge from git history (`git filter-repo` or BFG), force-push only with instructor guidance.
+4. Re-run a full-history scan (`git log -p | grep -iE 'api[_-]?key|secret|password|token'`) after any incident.
+
+## License
+
+See `LICENSE`.
