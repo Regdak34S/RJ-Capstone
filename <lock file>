@@ -1,1 +1,15 @@
-
+{
+  "name": "rj-capstone-content-creation",
+  "version": "0.1.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "rj-capstone-content-creation",
+      "version": "0.1.0",
+      "engines": {
+        "node": ">=20"
+      }
+    }
+  }
+}
