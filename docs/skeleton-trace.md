@@ -1,59 +1,76 @@
-# Walking Skeleton Trace — TEMPLATE
+# Walking Skeleton Trace — Content Creation Project
 
-Copy this to `docs/skeleton-trace.md` in your repository. Keep it current for the
-rest of the term; Week 13 grades it as part of the documentation set, and Week 16
-uses it to check that every requirement you claimed is actually reachable.
-
-Replace everything in ANGLE BRACKETS. Delete the PantryPilot example rows once
-your own are in — they are here to show the shape, not to be kept.
+**Author:** Reginald Johnson  
+**Date:** 2026-10-21  
+**Tag target:** `v0.1.0-skeleton`
 
 ---
 
 ## 1. The request path
 
-One row per hop. "Real" means the production component, not a stub, a mock, a
-hard-coded fixture, or a `TODO`. A hop that is not real is a bone that is missing.
+One row per hop. "Real" means the production component, not a stub, a mock, a hard-coded fixture in the UI, or a `TODO`.
 
 | # | Hop | Component in my system | Real? | Evidence |
-|---|---|---|---|---|
-| 1 | Client / entry point | `<web page, CLI arg parser, webhook>` | yes / no | `<how you know>` |
-| 2 | Route / dispatch | `<the handler that receives it>` | yes / no | |
-| 3 | Service / domain logic | `<the module that decides something>` | yes / no | |
-| 4 | Data store | `<real DB + real table + seeded row>` | yes / no | |
-| 5 | Response | `<status + payload shape>` | yes / no | |
-| 6 | Rendered result | `<what a human actually sees>` | yes / no | |
-| 7 | External integration | `<third-party API, or "deferred">` | stub / real | |
+|---|-----|------------------------|-------|----------|
+| 1 | Client / entry point | `index.html` loads `src/app/main.js` | **yes** | Browser opens `/`; `#app` is the root |
+| 2 | Route / dispatch | Browser module graph (no HTTP API in v0.1) | **yes** | Static host serves files; `main.js` is the dispatch | 
+| 3 | Service / domain logic | `ensureSeeded` + `ProjectStore.loadOrSeed` | **yes** | `tests/unit/project-store.test.js`; `script/smoke` |
+| 4 | Data store | Persistence → `localStorage` (browser) / `MemoryAdapter` (Node CI) | **yes** | Seeded row `Introduction` / `draft`; ADR 0002 |
+| 5 | Response | Project JSON document from `ProjectStore.load()` | **yes** | Smoke prints `Introduction — draft` |
+| 6 | Rendered result | `renderProject` writes `<li class="section-row">Introduction — draft</li>` | **yes** | Visible in browser after `./script/start` |
+| 7 | External integration | None in v0.1 (GitHub Pages is static host only) | **deferred** | Architecture §10; ADR 0004 build-not-buy |
 
-**Example (PantryPilot — an example project, not yours):**
+**Notes on hop 2:** This architecture has no application server or REST route layer (ADR 0001–0003). The “route” hop is the browser loading the module entry. That is intentional and labeled here so it is not mistaken for a stub.
 
-| # | Hop | Component | Real? | Evidence |
-|---|---|---|---|---|
-| 1 | Client | `/pantry` page, `fetch('/api/items')` | yes | browser network tab |
-| 2 | Route | `GET /api/items` handler | yes | `script/smoke` gets 200 |
-| 3 | Service | `ItemService.listExpiring()` | yes | unit test `list-expiring` |
-| 4 | Data store | SQLite `items`, seeded row "oat milk" | yes | `script/setup` seeds it |
-| 5 | Response | `200`, `[{name, expiresOn}]` | yes | smoke asserts "oat milk" |
-| 6 | Rendered | one `<li>` in the pantry list | yes | screenshot in the PR |
-| 7 | Barcode API | stubbed, returns fixed product | stub | ADR-0004, deferred to Wk 12 |
+**Notes on hop 4:** In the browser the real store is `localStorage`. In Node CI the same `ProjectStore` contract runs against `MemoryAdapter` so smoke and unit tests exercise the Persistence component without a browser. Both paths use the same seed document.
 
-**Missing bone (the next task):** `<name the first "no" above and the issue number>`
+**Missing bone (next tasks):** Full ProjectMap UI (FR-MAP-01), DraftEditor (FR-DRAFT-02), StatusBoard (FR-PROG-03), Checklist (FR-CHECK-12), Assembly (FR-ASM-05) — see issues below.
+
+---
 
 ## 2. Requirement traceability
 
-Every requirement identifier you baselined in Week 8 gets a row. A requirement
-with no issue is a promise nobody is keeping.
-
 | Req ID | Requirement (short) | Issue | Branch | Verified by | Status |
-|---|---|---|---|---|---|
-| `<FR-1>` | `<one line>` | `#<n>` | `<branch>` | `<test name or "manual">` | not started / in progress / done |
-| FR-4 | List items expiring within 7 days | #12 | `fr-4-expiring-list` | `tests/unit/list-expiring` | done |
-| FR-7 | Add an item from the web form | #14 | `fr-7-add-item` | — | in progress |
-| NFR-2 | First page paint under 2 s on 3G | #21 | — | — | not started |
+|--------|---------------------|-------|--------|-------------|--------|
+| FR-LOAD-10 | Reopen / load project document | #1 | `main` | `tests/unit/project-store.test.js` | done (skeleton) |
+| FR-SAVE-09 | Persist project document | #2 | `main` | `ProjectStore.save` + smoke | done (skeleton) |
+| FR-VIEW-11 | Project overview / section list | #3 | `main` | `renderProject` shows section row | done (thin slice) |
+| FR-SEC-07 | Status at a glance | #4 | `main` | Section row shows `draft` status | done (thin slice) |
+| FR-MAP-01 | Create content map | #5 | — | — | not started |
+| FR-DRAFT-02 | Draft / edit section text | #6 | — | — | not started |
+| FR-PROG-03 | Update section status | #7 | — | — | not started |
+| FR-CHECK-12 | Guided checklist | #8 | — | — | not started |
+| FR-ASM-05 | Assemble final deliverable | #9 | — | — | not started |
+| FR-NAV-06 | Navigate sections | #10 | — | — | not started |
+| NFR-REL-02 | Draft survives close/reopen | #2 | `main` | localStorage path | in progress |
+| NFR-MNT-01 | Clean clone runnable from README | #11 | `main` | `script/setup` + Run it | done (skeleton) |
+| NFR-PERF-02 | Save ≤ 1 s | #12 | — | SP-01 | not started |
+
+---
 
 ## 3. Skeleton acceptance record
 
-- **Date the skeleton first walked end to end:** `<YYYY-MM-DD>`
-- **Commit that made it walk:** `<sha>`
-- **CI run that proved it (URL):** `<link to the green run>`
-- **One red build I caused on purpose, and the fix:** `<red run URL>` -> `<fix sha>`
-- **Hops still stubbed, and when they get real:** `<list, with issue numbers>`
+- **Date the skeleton first walked end to end:** 2026-10-21
+- **Commit that made it walk:** *(tag `v0.1.0-skeleton` after push — replace with SHA)*
+- **CI run that proved it (URL):** *(paste green Actions run URL after first green push)*
+- **One red build I caused on purpose, and the fix:**  
+  - Red path locally: `FORCE_STORAGE_DOWN=1 bash script/smoke` → `SMOKE FAIL (store): STORAGE_UNAVAILABLE`  
+  - In CI: temporarily set `FORCE_STORAGE_DOWN: "1"` on the smoke step, push, capture red URL, revert, capture green URL.
+- **Hops still stubbed, and when they get real:**  
+  - No unlabeled stubs on the skeleton path.  
+  - Full map/draft/status/checklist/assembly UIs: Weeks 10–12 per `docs/plan.md` (issues #5–#10).
+
+---
+
+## 4. How to re-verify locally
+
+```bash
+git clone <repo> /tmp/ccp && cd /tmp/ccp
+cp .env.example .env
+bash script/setup
+bash script/lint && bash script/test && bash script/build
+bash script/start &          # http://127.0.0.1:8080/
+bash script/smoke            # expects "Introduction"
+# Browser: page shows "Introduction — draft"
+FORCE_STORAGE_DOWN=1 bash script/smoke   # must fail
+```
