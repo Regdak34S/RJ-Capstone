@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# One-command bootstrap for a fresh clone.
+# Installs from the lock file when present; verifies skeleton files exist.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "==> Content Creation Project setup"
+
+if [[ ! -f package.json ]]; then
+  echo "ERROR: package.json missing" >&2
+  exit 1
+fi
+
+if [[ ! -f index.html ]]; then
+  echo "ERROR: index.html missing — skeleton entry point required" >&2
+  exit 1
+fi
+
+if [[ ! -f src/persistence/project-store.js ]]; then
+  echo "ERROR: Persistence module missing" >&2
+  exit 1
+fi
+
+# Prefer npm ci when lockfile exists; otherwise npm install to create one.
+if [[ -f package-lock.json ]]; then
+  echo "==> npm ci (from package-lock.json)"
+  npm ci
+else
+  echo "==> npm install (no lock file yet — will write package-lock.json)"
+  npm install
+fi
+
+if [[ ! -f .env ]] && [[ -f .env.example ]]; then
+  echo "==> copying .env.example -> .env (local only, gitignored)"
+  cp .env.example .env
+fi
+
+echo "==> setup OK"
+echo "    Next: ./script/start   then open http://127.0.0.1:\${PORT:-8080}/"
+echo "    Success looks like: page shows 'Introduction — draft'"
