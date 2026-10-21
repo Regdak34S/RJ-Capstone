@@ -1,1 +1,18 @@
-
+{
+  "name": "rj-capstone-content-creation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Content Creation Project — walking skeleton (vanilla JS + localStorage)",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "./script/setup",
+    "lint": "./script/lint",
+    "test": "./script/test",
+    "build": "./script/build",
+    "start": "./script/start",
+    "smoke": "./script/smoke"
+  }
+}
