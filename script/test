@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Run unit tests (Node, no browser required).
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "==> test"
+node --test tests/unit/*.js
+echo "==> test OK"
