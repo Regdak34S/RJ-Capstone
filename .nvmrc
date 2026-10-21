@@ -1,9 +1,1 @@
-# From repo root
-cat -A .nvmrc
-# should print: 20$
-
-node -v
-# should be v20.x or higher
-
-nvm use    # if you use nvm — reads .nvmrc
-bash script/setup
+20
