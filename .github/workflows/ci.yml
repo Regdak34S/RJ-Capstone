@@ -66,7 +66,6 @@ jobs:
           APP_BASE_URL: http://127.0.0.1:8080
           SMOKE_EXPECT: "Introduction"
           STORAGE_KEY: "ccp:project:v1"
-          FORCE_STORAGE_DOWN: "1"
 
       - name: Show the app log when a stage fails
         if: failure()
