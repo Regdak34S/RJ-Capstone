@@ -24,7 +24,7 @@ bash script/start
 
 Open **http://127.0.0.1:8080/**
 
-**What success looks like:** the page shows a heading **Capstone Content Project** and a list row **`Introduction - draft`**. That text comes from Persistence (seeded into storage), not from a hard-coded string in the HTML.
+**What success would've looked like:** the page shows a heading **Capstone Content Project** and a list row **`Introduction - draft`**. That text comes from Persistence (seeded into storage), not from a hard-coded string in the HTML.
 
 Prove the data hop without the browser:
 
