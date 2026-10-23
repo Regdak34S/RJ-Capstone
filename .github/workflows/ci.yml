@@ -1,6 +1,6 @@
-# Content Creation Project — CI
+# Content Creation Project — walking-skeleton CI
+# Stack: vanilla JS + localStorage; Node 20 for lint/test/smoke tooling.
 # Stages: install → lint → test → build → smoke
-# Every run: each line is a script that also works on a laptop.
 
 name: ci
 
@@ -45,17 +45,18 @@ jobs:
       - name: Build
         run: bash script/build
 
-      - name: Start the static app in the background
+      - name: Start the app in the background
         run: |
           nohup bash script/start > /tmp/app.log 2>&1 &
           echo "started pid $!"
           for i in 1 2 3 4 5 6 7 8 9 10; do
             if curl -sf --max-time 1 "http://127.0.0.1:8080/" >/dev/null; then
               echo "server up"
-              break
+              exit 0
             fi
             sleep 1
           done
+          echo "WARNING: server not reachable yet; smoke will still test the store hop"
         env:
           PORT: "8080"
 
@@ -66,8 +67,6 @@ jobs:
           SMOKE_EXPECT: "Introduction"
           STORAGE_KEY: "ccp:project:v1"
 
-      - name: Dump app log on failure
+      - name: Show the app log when a stage fails
         if: failure()
-        run: |
-          echo "---- /tmp/app.log ----"
-          cat /tmp/app.log || true
+        run: tail -n 50 /tmp/app.log || true
