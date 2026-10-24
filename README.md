@@ -51,22 +51,7 @@ Other one-command verbs (same as CI):
 | `bash script/start` | Static file server on `$PORT` (default 8080) |
 | `bash script/smoke` | Seeded row in store + optional HTTP check |
 
-## Repository structure
 
-```
-├── index.html                 # Browser entry
-├── package.json / package-lock.json / .nvmrc
-├── .env.example               # Every env var the tooling reads
-├── script/                    # setup, lint, test, build, start, smoke
-├── src/
-│   ├── persistence/           # ProjectStore + storage adapters (ADR 0002)
-│   ├── app/                   # seed, render, main (vertical slice)
-│   └── ui/                    # styles
-├── tests/unit/                # Node tests for Persistence
-├── docs/                      # requirements, architecture, plan, skeleton-trace, …
-├── migrations/                # Logical schema notes for the JSON document
-└── .github/workflows/ci.yml   # install → lint → test → build → smoke
-```
 
 ## Documentation map
 
