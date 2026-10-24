@@ -1,7 +1,7 @@
 # Walking Skeleton Trace — Content Creation Project
 
 **Author:** Reginald Johnson  
-**Date:** 2026-10-21  
+**Date:** 2026-10-24  
 **Tag target:** `v0.1.0-skeleton`
 
 ---
@@ -50,15 +50,27 @@ One row per hop. "Real" means the production component, not a stub, a mock, a ha
 
 ## 3. Skeleton acceptance record
 
-- **Date the skeleton first walked end to end:** 2026-10-21
-- **Commit that made it walk:** *(tag `v0.1.0-skeleton` after push — replace with SHA)*
-- **CI run that proved it (URL):** *(paste green Actions run URL after first green push)*
-- **One red build I caused on purpose, and the fix:**  
-  - Red path locally: `FORCE_STORAGE_DOWN=1 bash script/smoke` → `SMOKE FAIL (store): STORAGE_UNAVAILABLE`  
-  - In CI: temporarily set `FORCE_STORAGE_DOWN: "1"` on the smoke step, push, capture red URL, revert, capture green URL.
-- **Hops still stubbed, and when they get real:**  
-  - No unlabeled stubs on the skeleton path.  
-  - Full map/draft/status/checklist/assembly UIs: Weeks 10–12 per `docs/plan.md` (issues #5–#10).
+### Local proof (complete)
+
+| Item | Value |
+|------|--------|
+| **Date the skeleton first walked end to end** | 2026-10-21 |
+| **Local green proof** | `bash script/lint && bash script/test && bash script/build && bash script/smoke` → all OK; smoke prints `Introduction — draft` |
+| **Local red proof** | `FORCE_STORAGE_DOWN=1 bash script/smoke` → `SMOKE FAIL (store): STORAGE_UNAVAILABLE` |
+| **Unit tests** | 7 passed |
+| **Seeded row** | `Introduction` / `draft` under key `ccp:project:v1` |
+| **Hops still stubbed** | None on skeleton path. Full UIs: Weeks 10–12 (issues #5–#10). |
+
+### GitHub proof (paste after push — required for Canvas)
+
+| Item | Paste here |
+|------|------------|
+| **Commit that made it walk (SHA)** | `_paste after: git tag v0.1.0-skeleton && git rev-parse HEAD_` |
+| **Green CI run URL** | `_paste Actions green run URL_` |
+| **Red CI run URL → fix SHA** | `_paste red run URL → fix short SHA_` |
+| **Tag pushed** | `v0.1.0-skeleton` |
+
+**Red run method:** smoke step env `FORCE_STORAGE_DOWN: "1"` → push → copy red URL → remove → push → `git rev-parse --short HEAD`.
 
 ---
 
