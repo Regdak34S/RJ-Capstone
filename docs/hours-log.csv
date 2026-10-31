@@ -1,6 +1,14 @@
-date,interview/task,hours
-2026-10-16,Week 8 Midterm,1
-2026-10-21,Week 9 Persistence module + seed + unit tests,2.5
-2026-10-22,Week 9 render/main/index + scripts setup lint test build start smoke,2.5
-2026-10-23,Week 9 CI workflow skeleton-trace issues README,2
+date,interview/task,hours,ai_assisted,planned_hours,notes
+2026-10-08,Week 7 WBS draft task list and risk brainstorm,2.0,yes,2.5,AI proposed structure; O/M/P mine
+2026-10-08,Week 7 three-point estimates capacity schedule burn-down,2.5,no,3.0,
+2026-10-09,Week 7 risk register scoring and plan.md assembly,2.0,partial,2.0,
+2026-10-10,Week 7 requirements Won't updates and AI usage log,1.0,no,1.0,
+2026-10-16,Week 8 midterm / design review prep,1.0,no,1.0,
+2026-10-21,Week 9 Persistence module + seed + unit tests,2.5,partial,2.5,Adapter split reviewed; logic mine
+2026-10-22,Week 9 render/main/index + scripts setup lint test build start smoke,2.5,yes,3.0,Script shells assisted; verified locally
+2026-10-23,Week 9 CI workflow skeleton-trace issues README,2.0,partial,2.0,CI filled for Node + Introduction smoke
+2026-10-28,Week 10 demo script first + slice plan FR-MAP FR-DRAFT FR-PROG,1.5,no,2.0,
+2026-10-29,Week 10 project-service + unit tests FR-MAP-01 FR-DRAFT-02 FR-PROG-03,3.0,partial,3.0,Domain functions reviewed line by line
+2026-10-30,Week 10 UI render/main wire-up save status list,3.5,yes,3.5,UI scaffold assisted; handlers and DoD checks mine
+2026-10-31,Week 10 self-review four passes + hours AI log + README demo polish,2.0,no,2.0,
 
