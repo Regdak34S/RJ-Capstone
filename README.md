@@ -8,7 +8,7 @@
 
 ## Current status
 
-**Milestone 8-9 - Walking Skeleton & Continuous Integration**  
+**Milestone 10 - Core Increment & Demo**  
 Tag target: `v0.1.0-skeleton`
 
 ## Run it
@@ -55,14 +55,13 @@ Other one-command verbs (same as CI):
 
 ## Documentation map
 
-- `docs/architecture.md` — Week 6 technical specification
-- `docs/plan.md` — Week 7 WBS / schedule / burn-down
-- `docs/risk-register.md` — Week 7 risks
-- `docs/skeleton-trace.md` — **Week 9 hop table + acceptance record**
-- `docs/issues.md` — Requirement-traced issue list for the board
-- `docs/requirements.md` — FRs / NFRs
-- `docs/ai-usage.md` — AI disclosure
-- `docs/hours-log.csv` — time log
+- `docs/architecture.md` - technical specification
+- `docs/definition-of-done.md` - Finished Defined Draft
+- `docs/reviews/iteration-1-self-review.md` - Four-pass self-review
+- `docs/demo/iteration-1-script.md` - Week 10 Demo script
+- `docs/authorship-memo.pdf` - **SEE PDF**
+- `docs/ai-usage.md` - Week 10 AI disclosure
+- `docs/hours-log.csv` - time log
 
 ## Project board
 
