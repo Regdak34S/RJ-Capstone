@@ -8,7 +8,7 @@
 
 ## Current status
 
-**Milestone 10 - Core Increment & Demo**  
+**Milestone 11 - Test Plan, Test Suite & Defect Log**  
 Tag target: `v0.1.0-skeleton`
 
 ## Run it
