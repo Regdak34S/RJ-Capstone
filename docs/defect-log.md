@@ -1,3 +1,4 @@
+[defect-log.md](https://github.com/user-attachments/files/34529750/defect-log.md)
 [defect-log.md](https://github.com/user-attachments/files/34529422/defect-log.md)
 # Defect Log — Milestone 11
 
@@ -190,4 +191,3 @@ Each report includes the seven fields: ID, Title, Steps, Expected, Actual, Sever
 | Open | 4 (DEF-005, 006, 007, 008) |
 | S1 open | 0 |
 | S2 open | 3 (NAV partial, CHECK, ASM) |
-
