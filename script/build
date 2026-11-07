@@ -9,9 +9,11 @@ required=(
   src/app/main.js
   src/app/render.js
   src/app/seed.js
+  src/app/project-service.js
   src/persistence/project-store.js
   src/persistence/storage.js
   src/ui/styles.css
+  seed/project.json
 )
 
 for f in "${required[@]}"; do
