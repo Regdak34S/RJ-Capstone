@@ -49,3 +49,4 @@ Levels included: `tests/unit/`, `tests/integration/`, `tests/acceptance/`.
 | E5 Fixed defects name regression tests | 100% | **Met** for Fixed rows |
 
 **Exit decision:** Ship verification package with known gaps. Do not rewrite E4 to pass; the open Must gaps are intentional backlog items for Weeks 12+.
+
