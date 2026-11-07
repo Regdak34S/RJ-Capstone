@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "proj_seed_iteration1",
+  "title": "Capstone Content Project",
+  "sections": [
+    {
+      "id": "sec_intro",
+      "name": "Introduction",
+      "status": "draft",
+      "body": "This is the seeded introduction draft for iteration-1 demos.",
+      "checklist": []
+    },
+    {
+      "id": "sec_methods",
+      "name": "Methods",
+      "status": "not_started",
+      "body": "",
+      "checklist": []
+    }
+  ],
+  "updatedAt": "2026-10-28T12:00:00.000Z"
+}
+
