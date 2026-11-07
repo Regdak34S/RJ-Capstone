@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "proj_hostile",
+  "title": "<script>alert(1)</script>",
+  "sections": [
+    {
+      "id": "sec_xss",
+      "name": "';';",
+      "status": "draft",
+      "body": "<img src=x onerror=alert(1)>",
+      "checklist": []
+    },
+    {
+      "id": "sec_empty_name_attempt",
+      "name": "Valid",
+      "status": "final",
+      "body": "",
+      "checklist": []
+    }
+  ]
+}
