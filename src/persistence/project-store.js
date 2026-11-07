@@ -33,17 +33,28 @@ export function emptyProject() {
  */
 export function seededProject() {
   return {
-    id: "proj-skeleton",
-    title: "Capstone Content Project",
     schemaVersion: SCHEMA_VERSION,
+    id: "proj_seed_iteration1",
+    title: "Capstone Content Project",
     updatedAt: new Date().toISOString(),
     sections: [
       {
-        id: "sec-intro",
+        id: "sec_intro",
         name: "Introduction",
         order: 0,
         status: "draft",
-        draftText: "Skeleton seed text for the Introduction section.",
+        body: "This is the seeded introduction draft for iteration-1 demos.",
+        draftText: "This is the seeded introduction draft for iteration-1 demos.",
+        checklist: [],
+        revisions: [],
+      },
+      {
+        id: "sec_methods",
+        name: "Methods",
+        order: 1,
+        status: "not_started",
+        body: "",
+        draftText: "",
         checklist: [],
         revisions: [],
       },
