@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "proj_boundary",
+  "title": "X",
+  "sections": [
+    {
+      "id": "sec_one_char",
+      "name": "A",
+      "status": "not_started",
+      "body": "",
+      "checklist": []
+    },
+    {
+      "id": "sec_long",
+      "name": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-edge-80chars!!",
+      "status": "draft",
+      "body": "",
+      "checklist": []
+    }
+  ]
+}
+
