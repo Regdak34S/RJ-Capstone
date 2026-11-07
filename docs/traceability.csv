@@ -1,0 +1,21 @@
+requirement_id,moscow,criterion_id,test_case_id,level,status,defect_id,notes
+FR-MAP-01,Must,AC-MAP-01-1,AC-MAP-01-1,acceptance,pass,,add named section
+FR-MAP-01,Must,AC-MAP-01-2,AC-MAP-01-2,acceptance,pass,DEF-001,empty name rejected
+FR-DRAFT-02,Must,AC-DRAFT-02-1,AC-DRAFT-02-1,acceptance,pass,,body update
+FR-DRAFT-02,Must,AC-DRAFT-02-2,AC-DRAFT-02-2,acceptance,pass,DEF-002,unknown section
+FR-PROG-03,Must,AC-PROG-03-1,AC-PROG-03-1,acceptance,pass,,valid statuses
+FR-PROG-03,Must,AC-PROG-03-2,AC-PROG-03-2,acceptance,pass,DEF-003,invalid status
+FR-SAVE-09,Must,AC-SAVE-09-1,AC-SAVE-09-1,acceptance,pass,,save then load body
+FR-LOAD-10,Must,AC-LOAD-10-1,AC-LOAD-10-1,acceptance,pass,,loadOrSeed Introduction
+FR-VIEW-11,Must,AC-VIEW-11-1,AC-VIEW-11-1,acceptance,pass,,sections list present
+FR-SEC-07,Must,AC-SEC-07-1,AC-SEC-07-1,acceptance,pass,,status string on section
+FR-NAV-06,Must,AC-NAV-06-1,AC-NAV-06-1,acceptance,pass,DEF-006,partial — body kept; UI force open
+FR-ASM-05,Must,AC-ASM-05-1,,acceptance,gap,DEF-008,not implemented Iteration 1
+FR-CHECK-12,Must,AC-CHECK-12-1,,acceptance,gap,DEF-007,not implemented Iteration 1
+FR-TRACE-20,Must,AC-TRACE-20-1,,acceptance,gap,,traceability of assembled doc — not built
+FR-REV-04,Should,AC-REV-04-1,,acceptance,gap,,out of scope this cycle
+FR-HIST-08,Should,AC-HIST-08-1,,acceptance,gap,,out of scope
+NFR-REL-02,Must,AC-NFR-REL-02-1,AC-SAVE-09-1,acceptance,pass,,save survives reload via store
+NFR-SEC-02,Must,AC-NFR-SEC-02-1,hostile-content-store,integration,pass,,script-like body stored as string
+NFR-SEC-01,Must,AC-NFR-SEC-01-1,manual-secret-scan,manual,pass,,no secrets in repo
+NFR-PERF-02,Must,AC-NFR-PERF-02-1,,manual,gap,,timed saves not automated this week
