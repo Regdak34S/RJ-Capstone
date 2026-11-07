@@ -11,4 +11,8 @@ date,interview/task,hours,ai_assisted,planned_hours,notes
 2026-10-29,Week 10 project-service + unit tests FR-MAP-01 FR-DRAFT-02 FR-PROG-03,3.0,partial,3.0,Domain functions reviewed line by line
 2026-10-30,Week 10 UI render/main wire-up save status list,3.5,yes,3.5,UI scaffold assisted; handlers and DoD checks mine
 2026-10-31,Week 10 self-review four passes + hours AI log + README demo polish,2.0,no,2.0,
-
+2026-11-03,Week 11 test plan scope exit criteria levels,2.5,no,2.5,
+2026-11-04,Week 11 traceability matrix + coverage script,2.0,partial,2.5,matrix structure assisted
+2026-11-05,Week 11 test data families + unit boundary cases,2.5,yes,3.0,edge cases proposed; assertions mine
+2026-11-06,Week 11 integration acceptance tests + CI run,3.0,partial,3.0,
+2026-11-07,Week 11 defect log triage fixes results memo,2.5,no,2.5,
