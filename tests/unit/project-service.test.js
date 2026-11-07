@@ -55,3 +55,4 @@ describe("project-service FR-PROG-03", () => {
     assert.ok(VALID_STATUSES.includes("final"));
   });
 });
+
