@@ -21,7 +21,7 @@ describe("ProjectStore", () => {
     assert.ok(result.savedAt);
     const loaded = store.load();
     assert.equal(loaded.title, project.title);
-    assert.equal(loaded.sections.length, 1);
+    assert.equal(loaded.sections.length, 2);
     assert.equal(loaded.sections[0].name, "Introduction");
     assert.equal(loaded.schemaVersion, SCHEMA_VERSION);
   });
