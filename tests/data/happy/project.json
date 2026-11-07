@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "proj_happy",
+  "title": "Happy Path Capstone",
+  "sections": [
+    {
+      "id": "sec_a",
+      "name": "Introduction",
+      "status": "draft",
+      "body": "Happy draft body.",
+      "checklist": []
+    },
+    {
+      "id": "sec_b",
+      "name": "Methods",
+      "status": "not_started",
+      "body": "",
+      "checklist": []
+    }
+  ]
+}
