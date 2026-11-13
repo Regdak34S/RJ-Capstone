@@ -1,13 +1,13 @@
 # RJ-Capstone — Content Creation Project
 
-**Author:** Reggie Johnson  
+**Author:** Reginald Johnson  
 **Stack (ADR 0001–0004):** Vanilla HTML/CSS/JavaScript · browser `localStorage` · GitHub Pages (static) · build, do not buy.
 
 A small tool to organize, draft, track status, and (later) assemble a capstone deliverable from section drafts.
 
 ---
 
-## Current milestone — Week 11: Test Plan, Suite & Defect Log
+## Current milestone — Week 12: Integrated Release Candidate & Change Log
 
 **What shipped this week**
 
@@ -93,9 +93,9 @@ python3 tools/coverage_report.py  # verified-requirement coverage from matrix
 | `docs/defect-log.md` | **Milestone 11** defects |
 | `docs/quality-memo.md` | **Milestone 11** hard-tier judgment |
 | `docs/definition-of-done.md` | Done gate |
-| `docs/demo/iteration-1-script.md` | Week 10 demo script |
+| `docs/demo/iteration-1-script.md` | **Milestone 10** demo script |
 | `docs/reviews/iteration-1-self-review.md` | Four-pass review |
-| `docs/authorship-memo.pdf` | Week 10 authorship memo |
+| `docs/authorship-memo.pdf` | **Milestone 10** authorship memo |
 | `docs/ai-usage.md` | AI disclosure (through Week 11) |
 | `docs/hours-log.csv` | Time log |
 
