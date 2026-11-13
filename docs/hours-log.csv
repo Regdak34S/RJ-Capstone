@@ -16,3 +16,7 @@ date,interview/task,hours,ai_assisted,planned_hours,notes
 2026-11-05,Week 11 test data families + unit boundary cases,2.5,yes,3.0,edge cases proposed; assertions mine
 2026-11-06,Week 11 integration acceptance tests + CI run,3.0,partial,3.0,
 2026-11-07,Week 11 defect log triage fixes results memo,2.5,no,2.5,
+2026-11-10,Week 12 exit criteria draft + seam map,2.0,no,2.0,
+2026-11-11,Week 12 integration re-verify + failure mode table,2.5,no,2.5,
+2026-11-12,Week 12 performance measure + security pass advisories,3.5,partial,3.5,advisory DBs checked by me
+2026-11-13,Week 12 CRs CHANGELOG backlog scope memo tag prep,3.0,no,3.0,
