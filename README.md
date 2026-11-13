@@ -85,19 +85,18 @@ python3 tools/coverage_report.py  # verified-requirement coverage from matrix
 
 | Doc | Purpose |
 |-----|---------|
-| `docs/requirements.md` | FRs / NFRs |
+| `docs/requirements.md` | Fix Scope cuts |
 | `docs/architecture.md` | Technical specification |
-| `docs/test-plan.md` | **Milestone 11** test plan |
-| `docs/traceability.csv` | **Milestone 11** req ↔ test matrix |
-| `docs/test-results.md` | **Milestone 11** last full run |
-| `docs/defect-log.md` | **Milestone 11** defects |
-| `docs/quality-memo.md` | **Milestone 11** hard-tier judgment |
+| `docs/rc-exit-criteria.md` | Written, then evaluated for Week 12|
+| `docs/performance.md` | **Milestone 12** Performance vs Week-4 NFRs |
+| `docs/security-review.md` | **Milestone 12** Security pass |
+| `docs/defect-log.md` | **Milestone 12** defects |
 | `docs/definition-of-done.md` | Done gate |
-| `docs/demo/iteration-1-script.md` | **Milestone 10** demo script |
-| `docs/reviews/iteration-1-self-review.md` | Four-pass review |
-| `docs/authorship-memo.pdf` | **Milestone 10** authorship memo |
-| `docs/ai-usage.md` | AI disclosure (through Week 11) |
+| `docs/backlog.md` | Do not delete |
+| `docs/ai-usage.md` | AI disclosure (through Week 12) |
 | `docs/hours-log.csv` | Time log |
+| `CHANGELOG.md` | Fix Issues |
+| `tests/integration/` | Greenlit criteria |
 
 ---
 
