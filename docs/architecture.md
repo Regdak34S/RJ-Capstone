@@ -1,7 +1,7 @@
 # Architecture — Content Creation Project
 
 **Version:** 0.1  
-**Date:** 2026-10-03  
+**Date:** 2026-11-13  
 **Author:** Reginald Johnson  
 **Status:** Draft  
 
@@ -242,3 +242,28 @@ Reverse: the component table in §4 lists the requirement IDs each component ser
 | OQ-01 | Multi-project support in v1 or single project only? | Affects Persistence key design | Reginald | 2026-10-09 |
 | OQ-02 | Export format for assembly: Markdown only or also plain text? | FR-ASM-05 acceptance | Reginald | 2026-10-09 |
 | OQ-03 | Should multi-tab editing show a conflict warning? | Edge case 12 | Reginald | 2026-10-16 |
+
+
+---
+
+## 12. Seam map (Milestone 12)
+
+| Seam ID | From → To | Boundary type | Tier | On acceptance path? | Integration evidence |
+|---------|-----------|---------------|------|---------------------|----------------------|
+| S1 | UI / domain → ProjectStore | in-process API | 1 | yes | `tests/integration/persistence-roundtrip.test.js` |
+| S2 | ProjectStore → storage adapter (Memory / localStorage) | storage | 1 | yes | round-trip + `storage-down` unit + smoke |
+| S3 | Repo file → runtime seed | filesystem | 1 | yes | `tests/integration/seed-file-seam.test.js` |
+| S4 | Domain service → status/body validators | in-process | 2 | yes | unit + acceptance |
+
+Tier 1 = crosses storage or filesystem and sits on an acceptance path.
+
+## 13. Third-party / platform failure-mode table
+
+Runtime third-party HTTP APIs: **none** (ADR). Platform dependency: **browser localStorage** (and MemoryAdapter in CI).
+
+| Dependency | Slow | Down | Rate-limited | Changed response | Degradation implemented? |
+|------------|------|------|--------------|------------------|--------------------------|
+| localStorage / adapter | Large JSON stringify cost (monitor NFR-PERF-02) | `STORAGE_UNAVAILABLE` via `FORCE_STORAGE_DOWN` or missing API | N/A | Corrupt JSON → `CORRUPT_DOCUMENT` | **Yes** — smoke fails closed when store down; UI boot catches and shows error string; corrupt load throws named code |
+
+**Demo of degradation:** `FORCE_STORAGE_DOWN=1 bash script/smoke` → `SMOKE FAIL (store): STORAGE_UNAVAILABLE` (CI red path also used in Week 9).
+
