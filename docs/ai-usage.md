@@ -2,7 +2,7 @@
 
 **Owner:** Reggie Johnson  
 **Policy set:** August 25, 2026  
-**Last entry:** November 7, 2026
+**Last entry:** November 13, 2026
 
 ## Policy
 
@@ -42,3 +42,6 @@ Every Amber-zone use appears below. Generated code that survives into `src/` car
 | October 21-23, 2026 | Grok | Scaffold walking skeleton for vanilla JS + localStorage: Persistence adapters, scripts, CI YAML, smoke failure path. | Storage adapter split, script stage names, FORCE_STORAGE_DOWN red path, hop-table shape. | Rejected any hard-coded UI fixture as the “data store.” Rejected adding a fake REST API that the architecture does not have. Kept browser localStorage as the real store; MemoryAdapter only for Node CI. All requirement IDs and acceptance criteria in issues.md are mine. | Ran bash script/{setup,lint,test,build,smoke} green; FORCE_STORAGE_DOWN=1 smoke red; node --test 7 pass. |
 | October 28–31, 2026 | Grok | Iteration 1 vertical slices: project-service domain ops, render/main UI, demo script, self-review structure. | Domain function shapes, form/render scaffolding, DoD table layout. | Wrote acceptance checks and error codes to match issues.md. Rejected auto-save-on-every-keystroke without dirty flag. Verified EMPTY_SECTION_NAME / UNKNOWN_SECTION / INVALID_STATUS by unit tests. | `bash script/test` green; manual UI path on seed data; self-review four passes recorded. |
 | November 3–7, 2026 | Grok | Milestone 11: propose edge/hostile cases, partition ideas for FR-MAP/DRAFT/PROG, draft matrix column layout. | Candidate empty-name and invalid-status cases; hostile XSS strings as data. | Rejected 3/10 generated assertions (wrong UI strings; one treated blank name as valid). Kept only cases matching issues.md codes. All pass/fail oracles approved by me. | bash script/test 29 pass; coverage_report.py; defect log 10 entries. |
+| November 10–13, 2026 | Grok | Milestone 12 structure: CHANGELOG shape, CR file layout, performance table columns, security checklist rows. | Template sections and seam-table formatting. | All dispositions (REJECT/DEFER/ACCEPT), impact numbers, advisory reachability judgments, and performance samples are mine. No advisory ID claimed without checking the empty prod dependency surface. | Suite 29 pass; docs review against Milestone 12 checklist. |
+[ai-usage.md](https://github.com/user-attachments/files/34814388/ai-usage.md)
+
