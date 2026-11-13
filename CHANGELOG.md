@@ -1,98 +1,55 @@
 # Changelog
 
-## [0.1.0-skeleton] — 2026-10-21
+All notable changes to this project are documented here.
+Format: [Keep a Changelog](https://keepachangelog.com/). Versioning: Semantic Versioning.
 
-### Added
-- Walking skeleton: one real request path through UI → Persistence → storage.
-- Seeded project with one section ("Introduction" / draft).
-- `script/{setup,lint,test,build,start,smoke}` one-command verbs.
-- GitHub Actions CI: install → lint → test → build → smoke.
-- `docs/skeleton-trace.md` hop table and acceptance record template filled.
+## Change table (Week 8 baseline → RC)
+
+| CR | Title | Disposition | Date | Destination |
+|----|-------|-------------|------|-------------|
+| CR-001 | Mobile / responsive redesign | REJECT | 2026-11-12 | — (capacity) |
+| CR-002 | Shared multi-user project sync | DEFER | 2026-11-12 | backlog B-01 |
+| CR-003 | Export assemble Markdown (FR-ASM-05) | ACCEPT (partial path) | 2026-11-13 | this RC thin export stub deferred full |
+| CR-004 | Checklist per section (FR-CHECK-12) | DEFER | 2026-11-12 | backlog B-02 |
+| CR-005 | "Bug": auto-save every keystroke | REJECT | 2026-11-12 | — (conflicts FR-SAVE-09 explicit save) |
 
 ---
-
-# Week 12
-
-## Template
-
-```markdown
-# Changelog
-
-All notable changes to this project are documented here.
-Format: Keep a Changelog. Versioning: Semantic Versioning.
 
 ## [Unreleased]
 
-## [0.9.0-rc.1] - YYYY-MM-DD
+## [0.9.0-rc.1] - 2026-11-13
+
 ### Added
-- <user-visible capability> (FR-NN)
-### Changed
-- <behavior that changed, and what a user must do differently> (FR-NN)
-### Fixed
-- <defect, stated as the symptom the user saw> (DEF-NNN)
-### Security
-- <hardening or upgrade, with the advisory ID if there is one>
-### Known issues
-- <defect shipping in this candidate, with its ID, severity, and workaround>
-```
-
----
-
-## Worked example — GOOD (PantryPilot, the running example)
-
-```markdown
-## [0.9.0-rc.1] - 2026-11-07
-### Added
-- Expiring-soon view: items within 3 days of their expiry date are listed on the
-  dashboard, newest expiry first (FR-07).
-- "Cook tonight" suggestions from on-hand items, with an offline rule-based path
-  used automatically when the recipe model is unavailable (FR-14).
+- Iteration 1 vertical slices: section list + status (FR-VIEW-11, FR-SEC-07), add section (FR-MAP-01), draft body (FR-DRAFT-02), status change (FR-PROG-03), save/load (FR-SAVE-09, FR-LOAD-10).
+- Milestone 11 verification package: test plan, traceability matrix, unit/integration/acceptance suites, defect log, quality memo.
+- Committed seed data (`seed/project.json`) and happy/boundary/hostile test fixtures.
+- Storage unavailable failure path (`FORCE_STORAGE_DOWN` / `STORAGE_UNAVAILABLE`) for CI red proof and degradation demo (NFR-REL path).
 
 ### Changed
-- Barcode lookup now times out after 4 seconds and falls back to manual entry
-  instead of blocking the add-item form (FR-11, NFR-08).
-- Item quantities are stored as integers in a base unit; existing rows are
-  converted by migration `0007_quantity_units`. Run migrations before starting
-  the app (FR-03).
+- Seeded project includes Introduction + Methods for demo realism.
+- `script/test` runs unit + integration + acceptance in one command.
 
 ### Fixed
-- Adding an item with an expiry date in the past no longer silently discards the
-  date (DEF-041).
-- Household invitations sent to an address that is already a member returned 500;
-  they now return 409 with a readable message (DEF-034).
+- Empty section name accepted (DEF-001) — now `EMPTY_SECTION_NAME`.
+- Unknown section / invalid status lacked stable codes (DEF-002, DEF-003).
+- Single-section seed vs demo script (DEF-004).
+- Corrupt JSON load messaging (DEF-009).
+- Missing `styles.css` breaking CI build (DEF-010).
 
 ### Security
-- Upgraded the image-resizing dependency to a patched release; the prior version
-  carried a published advisory. Verified against the GitHub Advisory Database.
-- Session cookies are now `HttpOnly` and `Secure`; the demo deploy is HTTPS-only.
+- No runtime third-party packages with known Critical/High advisories in the dependency tree (static app; Node used for tooling only). See `docs/security-review.md`.
+- Hostile script-like content stored as plain text, not executed (NFR-SEC-02; integration test).
 
 ### Known issues
-- DEF-036 (medium): the expiring-soon view is not paginated and renders slowly
-  past ~800 items. Workaround: filter by location. Scheduled for 0.9.1.
-```
+- **DEF-005 (S3)** — full re-render drops caret mid-edit. Workaround: pause briefly or edit offline. Planned: in-place textarea update (0.9.1 / Week 13).
+- **DEF-006 (S2)** — FR-NAV-06 force-navigation incomplete (banner only). Workaround: Save before switching sections. Planned: backlog B-03.
+- **DEF-007 (S2)** — FR-CHECK-12 checklist not implemented. Workaround: track completeness via status field. Planned: backlog B-02 / CR-004.
+- **DEF-008 (S2)** — FR-ASM-05 full assemble Markdown not implemented. Workaround: copy section text manually. Planned: backlog B-04.
 
-Read that as a stranger. You can tell what the software now does, what you must do differently,
-what was broken and is not, and what is still broken. Every line traces to an identifier you can
-look up in `docs/requirements.md` or `docs/defect-log.md`.
+## [0.1.0-skeleton] - 2026-10-21
 
-## Worked example — BAD (the same release)
+### Added
+- Walking skeleton: UI → Persistence → storage; seeded Introduction row.
+- Scripts + CI: install → lint → test → build → smoke.
+[CHANGELOG.md](https://github.com/user-attachments/files/34813967/CHANGELOG.md)
 
-```markdown
-## v0.9
-- various bug fixes and improvements
-- updated dependencies
-- refactored the backend
-- misc
-```
-
-| Line | Why it fails |
-|---|---|
-| "various bug fixes" | Names nothing. A user cannot tell whether *their* bug is fixed. |
-| "updated dependencies" | Hides whether a security advisory was involved. |
-| "refactored the backend" | Internal churn, invisible to a user — and it hides the migration. |
-| "misc" | The author stopped caring, and the reader can tell. |
-| No known-issues section | Implies zero known defects. That claim is almost never true. |
-| No requirement or defect IDs | Nothing traces; the change log is decoration. |
-
-The bad version costs you twice: once on the change-log line of the rubric, and again in Week 16
-when a grader cannot connect your shipped software to the requirements you baselined in Week 8.
