@@ -138,7 +138,7 @@ FORCE_STORAGE_DOWN=1 bash script/smoke
 
 https://github.com/users/Regdak34S/projects/1
 
-## Secrets / rotation
+## Secrets/rotation
 
 1. No API keys required (static + localStorage).  
 2. Secrets only in GitHub Actions secrets or local `.env` (gitignored).  
@@ -148,5 +148,4 @@ https://github.com/users/Regdak34S/projects/1
 ## License
 
 See `LICENSE`.
-ploading README-week12.md…]()
 
