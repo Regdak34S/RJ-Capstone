@@ -1,8 +1,5 @@
 # RJ-Capstone — Content Creation Project
 
-**Author:** Reggie Johnson  
-**Stack (ADR 0001–0004):** Vanilla HTML/CSS/JavaScript · browser `localStorage` · GitHub Pages (static) · build, do not buy.
-
 A single-user tool to organize a content map, draft sections, track status, save/reload locally, and (planned) assemble a capstone deliverable.
 
 **Release candidate tag target:** `v0.9.0-rc.1`  
@@ -12,8 +9,9 @@ A single-user tool to organize a content map, draft sections, track status, save
 
 ## Current milestone — Week 13: Documentation Set & the Clean-Machine Test
 
-**Status:** {{Working / Partially working — say plainly what does not work yet}}
-**Built by:** {{Your name}} · {{Course, term}}
+**Author:** Reggie Johnson  
+**Course, term:** CSC 4950: Capstone Project  
+**Stack (ADR 0001–0004):** Vanilla HTML/CSS/JavaScript · browser `localStorage` · GitHub Pages (static) · build, do not buy.
 
 ## 1. What this is and who it is for
 
