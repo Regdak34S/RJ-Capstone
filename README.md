@@ -1,108 +1,191 @@
-# RJ-Capstone — Content Creation Project
+# Content Creation Project (RJ-Capstone)
 
-A single-user tool to organize a content map, draft sections, track status, save/reload locally, and (planned) assemble a capstone deliverable.
-
-**Release candidate tag target:** `v0.9.0-rc.1`  
-**Suite:** `bash script/test` → **29** tests (unit + integration + acceptance)
+**Author:** Reggie Johnson  
+**Status:** Release candidate `v0.9.0-rc.1` · suite green (29 tests)  
+**License:** See [LICENSE](LICENSE)
 
 ---
 
-## Current milestone — Week 13: Documentation Set & the Clean-Machine Test
+## 1. What it is and who it is for
 
-**Author:** Reggie Johnson  
-**Course, term:** CSC 4950: Capstone Project  
-**Stack (ADR 0001–0004):** Vanilla HTML/CSS/JavaScript · browser `localStorage` · GitHub Pages (static) · build, do not buy.
+A **single-user, browser-based** tool for organizing a content map, drafting section text, tracking section status (`not_started` → `draft` → `in_review` → `final`), and saving the project document in the browser so it survives reload.
 
-## 1. What this is and who it is for
+**Primary reader:** a student building one capstone-style deliverable offline.  
+**Secondary reader:** a maintainer who clones the repo and follows this README.
 
-{{2–4 sentences: the problem, the user, the thing it replaces. A reader who stops here should be able
-to decide whether to keep reading.}}
+### Non-goals (what it does **not** do)
 
-**What it does not do:** {{2–3 honest non-goals. This is the part that earns trust.}}
+- Multi-user collaboration or real-time sync  
+- Server-side auth, accounts, or a hosted API  
+- Full Markdown assemble export (FR-ASM-05) in this candidate — deferred  
+- Per-section checklist UI (FR-CHECK-12) in this candidate — deferred  
+- Native mobile app  
+
+---
 
 ## 2. Demo
 
-{{Screenshot, animated GIF, or a 60–90 second recording; for a CLI, a real terminal session. Commit the
-image under `docs/img/` and use a relative path so it renders on GitHub.}}
+After `bash script/start`, open **http://127.0.0.1:8080/**.
+
+You should see:
+
+- Heading: **Capstone Content Project**
+- Section rows including **`Introduction — draft`** (and **Methods** on a seeded project)
+
+Data comes from **Persistence** (`localStorage` / seed), not from a hard-coded HTML-only string.
+
+Terminal proof without the browser:
+
+```text
+$ bash script/smoke
+==> smoke (expect substring: Introduction)
+SMOKE OK (store): Introduction — draft
+==> smoke HTTP skipped (server not reachable at http://127.0.0.1:8080)
+==> smoke OK
+```
+
+(HTTP line appears only when nothing is listening on 8080; the store check is the required success signal.)
+
+---
 
 ## 3. Prerequisites
 
-| Requirement | Version built and tested on | Check it with | What breaks without it |
-|---|---|---|---|
-| {{Runtime}} | {{exact version}} | `{{cmd --version}}` | {{symptom}} |
-| {{Database}} | {{exact version}} | `{{cmd --version}}` | {{symptom}} |
-| {{Account/key}} | n/a | see Configure | {{degraded behavior}} |
+| Tool | Version | Check command | Expected output | Failure mode |
+|------|---------|---------------|-----------------|--------------|
+| Node.js | **≥ 20** (pinned in `.nvmrc` as `20`) | `node -v` | `v20.x` or higher (e.g. `v24.15.0` is OK per `engines`) | `command not found` → install Node 20+ from nodejs.org or nvm |
+| npm | ships with Node | `npm -v` | a version number | missing with Node → reinstall Node |
+| Git | any recent | `git --version` | `git version …` | needed only to clone |
+| Python 3 | optional | `python3 --version` | `Python 3.x` | only used if you run `tools/coverage_report.py` |
+
+```text
+$ cat .nvmrc
+20
+$ node -v
+v24.15.0
+```
+
+---
 
 ## 4. Install
 
-```
-{{clone command}}
-cd {{repo-dir}}
-{{dependency install command}}
+```bash
+git clone <your-repo-url> ccp
+cd ccp
+cp .env.example .env
+bash script/setup
 ```
 
-Expected: {{the last line of successful output, or the artifact that now exists}}.
-Takes about {{N}} minutes on a first run.
+**Expected output (tail):**
+
+```text
+==> Content Creation Project setup
+==> npm ci (from package-lock.json)
+...
+==> setup OK
+    Next: ./script/start   then open http://127.0.0.1:${PORT:-8080}/
+    Success looks like: page shows 'Introduction — draft'
+```
+
+---
 
 ## 5. Configure
 
-```
-cp .env.example .env
-```
+| Variable | Where | Default | Purpose |
+|----------|--------|---------|---------|
+| `PORT` | environment | `8080` | static server port for `script/start` |
+| (none required for core app) | — | — | no API keys; single-user localStorage |
 
-| Variable | Required? | What it is | Default |
-|---|---|---|---|
-| `{{VAR}}` | yes | {{plain-English meaning}} | none |
-| `{{VAR}}` | no | {{plain-English meaning}} | `{{default}}` |
+`.env` is **gitignored**. `.env.example` is the only committed template.
 
-Never commit `.env`. Placeholder values only in this file and in `.env.example`.
+---
 
 ## 6. Run
 
-```
-{{setup / migration command}}
-{{run command}}
+```bash
+bash script/start
 ```
 
-Expected: {{exact success line}} — then open {{URL}} and you should see {{what}}.
+Then open **http://127.0.0.1:8080/** (or the port you set).
 
-**Verify it actually works:** {{one concrete action a stranger can take — create a record, run a query —
-and the result they should get. This is the difference between "it started" and "it works."}}
+Stop with **Ctrl+C** in that terminal.
+
+---
 
 ## 7. Test
 
-```
-{{test command}}
+```bash
+bash script/lint
+# ==> lint (node --check)
+# ==> lint OK
+
+bash script/test
+# ... 29 tests ...
+# ℹ pass 29
+# ==> test OK
+
+bash script/build
+# ==> build OK (static assets present)
+
+bash script/smoke
+# SMOKE OK (store): Introduction — draft
+
+FORCE_STORAGE_DOWN=1 bash script/smoke
+# SMOKE FAIL (store): STORAGE_UNAVAILABLE: forced down for smoke/red test
 ```
 
-Expected: {{N}} tests, {{N}} passing, {{N}} skipped, about {{N}} seconds.
-Known failing/skipped tests and why: {{list, or "none"}}.
+All of the above were executed on 2026-11-21 against this tree.
+
+---
 
 ## 8. Project layout
 
+```text
+.
+├── README.md
+├── CHANGELOG.md
+├── LICENSE
+├── index.html
+├── package.json / package-lock.json
+├── .nvmrc
+├── script/          # setup lint test build start smoke
+├── src/
+│   ├── app/         # main, render, seed, project-service
+│   ├── persistence/ # ProjectStore + storage adapters
+│   └── ui/styles.css
+├── seed/project.json
+├── tests/           # unit | integration | acceptance | data
+└── docs/            # architecture, runbook, onboarding, ADRs, …
 ```
-{{dir}}/     {{what lives here}}
-{{dir}}/     {{...}}
-docs/        specification, architecture, runbook, decision records
-```
+
+---
 
 ## 9. Troubleshooting
 
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| {{exact error text}} | {{cause}} | {{command or step}} |
-| {{exact error text}} | {{cause}} | {{command or step}} |
+| Symptom | Likely cause | What to do |
+|---------|--------------|------------|
+| `node: command not found` | Node not installed | Install Node ≥ 20; confirm `node -v` |
+| Page blank / “Loading…” stuck | JS error or missing `#app` | Open browser console; ensure `src/app/main.js` loads as module |
+| Smoke fails with `STORAGE_UNAVAILABLE` | `FORCE_STORAGE_DOWN=1` set | Unset the variable and re-run |
+| Empty section list after reload | Cleared site data | Refresh; seed runs on empty store (`Introduction`) |
+| `npm ci` fails | Node &lt; 20 or broken lock | Use Node 20+; do not delete lock without reason |
+| Port in use | Another process on 8080 | `PORT=8081 bash script/start` |
+
+More operational failures: **[docs/runbook.md](docs/runbook.md)**.
+
+---
 
 ## 10. License
 
-{{SPDX identifier}} — see `LICENSE`.
+See [LICENSE](LICENSE).
+
+---
 
 ## 11. Contact and further reading
 
-{{How to reach you}} · Architecture: `docs/architecture.md` · Operations: `docs/runbook.md` ·
-Decisions: `docs/adr/README.md` · New here? `docs/onboarding.md`
-
-## Project board
-
-https://github.com/users/Regdak34S/projects/1
-
+- **Maintainer:** Reggie Johnson (course repository owner)
+- **Board:** https://github.com/users/Regdak34S/projects/1
+- **Architecture:** [docs/architecture.md](docs/architecture.md)
+- **Runbook:** [docs/runbook.md](docs/runbook.md)
+- **Onboarding:** [docs/onboarding.md](docs/onboarding.md)
+- **ADRs:** [docs/adr/README.md](docs/adr/README.md)
+- **Changelog / known issues:** [CHANGELOG.md](CHANGELOG.md)
