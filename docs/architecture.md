@@ -1,7 +1,51 @@
 # Architecture — Content Creation Project
 
+## §0 — Overview (one page)
+
+**Audience:** engineer who has never opened this repository.  
+**ADRs:** [docs/adr/README.md](adr/README.md)
+
+### Component diagram (textual)
+
+```text
+┌─────────────┐     render / events      ┌──────────────────┐
+│  Browser UI │ ←──────────────────────→ │  app (main/render│
+│  index.html │                          │  project-service)│
+└─────────────┘                          └────────┬─────────┘
+                                                  │ load/save
+                                         ┌────────▼─────────┐
+                                         │   ProjectStore   │
+                                         └────────┬─────────┘
+                                                  │ get/set/remove
+                                         ┌────────▼─────────┐
+                                         │ Storage adapter  │
+                                         │ localStorage or  │
+                                         │ MemoryAdapter    │
+                                         └──────────────────┘
+```
+
+Labeled flows: **UI → domain** (add section, edit body, set status); **domain → ProjectStore** (persist document); **ProjectStore → adapter** (string JSON); **seed file → store** on first empty load.
+
+### Five paragraphs
+
+1. **Purpose.** The system helps one student keep a **content map** (ordered sections), edit **draft body** text, set **status**, and **save/load** a single project document in the browser so work survives refresh.
+
+2. **Runtime shape.** There is no application server. Static files are served locally (`script/start`) or optionally from GitHub Pages. All durable state is a JSON document in **localStorage** under a versioned key. CI and unit tests use an in-memory adapter with the same interface.
+
+3. **Critical path.** Boot → ensure seed if empty → render section list → user selects a section → edits body / changes status → **Save** writes through ProjectStore. Acceptance and smoke tests assert the seeded **Introduction — draft** row and domain error codes (`EMPTY_SECTION_NAME`, `UNKNOWN_SECTION`, `INVALID_STATUS`).
+
+4. **Quality and change control.** Milestone 11–12 left a green suite (29 tests), a defect log, measured NFRs, and deferred Must gaps (checklist, assemble, full NAV force) on the backlog rather than deleting requirements.
+
+5. **Surprise for a new reader.** **There is no backend and no npm runtime dependency in the browser app.** “Integration” means UI ↔ domain ↔ ProjectStore ↔ storage adapter (and the committed seed file), not HTTP microservices. Looking for API routes or a database URL will waste an afternoon — start at `src/persistence/project-store.js` and `src/app/project-service.js`.
+
+*Diagram version 0.2 · 2026-11-21 · see also §§12–13 seam map and failure modes below.*
+
+---
+
+# Architecture — Content Creation Project
+
 **Version:** 0.1  
-**Date:** 2026-11-13  
+**Date:** 2026-10-03  
 **Author:** Reginald Johnson  
 **Status:** Draft  
 
@@ -266,4 +310,3 @@ Runtime third-party HTTP APIs: **none** (ADR). Platform dependency: **browser lo
 | localStorage / adapter | Large JSON stringify cost (monitor NFR-PERF-02) | `STORAGE_UNAVAILABLE` via `FORCE_STORAGE_DOWN` or missing API | N/A | Corrupt JSON → `CORRUPT_DOCUMENT` | **Yes** — smoke fails closed when store down; UI boot catches and shows error string; corrupt load throws named code |
 
 **Demo of degradation:** `FORCE_STORAGE_DOWN=1 bash script/smoke` → `SMOKE FAIL (store): STORAGE_UNAVAILABLE` (CI red path also used in Week 9).
-
