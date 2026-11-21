@@ -1,85 +1,82 @@
-# The Clean-Machine Test — Protocol and Observer Log
+# Clean-machine test record — Milestone 13
 
-
-## Rules
-
-1. **A clean machine.** A fresh container, a fresh cloud development environment, a classmate's laptop, or
-   a new user account on your own machine. Nothing your project installed is already there.
-2. **A real tester who is not you.** Someone who has never run this project.
-3. **You are silent.** You may watch. You may not speak, point, type, or "just fix that one thing."
-   The moment you help, the test is over and the result is void.
-4. **The docs are the only input.** The tester gets the repository URL and nothing else. No verbal setup,
-   no Discord message, no "oh you also need to…".
-5. **The clock runs** from the moment the tester opens the repository to the moment they complete the
-   acceptance action in section 3. Stop the clock at 60 minutes and record the failure.
-6. **Every stumble gets logged**, including the ones that are the tester's fault. Especially those.
-
-## 1. Run header
+## Run header
 
 | Field | Value |
-|---|---|
-| Date | |
-| Tester name | |
-| Tester's background | (e.g. "CS senior, has never used this stack") |
-| Machine / OS / architecture | |
-| Environment type | fresh container / cloud dev environment / borrowed laptop / new user account |
-| Repository URL and commit SHA | |
-| Observer (you) | |
+|-------|--------|
+| **Protocol** | `code/clean-machine-protocol.md` (course) |
+| **Repository** | RJ-Capstone (this remote) |
+| **Only input given to tester** | Repository URL (no verbal preamble) |
+| **Acceptance action (defined before run)** | (1) `bash script/setup` succeeds · (2) `bash script/test` shows 29 pass · (3) `bash script/smoke` prints `SMOKE OK (store): Introduction — draft` · (4) optional: open app and see **Introduction — draft** |
+| **Environment type** | Fresh working tree on a machine without prior project `node_modules` (author verification 2026-11-21). **Real third-party tester run: fill section “Tester run A” below before Canvas submit.** |
+| **Author** | Reggie Johnson |
 
-## 2. Stopwatch
+> **Honesty rule:** A solo run by the author is **not** a full substitute for a silent third-party tester. This file records (1) commands verified on a clean tree, and (2) a template for the required human tester. Do not submit a fabricated friction log.
 
-| Checkpoint | Target | Actual | Notes |
-|---|---|---|---|
-| Repository opened | 0:00 | | |
-| Prerequisites installed / confirmed | 0:05 | | |
-| Dependencies installed | 0:08 | | |
-| Configuration complete (`.env` filled) | 0:11 | | |
-| Application running | 0:13 | | |
-| **Acceptance action completed** | **0:15** | | |
-| Test suite run and green | 0:20 | | |
+---
 
-## 3. The acceptance action
+## Author verification — clean tree commands (2026-11-21)
 
-The single, concrete thing that proves the system works — not that it started. Write it before the run.
+Stopwatch (author, silent self-check on this environment):
 
-> Acceptance action: {{e.g. "Add one item with an expiry date, then see it appear in the
-> Expiring Soon list."}}
+| Step | Command | Elapsed (approx) | Result |
+|------|---------|------------------|--------|
+| 1 | `node -v` / `cat .nvmrc` | &lt; 1 min | Node present; `.nvmrc` = `20` |
+| 2 | `bash script/setup` | ~1 min | `setup OK` |
+| 3 | `bash script/lint` | &lt; 1 min | `lint OK` |
+| 4 | `bash script/test` | ~1 min | **29 pass** |
+| 5 | `bash script/build` | &lt; 1 min | `build OK` |
+| 6 | `bash script/smoke` | &lt; 1 min | `SMOKE OK (store): Introduction — draft` |
+| **Total to acceptance (CLI)** | | **~5 min** | **PASS** |
 
-Result: PASS / FAIL. If FAIL, at which checkpoint did it stop?
+Real outputs (abridged) are pasted in README §7 and were produced by these runs—not invented.
 
-## 4. Friction log
+### Friction found even on author path
 
-One row per stumble. Write the tester's exact words when you can.
+| # | What happened | Fix committed |
+|---|----------------|---------------|
+| F1 | README previously mixed Week 11 tables into “current milestone” | README rewritten for RC + docs set |
+| F2 | Smoke prints `HTTP skipped` when server not up — looks scary | README now states store line is the success signal |
 
-| # | Time | What the tester did or said | Root cause in the docs | Severity (blocker / slow / cosmetic) |
-|---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+---
 
-Severity definitions: **blocker** = could not proceed without help; **slow** = proceeded but lost time or
-guessed; **cosmetic** = noticed something wrong that did not cost time.
-
-## 5. Fixes applied
-
-| Friction # | Document changed | Change made | Commit |
-|---|---|---|---|
-| | | | |
-
-## 6. Re-run
-
-After fixing, run the test again — a second clean environment, ideally a second tester.
+## Tester run A — third party (required for full credit)
 
 | Field | Value |
-|---|---|
-| Date of re-run | |
-| Tester | |
-| Time to acceptance action | |
-| Remaining blockers | |
+|-------|--------|
+| **Tester name** | _TBD — recruit before deadline_ |
+| **Relation** | Not the author |
+| **Environment** | _e.g. borrowed laptop / fresh VM / new OS user_ |
+| **Date** | _TBD_ |
+| **Clock start** | _when repo opened_ |
+| **Clock end** | _when acceptance done or 60 min_ |
+| **Outcome** | PASS / FAIL at step __ |
 
-## 7. Signed statement
+### Friction log (tester’s own words)
 
-> On {{date}}, {{tester name}} cloned this repository onto {{machine}} and, using only the documentation
-> in this repository, reached {{the acceptance action}} in {{N}} minutes without assistance from the author.
+| Time | Tester said / did | Notes (author silent) |
+|------|-------------------|------------------------|
+| | _quote tester_ | |
+| | | |
 
-Anything you cannot honestly write in that sentence, you have not yet earned.
+### Fixes after run A
+
+| Friction | Doc or code change | Commit |
+|----------|--------------------|--------|
+| | | |
+
+### Tester run B — after fixes
+
+| Field | Value |
+|-------|--------|
+| **Date** | |
+| **Elapsed** | |
+| **Outcome** | |
+
+---
+
+## Signature
+
+I did not invent a green third-party run. Author CLI path is verified. Third-party rows will be completed when the tester session happens.
+
+**Signed:** Reggie Johnson · 2026-11-21
