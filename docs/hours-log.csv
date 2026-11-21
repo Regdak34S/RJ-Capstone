@@ -20,3 +20,9 @@ date,interview/task,hours,ai_assisted,planned_hours,notes
 2026-11-11,Week 12 integration re-verify + failure mode table,2.5,no,2.5,
 2026-11-12,Week 12 performance measure + security pass advisories,3.5,partial,3.5,advisory DBs checked by me
 2026-11-13,Week 12 CRs CHANGELOG backlog scope memo tag prep,3.0,no,3.0,
+2026-11-17,Week 13 README eleven sections + verify commands,3.5,partial,3.5,outputs pasted from real runs
+2026-11-18,Week 13 architecture §0 + runbook from defect log,2.5,yes,2.5,structure assisted; failures from DEF log
+2026-11-19,Week 13 onboarding ADR index ADR-0005,2.0,no,2.0,
+2026-11-20,Week 13 clean-machine author path + doc fixes,2.0,no,2.0,
+2026-11-21,Week 13 undocumented memo + ai successor section,1.5,no,1.5,
+
