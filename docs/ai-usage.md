@@ -2,7 +2,7 @@
 
 **Owner:** Reggie Johnson  
 **Policy set:** August 25, 2026  
-**Last entry:** November 13, 2026
+**Last entry:** November 21, 2026
 
 ## Policy
 
@@ -43,5 +43,27 @@ Every Amber-zone use appears below. Generated code that survives into `src/` car
 | October 28–31, 2026 | Grok | Iteration 1 vertical slices: project-service domain ops, render/main UI, demo script, self-review structure. | Domain function shapes, form/render scaffolding, DoD table layout. | Wrote acceptance checks and error codes to match issues.md. Rejected auto-save-on-every-keystroke without dirty flag. Verified EMPTY_SECTION_NAME / UNKNOWN_SECTION / INVALID_STATUS by unit tests. | `bash script/test` green; manual UI path on seed data; self-review four passes recorded. |
 | November 3–7, 2026 | Grok | Milestone 11: propose edge/hostile cases, partition ideas for FR-MAP/DRAFT/PROG, draft matrix column layout. | Candidate empty-name and invalid-status cases; hostile XSS strings as data. | Rejected 3/10 generated assertions (wrong UI strings; one treated blank name as valid). Kept only cases matching issues.md codes. All pass/fail oracles approved by me. | bash script/test 29 pass; coverage_report.py; defect log 10 entries. |
 | November 10–13, 2026 | Grok | Milestone 12 structure: CHANGELOG shape, CR file layout, performance table columns, security checklist rows. | Template sections and seam-table formatting. | All dispositions (REJECT/DEFER/ACCEPT), impact numbers, advisory reachability judgments, and performance samples are mine. No advisory ID claimed without checking the empty prod dependency surface. | Suite 29 pass; docs review against Milestone 12 checklist. |
-[ai-usage.md](https://github.com/user-attachments/files/34814388/ai-usage.md)
+
+
+---
+
+## Successor-facing dependency note (no runtime AI feature)
+
+This project has **no runtime AI model** in the product. The most volatile external surface is **browser `localStorage` + static hosting**, and **Node tooling** for tests/CI.
+
+| Field | Value |
+|-------|--------|
+| **Behavior** | Project JSON is read/written through `ProjectStore` → adapter. CI uses `MemoryAdapter`. |
+| **Failure behavior** | Missing/forced-down store → `STORAGE_UNAVAILABLE`. Corrupt JSON → `CORRUPT_DOCUMENT`. |
+| **Pinned platform** | Node **≥ 20** (`.nvmrc` = `20`); verified with Node v24.15.0 on 2026-11-21. Browsers: current Chromium/Firefox. |
+| **Where “contract” lives** | `src/persistence/storage.js`, `src/persistence/project-store.js` |
+| **Parameters** | Storage key via `storageKey()`; schema via `SCHEMA_VERSION` in project-store |
+| **Cost** | **$0** runtime (measured: no metered API). Node/npm local only. **Pricing of any future host can change** — do not assume GitHub Pages remains free forever. |
+| **Must not assume stable** | Exact `localStorage` quota by browser; private-mode persistence; multi-tab last-write-wins; GitHub Actions runner image package versions beyond the lockfile. |
+
+### Week 13 AI drafting (docs)
+
+| Date | Tool | Drafted | What was wrong when verified |
+|------|------|---------|------------------------------|
+| 2026-11-21 | Grok | README/runbook/onboarding structure | Must paste **real** command output from this machine; assistant-invented timings and ports rejected. Smoke HTTP “skipped” line kept as actual. |
 
