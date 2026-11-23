@@ -1,6 +1,7 @@
 # Content Creation Project (RJ-Capstone)
 
 **Author:** Reggie Johnson  
+**Current Milestone:** 14 - Deployable Release v1.0 & Handoff Package   
 **Status:** Release candidate `v0.9.0-rc.1` · suite green (29 tests)  
 **License:** See [LICENSE](LICENSE)
 
@@ -143,6 +144,7 @@ All of the above were executed on 2026-11-21 against this tree.
 .
 ├── README.md
 ├── CHANGELOG.md
+├── THIRD-PARTY-NOTICES.md
 ├── LICENSE
 ├── index.html
 ├── package.json / package-lock.json
@@ -154,7 +156,7 @@ All of the above were executed on 2026-11-21 against this tree.
 │   └── ui/styles.css
 ├── seed/project.json
 ├── tests/           # unit | integration | acceptance | data
-└── docs/            # architecture, runbook, onboarding, ADRs, …
+└── docs/            # development, runbook, handoff, ADRs, etc …
 ```
 
 ---
