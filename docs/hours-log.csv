@@ -24,5 +24,11 @@ date,interview/task,hours,ai_assisted,planned_hours,notes
 2026-11-18,Week 13 architecture §0 + runbook from defect log,2.5,yes,2.5,structure assisted; failures from DEF log
 2026-11-19,Week 13 onboarding ADR index ADR-0005,2.0,no,2.0,
 2026-11-20,Week 13 clean-machine author path + doc fixes,2.0,no,2.0,
-2026-11-21,Week 13 undocumented memo + ai successor section,1.5,no,1.5,
+2026-11-23,Week 13 undocumented memo + ai successor section,1.5,no,1.5,
+2026-11-24,Week 14 config contract secrets scan setup path proof,2.5,no,2.5,
+2026-11-25,Week 14 deployment.md Pages path + rollback rehearse,2.5,no,2.5,
+2026-11-26,Week 14 handoff landmines bus-factor issues groom,3.0,partial,3.0,
+2026-11-27,Week 14 CHANGELOG 1.0.0 THIRD-PARTY succession memo,2.5,yes,2.5,structure assisted; judgments mine
+2026-11-28,Week 14 release checklist README SPDX tag prep,1.5,no,1.5,
+
 
