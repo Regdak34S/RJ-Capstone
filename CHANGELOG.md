@@ -17,6 +17,28 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versioning: Semantic Ve
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-23
+
+### Added
+- Deployable release packaging: `docs/deployment.md`, `docs/handoff.md`, `THIRD-PARTY-NOTICES.md`, release checklist.
+- Annotated release intent **v1.0.0** (tag to be pushed from this tree).
+- Handoff day-one path, landmines, bus-factor register, good-first-issue pointer (FR-CHECK-12).
+
+### Changed
+- README and configuration contract (`.env.example`) aligned to v1.0.0 single setup path (`bash script/setup`).
+- `package.json` version set to `1.0.0`.
+
+### Fixed
+- Documentation gaps called out in Week 13 clean-machine author path (README milestone tables, smoke HTTP wording).
+
+### Known issues
+- **DEF-005 (S3)** — caret jump on full re-render while typing. Workaround: pause; planned in-place edit.
+- **DEF-006 (S2)** — FR-NAV-06 force-nav incomplete. Workaround: Save before switching sections.
+- **DEF-007 (S2)** — FR-CHECK-12 checklist not implemented (good-first-issue).
+- **DEF-008 (S2)** — FR-ASM-05 assemble Markdown not implemented. Workaround: manual copy.
+
+
+
 ## [0.9.0-rc.1] - 2026-11-13
 
 ### Added
@@ -52,4 +74,3 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versioning: Semantic Ve
 - Walking skeleton: UI → Persistence → storage; seeded Introduction row.
 - Scripts + CI: install → lint → test → build → smoke.
 [CHANGELOG.md](https://github.com/user-attachments/files/34813967/CHANGELOG.md)
-
