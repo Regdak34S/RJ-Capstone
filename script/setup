@@ -38,3 +38,4 @@ fi
 echo "==> setup OK"
 echo "    Next: ./script/start   then open http://127.0.0.1:\${PORT:-8080}/"
 echo "    Success looks like: page shows 'Introduction — draft'"
+
