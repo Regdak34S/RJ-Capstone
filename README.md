@@ -2,8 +2,8 @@
 
 **Author:** Reggie Johnson  
 **Current Milestone:** 14 - Deployable Release v1.0 & Handoff Package   
-**Status:** Release candidate `v0.9.0-rc.1` · suite green (29 tests)  
-**License:** See [LICENSE](LICENSE)
+**Status:** **v1.0.0** · suite green (29 tests)  
+**License:** Apache-2.0 (SPDX: `Apache-2.0`) — see [LICENSE](LICENSE) and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
 
 ---
 
