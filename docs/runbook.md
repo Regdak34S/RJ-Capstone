@@ -75,3 +75,25 @@
 3. If data loss in browser only: reseed via reload on empty store (Introduction returns); prior drafts are gone unless the user copied them.
 
 **Owner:** Reggie Johnson (course project).
+
+
+## Rollback (rehearsed)
+
+**Rehearsed:** 2026-11-23 · **Wall-clock:** ~3 minutes (local tag switch simulation)  
+**Database / migration question:** **N/A** — no server database. User documents live in each browser’s `localStorage`. Rolling back **code** does not automatically rewrite or delete existing client documents.
+
+### Numbered steps (GitHub Pages / static)
+
+1. Identify last known-good tag (e.g. `v0.9.0-rc.1` or previous `v1.0.0` commit).  
+2. `git checkout v0.9.0-rc.1` (or `git revert` on the Pages source branch).  
+3. Push the branch GitHub Pages builds from.  
+4. Wait for Pages deploy; hard-refresh the site.  
+5. Run local verification: `bash script/smoke` on that tag tree → expect `SMOKE OK (store): Introduction — draft`.  
+6. If smoke fails, stop and fix forward; do not force-push `main` without a written reason.
+
+### Local-only rollback
+
+1. `git checkout v1.0.0` (or prior tag).  
+2. `bash script/setup && bash script/test && bash script/smoke`.  
+3. `bash script/start` and confirm UI seed row.
+
