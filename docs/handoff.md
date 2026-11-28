@@ -1,89 +1,78 @@
-# Handoff Guide — <Project Name>
+# Handoff Guide — Content Creation Project
 
-
-
-Audience: the engineer who inherits this project and **cannot ask you a question.**
+**Audience:** the engineer who inherits this project and **cannot ask you a question.**  
+**Version:** v1.0.0 · **Date:** 2026-11-28 · **Author:** Reggie Johnson
 
 ---
 
 ## 0. Thirty-second orientation
 
-- **What it is:** <one sentence a non-specialist understands>
-- **Who uses it:** <the real users, not "anyone">
-- **Status as of <date>:** <shipped / prototype / paused>, version <v1.0.0>
-- **Deployed at:** <URL, or "not deployed — runs locally; see docs/deployment.md">
-- **Start here:** `README.md` to run it, `docs/architecture.md` to understand it,
-  this file to take it over.
+- **What it is:** A single-user browser tool to map sections, draft text, track status, and save a project document in `localStorage`.
+- **Who uses it:** One student authoring a long deliverable offline.
+- **Status as of 2026-11-23:** Shipped release candidate promoted to **v1.0.0** with known deferred Musts (checklist, assemble).
+- **Deployed at:** GitHub Pages when enabled on the repo — see `docs/deployment.md`. Always runnable locally via `bash script/start`.
+- **Start here:** `README.md` to run it, `docs/architecture.md` to understand it, this file to take it over.
 
 ## 1. Day one — get it running (target: under 30 minutes)
 
-| Step | Command | Expected result | If it fails |
-|---|---|---|---|
-| 1 | `<clone command>` | <n> files | — |
-| 2 | `<setup command>` | ends with `<exact success line>` | <the one likely cause> |
-| 3 | `<config step>` | `.env` filled from `.env.example` | see §3 for who owns each key |
-| 4 | `<run command>` | <exact output or URL> | see `docs/runbook.md` §<n> |
-| 5 | `<smoke test command>` | <n> tests pass in <n>s | — |
+| Step | Command | You should see | If not |
+|------|---------|----------------|--------|
+| 1 | `git clone <url> && cd <repo>` | project files including `script/setup` | wrong URL / auth |
+| 2 | `cp .env.example .env` | `.env` exists (gitignored) | — |
+| 3 | `bash script/setup` | ends with **`setup OK`** | Node &lt; 20 → install Node 20+ (`node -v`) |
+| 4 | `bash script/test` | **`pass 29`** / `test OK` | open failing assertion; do not parallelize oddly |
+| 5 | `bash script/smoke` | **`SMOKE OK (store): Introduction — draft`** | see runbook failures |
+| 6 | `bash script/start` → open http://127.0.0.1:8080/ | **Capstone Content Project** + Introduction row | port in use → `PORT=8081 bash script/start` |
 
-## 2. Week one — a ramp that ends in a merged change
+## 2. Week one — ramp ending in a merged change
 
-1. **Read** `docs/architecture.md` (20 min) and the ADR index in `docs/adr/`.
-2. **Trace one request** end to end: <name the path, e.g. "scan a barcode">.
-   Files in order: <file> → <file> → <file>.
-3. **Fix the starter issue:** <#issue> — small, real, has acceptance criteria, and
-   touches <n> files. It is labeled `good-first-issue` on purpose.
-4. **Ship it:** branch, test, open a pull request, watch CI, merge, tag if needed.
+1. **Read** `docs/architecture.md` §0 and `docs/adr/README.md` (20 min).  
+2. **Trace one path:** add section → save → reload. Files: `project-service.js` → `project-store.js` → `storage.js` → `render.js` / `main.js`.  
+3. **Fix the starter issue:** **good-first-issue** — FR-CHECK-12 checklist toggle (see below and `docs/onboarding.md`).  
+4. **Ship:** branch, `bash script/test`, PR, CI green, merge.
 
-## 3. Accounts, keys, and who pays for what
+### good-first-issue (referenced)
 
-| Thing | Where it lives | Currently owned by | Cost | Rotation / transfer step |
-|---|---|---|---|---|
-| Source repository | <host/org/repo> | <name> | <free tier> | Transfer ownership, then re-add CI secrets |
-| Deploy target | <host> | <name> | <amount / period> | <exact step> |
-| Database | <host> | <name> | <amount / period> | Backups: <where, how often, restore command> |
-| `<THIRD_PARTY_API_KEY>` | host secret store + `.env` | <name> | <plan> | Revoke old key AFTER the new one is live |
-| `<MODEL_API_KEY>` | host secret store | <name> | usage-based | See §6 |
+**Title:** FR-CHECK-12 — toggle checklist item and persist `done`  
+**Acceptance:** toggle persists across reload; unknown id → named error; tests green.  
+**Likely files:** `src/app/project-service.js`, `src/app/render.js`, `tests/acceptance/`, `src/persistence/project-store.js`  
+**Labels:** `good-first-issue`, `FR-CHECK-12`
 
-> Every row with a person's name in it is a liability. Before this project is
-> truly handed off, every one of those names must change.
+## 3. Accounts, keys, and who pays
 
-## 4. Landmines — things that will bite you
+| Thing | Where it lives | Owner | Cost | Transfer |
+|-------|----------------|-------|------|----------|
+| GitHub repo | github.com | Reggie Johnson (course) | $0 student | Add collaborator / transfer repo |
+| GitHub Pages | repo Settings → Pages | same | $0 public | follows repo |
+| API keys | **none for v1.0.0** | — | $0 | — |
+| Domain | none | — | $0 | — |
 
-<At least five. Each: what looks broken, what is actually happening, what to do.>
+**Secrets scan:** `.env` gitignored; no production secrets in tree. If a key was ever committed historically, rotate at provider first (none required today). Re-scan: `git log -p \| grep -iE 'api[_-]?key\|secret\|password\|token' \|\| true`.
 
-1. **<Symptom>.** Actually: <cause>. Do: <fix>. (Tracked as <#issue>.)
-2. …
+## 4. Landmines (at least five)
 
-## 5. Known defects and deferred work
+1. **`FORCE_STORAGE_DOWN=1` left in the environment** makes smoke fail forever — unset it.  
+2. **Clearing `localStorage` on the Pages origin** wipes the user’s only copy of drafts — there is no server backup.  
+3. **Do not use `innerHTML` for user body text** — XSS landmine; keep `textContent` / form values (SEC-01).  
+4. **Autosave is not a bug** — explicit Save is ADR 0005 / FR-SAVE-09; rejecting CR-005 was intentional.  
+5. **`package-lock.json` must stay committed** — without it `npm ci` / setup drifts.  
+6. **Assemble and checklist are Musts still deferred** — do not demo them as done (DEF-007, DEF-008).
 
-Pull the live list from the issue tracker; this is the shape of it as of <date>.
+## 5. Bus-factor register (closed this week)
 
-| ID | Severity | Summary | Why it is still open |
-|---|---|---|---|
-| DEF-0xx | <sev> | <one line> | <deliberate deferral, with the reason> |
+| Only-in-my-head item | Closed by |
+|----------------------|-----------|
+| How to prove store works without UI | README + `script/smoke` expected line |
+| Why Save is explicit | ADR 0005 + CR-005 |
+| What FORCE_STORAGE_DOWN is for | `.env.example` + runbook + landmine |
+| Where seed content lives | `seed/project.json` + `seededProject()` |
+| Pages vs local deploy story | `docs/deployment.md` |
+| First safe change | onboarding + good-first-issue above |
 
-## 6. AI dependencies (delete only if there are none)
+## 6. AI / volatile dependency
 
-- **Where the system calls a model:** <feature> → <file:function>
-- **Model pinned to:** `<provider>:<exact model/version string>`, set via `<ENV VAR>`
-- **Prompts live in:** <path> — they are code; change them through review.
-- **Behavior you must NOT assume is stable:** <what drifts if the model changes>
-- **If the model is retired or the key is revoked:** <the documented fallback —
-  ideally the feature degrades and the rest of the app keeps working>
-- **Cost owner and budget alarm:** <name>, <threshold>, <where the alert goes>
-- **Evaluation to re-run after any model change:** <command / fixture set>
+No runtime model. Volatile surface: browser `localStorage` quota and multi-tab last-write-wins. See successor section in `docs/ai-usage.md`.
 
-## 7. What only I know (bus-factor register)
+## 7. Rollback pointer
 
-| Knowledge | Consequence if lost | Now written down at |
-|---|---|---|
-| <the thing> | <what breaks> | <file + section> |
-
-## 8. If nobody picks this up
-
-<What happens to the deployment, the data, and the accounts. Who archives the
-repo, when, and what the deprecation notice in `README.md` should say.>
-
----
-
-**Maintainer of record:** <name> · **Handoff date:** <date> · **This file last verified against a real run on:** <date>
+Numbered rollback: `docs/runbook.md` § Rollback.
